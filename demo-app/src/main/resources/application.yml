@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: design-first-demo
+
+  ai:
+    openai:
+      # Set via environment variable: export SPRING_AI_OPENAI_API_KEY=your-key
+      # Or in application-local.yml (not committed)
+      api-key: ${SPRING_AI_OPENAI_API_KEY:}
+      chat:
+        options:
+          model: gpt-4o-mini
+          temperature: 0.3
+          max-tokens: 500
+
+    vectorstore:
+      pgvector:
+        index-type: hnsw
+        distance-type: cosine_distance
+        dimensions: 1536       # matches text-embedding-ada-002 / text-embedding-3-small
+        initialize-schema: true
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    open-in-view: false
+
+app:
+  rag:
+    k: 3                       # number of documents to retrieve
+    similarity-threshold: 0.7  # minimum cosine similarity score (0.0–1.0)
+
+logging:
+  level:
+    com.example.designfirstdemo: DEBUG
+    org.springframework.ai: INFO

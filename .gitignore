@@ -1,0 +1,14 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Java build output
+target/
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# IDE
+.idea/
+*.iws
+*.iml
+*.ipr
