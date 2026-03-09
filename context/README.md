@@ -26,6 +26,7 @@ Both paths produce the same result: auto-loaded context that primes the AI befor
 | 3 | Skills | `layer-3-skills.md` | Per task, when relevant |
 | 4 | Prompt templates | `layer-4-prompt-templates.md` | Per task, when relevant |
 | 5 | Story context | `layer-5-story-context.md` | Every task, always |
+
 ---
 
 ## Layer 0 — Generation Prompt
@@ -90,11 +91,11 @@ A design constraint is an explicit statement of what the AI must never propose. 
 
 The fastest way to build up your Design Constraints sections is to ask this question at the end of every session:
 
-> **"What should I have told you at the start?"**
+> **"What context were you missing that would have changed your approach?"**
 
-The AI will identify exactly what context was missing: the assumptions it made, the conventions it guessed at, the information that would have changed its approach. Add each answer directly to the relevant constraint section of the appropriate file.
+The AI surfaces the gap between what it assumed and what is actually true in your project: the constraints it inferred, the conventions it guessed at, the decisions it had no way to know. Add each answer directly to the relevant constraint section of the appropriate file.
 
-This is the primary mechanism for keeping your context files useful over time. Session 1 you're correcting the AI on your stack and conventions. By session 5 it's working like a team member who already absorbed your onboarding.
+This is the primary mechanism for keeping your context files accurate. Each answer narrows the gap between what the AI assumes about your project and what is actually true. The files compound — each task makes the next one cheaper.
 
 Run this question after every completed task, not just after mistakes. A session that produced good output still contains missing context — the AI just happened to guess right. The next session might not.
 

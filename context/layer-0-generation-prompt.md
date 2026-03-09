@@ -169,11 +169,11 @@ Paste the following files in order, each preceded by its path:
 
 At the end of every session — not just when something went wrong — ask the AI:
 
-> **"What should I have told you at the start?"**
+> **"What context were you missing that would have changed your approach?"**
 
-The AI will identify exactly what context was missing: the assumptions it made, the conventions it guessed at, the information that would have changed its approach. Add each answer directly to the relevant Design Constraints section of the appropriate file.
+The AI surfaces the gap between what it assumed and what is actually true in your project: the constraints it inferred, the conventions it guessed at, the decisions it had no way to know. Add each answer directly to the relevant Design Constraints section of the appropriate file.
 
-This is the primary mechanism for keeping your context files useful over time. Session 1 you're correcting the AI on your stack and conventions. By session 5 it's working like a team member who already absorbed your onboarding.
+Each answer narrows the distance between the AI's model of your codebase and the real thing. The files compound — each task makes the next one cheaper.
 
 ### Structured triggers
 
@@ -183,9 +183,10 @@ This is the primary mechanism for keeping your context files useful over time. S
 | New architectural pattern introduced | Update `ARCHITECTURE.md` and `DESIGN_PRINCIPLES.md` |
 | New env var or binding | Update `CONTEXT.md` |
 | Major refactor changes file structure | Regenerate `CODEBASE.md` |
-| Post-session retrospective ("What should I have told you?") | Add answers to the relevant Design Constraints sections |
+| Post-session retrospective ("What context were you missing that would have changed your approach?") | Add answers to the relevant Design Constraints sections |
 
 The retrospective trigger is the most important. Run it after every completed task. A session that produced good output still contains missing context — the AI just happened to guess right. The next session might not.
+
 ---
 
 ## Connection to the Rest of the Framework

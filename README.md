@@ -76,7 +76,7 @@ Level 5: Implementation   ← first code written here
 
 AFTER EVERY SESSION
 ─────────────────────────────────────────────────────────
-Ask: "What should I have told you at the start?"
+Ask: "What context were you missing that would have changed your approach?"
 Save answers → Design Constraints sections of relevant layer files
 ```
 
@@ -99,7 +99,7 @@ Open `examples/01-rag-endpoint/conversation/design-conversation.md`. It shows a 
 Write a Layer 5 story context file using the template (`context/layer-5-story-context.md`). Load it in Copilot Chat. Paste `levels/master-prompt.md` as your opening message. Work through the levels.
 
 **After every session:**
-Ask the AI: *"What should I have told you at the start?"* Save each answer into the relevant Design Constraints section. Session 1 you're correcting the AI on your stack and conventions. By session 5 it's working like a senior hire who remembers their onboarding.
+Ask the AI: *"What context were you missing that would have changed your approach?"* Save each answer into the relevant Design Constraints section. The context files improve with every task. The AI that generated generic patterns on day one is working from your actual architecture by week two.
 
 ---
 
