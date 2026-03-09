@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "GitHub.copilot",
+    "GitHub.copilot-chat",
+    "vscjava.vscode-java-pack",
+    "redhat.java",
+    "vmware.vscode-spring-boot",
+    "vscjava.vscode-spring-initializr"
+  ]
+}
