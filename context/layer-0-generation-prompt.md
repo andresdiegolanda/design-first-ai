@@ -165,16 +165,27 @@ Paste the following files in order, each preceded by its path:
 
 ## Keeping the Files Current
 
+### The retrospective technique
+
+At the end of every session — not just when something went wrong — ask the AI:
+
+> **"What should I have told you at the start?"**
+
+The AI will identify exactly what context was missing: the assumptions it made, the conventions it guessed at, the information that would have changed its approach. Add each answer directly to the relevant Design Constraints section of the appropriate file.
+
+This is the primary mechanism for keeping your context files useful over time. Session 1 you're correcting the AI on your stack and conventions. By session 5 it's working like a team member who already absorbed your onboarding.
+
+### Structured triggers
+
 | Trigger | Action |
 |---------|--------|
 | New dependency added | Update `TECH_STACK.md` |
 | New architectural pattern introduced | Update `ARCHITECTURE.md` and `DESIGN_PRINCIPLES.md` |
 | New env var or binding | Update `CONTEXT.md` |
 | Major refactor changes file structure | Regenerate `CODEBASE.md` |
-| AI made a mistake you've now seen twice | Add to the relevant "Design constraints" section |
+| Post-session retrospective ("What should I have told you?") | Add answers to the relevant Design Constraints sections |
 
-The "AI made a mistake twice" trigger is the most important one. Every recurring AI mistake is a missing design constraint. Document it once, prevent it forever.
-
+The retrospective trigger is the most important. Run it after every completed task. A session that produced good output still contains missing context — the AI just happened to guess right. The next session might not.
 ---
 
 ## Connection to the Rest of the Framework

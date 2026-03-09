@@ -73,6 +73,11 @@ Level 2: Components
 Level 3: Interactions
 Level 4: Contracts
 Level 5: Implementation   ← first code written here
+
+AFTER EVERY SESSION
+─────────────────────────────────────────────────────────
+Ask: "What should I have told you at the start?"
+Save answers → Design Constraints sections of relevant layer files
 ```
 
 The layers eliminate the frustration loop Garg describes in Knowledge Priming. The levels eliminate the implementation trap he describes in Design-First. Neither model alone is complete.
@@ -93,6 +98,9 @@ Open `examples/01-rag-endpoint/conversation/design-conversation.md`. It shows a 
 **I'm ready to work on a task right now:**
 Write a Layer 5 story context file using the template (`context/layer-5-story-context.md`). Load it in Copilot Chat. Paste `levels/master-prompt.md` as your opening message. Work through the levels.
 
+**After every session:**
+Ask the AI: *"What should I have told you at the start?"* Save each answer into the relevant Design Constraints section. Session 1 you're correcting the AI on your stack and conventions. By session 5 it's working like a senior hire who remembers their onboarding.
+
 ---
 
 ## Repository Structure
@@ -100,6 +108,7 @@ Write a Layer 5 story context file using the template (`context/layer-5-story-co
 ```
 design-first-ai/
 ├── README.md
+├── CHANGELOG.md
 │
 ├── context/                          # Knowledge Priming — layer templates
 │   ├── README.md                     # Layer overview and the Design Constraints principle
