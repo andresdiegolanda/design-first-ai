@@ -103,6 +103,12 @@ Ask the AI: *"What context were you missing that would have changed your approac
 
 ---
 
+## Presentation
+
+A 9-slide deck covering the full framework is available at `docs/design-first-ai.pptx`. It walks through the problem, both models, all six layers, all five levels, the design constraints principle, the retrospective technique, and the quick start paths. Use it for team onboarding or chapter demos.
+
+---
+
 ## Repository Structure
 
 ```
@@ -133,6 +139,9 @@ design-first-ai/
 │       ├── context/                  # Layer 0 and Layer 5 files loaded for this example
 │       ├── conversation/             # Full design conversation with corrections shown
 │       └── outcome.md               # What was built, what was caught before implementation
+│
+├── docs/
+│   └── design-first-ai.pptx         # 9-slide framework overview deck
 │
 ├── demo-app/                         # Minimal Spring AI baseline (buildable, Java 21 + Docker)
 │

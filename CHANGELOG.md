@@ -4,6 +4,27 @@ All notable changes to this project are documented here.
 
 ---
 
+## [Unreleased] — 2026-03-10
+
+### Added
+
+**Presentation deck** — `docs/design-first-ai.pptx`
+
+9-slide framework overview covering:
+1. Title and problem statement (the Implementation Trap)
+2. The two complementary models
+3. Knowledge Priming — all six context layers
+4. Design-First Collaboration — all five conversation levels
+5. How they fit together (onboarding → session → design conversation → retrospective loop)
+6. Design constraints: weak vs strong priming with examples
+7. The retrospective technique with the question prominently displayed
+8. Quick start paths for five entry points
+9. Closing summary
+
+Intended for team onboarding and chapter demos. File referenced in README under new "Presentation" section. Repository structure diagram updated to include `docs/` folder.
+
+---
+
 ## [Unreleased] — 2026-03-09
 
 ### Added
