@@ -2,7 +2,7 @@
 
 A practical implementation of Rahul Garg's [Design-First Collaboration](https://martinfowler.com/articles/reduce-friction-ai/design-first-collaboration.html) and [Knowledge Priming](https://martinfowler.com/articles/reduce-friction-ai/knowledge-priming.html) patterns, published on Martin Fowler's site in February–March 2026.
 
-The methodology has no code dependencies — it is pure markdown templates and guides. The `demo-app/` folder contains a buildable Spring AI service used as the methodology baseline (requires Java 21 and Docker). The framework is model-agnostic and works with any AI coding assistant.
+The methodology has no code dependencies — it is pure markdown templates and guides. Buildable example apps live inside `examples/` alongside the design conversations that produced them. Implemented for VS Code + GitHub Copilot.
 
 ---
 
@@ -18,7 +18,7 @@ This is what Garg calls the **Implementation Trap**. The fix is to reconstruct t
 
 ### Knowledge Priming — Loading Context Before the Session
 
-Before asking AI to design or build anything, give it the project context it needs. Without this, AI defaults to generic patterns from its training data — the "average of the internet," not your codebase.
+Before asking Copilot to design or build anything, give it the project context it needs. Without this, Copilot defaults to generic patterns from its training data — the "average of the internet," not your codebase.
 
 This repo implements Knowledge Priming as a **six-layer context architecture**:
 
@@ -87,19 +87,19 @@ The layers eliminate the frustration loop Garg describes in Knowledge Priming. T
 ## Quick Start
 
 **I have an existing codebase:**
-Run the Layer 0 generation prompt (`context/layer-0-generation-prompt.md`) against your project. It produces five context files. Configure your AI tool to load them automatically (`guides/tool-setup.md`). Done in 15 minutes.
+Run the Layer 0 generation prompt (`context/layer-0-generation-prompt.md`) against your project. It produces five context files. Configure Copilot to load them automatically (`guides/copilot-setup.md`). Done in 15 minutes.
 
 **I'm starting a new project:**
 Fill in the Layer 1 template (`context/layer-1-base-instructions.md`) manually. Add Layer 2 when you have conventions worth encoding. See `guides/adoption.md` for the week-by-week path.
 
 **I want to see it in action first:**
-Open `examples/01-rag-endpoint/conversation/design-conversation.md`. It shows a complete Design-First conversation with real corrections at Level 2 and Level 4 before any code was written.
+Open `examples/01-rag-endpoint/conversation/design-conversation.md`. It shows a complete Design-First conversation with real corrections at Level 2 and Level 4 before any code was written. The app it produced is at `examples/01-rag-endpoint/app/`.
 
 **I'm ready to work on a task right now:**
 Write a Layer 5 story context file using the template (`context/layer-5-story-context.md`). Load it in Copilot Chat. Paste `levels/master-prompt.md` as your opening message. Work through the levels.
 
 **After every session:**
-Ask the AI: *"What context were you missing that would have changed your approach?"* Save each answer into the relevant Design Constraints section. The context files improve with every task. The AI that generated generic patterns on day one is working from your actual architecture by week two.
+Ask Copilot: *"What context were you missing that would have changed your approach?"* Save each answer into the relevant Design Constraints section. The context files improve with every task. Copilot that generated generic patterns on day one is working from your actual architecture by week two.
 
 ---
 
@@ -113,53 +113,65 @@ A 9-slide deck covering the full framework is available at `docs/design-first-ai
 
 ```
 design-first-ai/
+├── .github/
+│   └── copilot-instructions.md        # L1+L2 for working on this repo (auto-loaded)
 ├── README.md
 ├── CHANGELOG.md
 │
-├── context/                          # Knowledge Priming — layer templates
-│   ├── README.md                     # Layer overview and the Design Constraints principle
-│   ├── layer-0-generation-prompt.md  # One-time codebase analysis prompt → produces Layers 1–4
-│   ├── layer-1-base-instructions.md  # Project identity, stack, non-negotiables, anti-patterns
-│   ├── layer-2-file-patterns.md      # Structure, naming, canonical code patterns
-│   ├── layer-3-skills.md             # Error handling, testing, logging, RAG pattern
-│   ├── layer-4-prompt-templates.md   # New feature / single component / tests / bug / refactor
-│   └── layer-5-story-context.md      # Current task — scope, constraints, open questions
+├── context/                           # Knowledge Priming — layer templates (generic)
+│   ├── README.md                      # Layer overview and the Design Constraints principle
+│   ├── layer-0-generation-prompt.md   # One-time codebase analysis prompt → produces Layers 1–4
+│   ├── layer-1-base-instructions.md   # Project identity, stack, non-negotiables, anti-patterns
+│   ├── layer-2-file-patterns.md       # Structure, naming, canonical code patterns
+│   ├── layer-3-skills.md              # Error handling, testing, logging, RAG pattern
+│   ├── layer-4-prompt-templates.md    # New feature / single component / tests / bug / refactor
+│   ├── layer-5-story-context.md       # Current task — scope, constraints, open questions
+│   ├── framework-layer-3-skills.md    # L3 skills for working on this repo
+│   └── framework-layer-4-templates.md # L4 prompt templates for working on this repo
 │
-├── levels/                           # Design-First — conversation level templates
-│   ├── README.md                     # Complexity calibration + discipline notes
-│   ├── master-prompt.md              # Single opening prompt to set the sequential pattern
-│   ├── level-1-capabilities.md       # What to look for + approval template
+├── levels/                            # Design-First — conversation level templates
+│   ├── README.md                      # Complexity calibration + discipline notes
+│   ├── master-prompt.md               # Single opening prompt to set the sequential pattern
+│   ├── level-1-capabilities.md        # What to look for + approval template
 │   ├── level-2-components.md
 │   ├── level-3-interactions.md
 │   ├── level-4-contracts.md
 │   └── level-5-implementation.md
 │
-├── examples/                         # Worked examples against the demo app
+├── examples/                          # Worked examples — design conversation + buildable app
 │   └── 01-rag-endpoint/
-│       ├── context/                  # Layer 0 and Layer 5 files loaded for this example
-│       ├── conversation/             # Full design conversation with corrections shown
-│       └── outcome.md               # What was built, what was caught before implementation
+│       ├── app/                       # Spring AI RAG service (Java 21, open as own workspace)
+│       │   ├── .github/
+│       │   │   └── copilot-instructions.md  # L1+L2 for this app (auto-loaded)
+│       │   ├── .vscode/               # Copilot model + extension config
+│       │   ├── context/               # All context layers for this app (L0, L1, L3, L4, L5)
+│       │   ├── src/                   # Java source and tests
+│       │   ├── docker-compose.yml
+│       │   └── pom.xml
+│       ├── conversation/
+│       │   └── design-conversation.md # Full Level 1–5 exchange with corrections shown
+│       └── outcome.md                 # What was built, what was caught before implementation
 │
 ├── docs/
-│   └── design-first-ai.pptx         # 9-slide framework overview deck
-│
-├── demo-app/                         # Minimal Spring AI baseline (buildable, Java 21 + Docker)
+│   └── design-first-ai.pptx          # 9-slide framework overview deck
 │
 └── guides/
-    ├── adoption.md                   # Incremental adoption: start with one layer
-    ├── calibration.md               # Which levels for which task complexity
-    └── tool-setup.md                # VS Code + Copilot setup (primary) and alternatives
+    ├── adoption.md                    # Incremental adoption: start with one layer
+    ├── calibration.md                 # Which levels for which task complexity
+    └── copilot-setup.md              # VS Code + GitHub Copilot configuration
 ```
 
 ---
 
-## The Demo App
+## The Example Apps
 
-A minimal Spring AI service used as the baseline for all examples. One endpoint. One ChatClient call. One VectorStore query. Enough complexity to require design decisions at all five levels. Configured for VS Code + GitHub Copilot. See `demo-app/README.md`.
+Each example in `examples/` contains a complete, buildable app alongside the design conversation that produced it. Open `examples/NN-name/app/` as its own VS Code workspace — it has its own `.github/copilot-instructions.md`, `.vscode/` config, and `context/` folder with all layer files filled in for that project.
+
+**01-rag-endpoint** — Spring Boot 3.4.3 | Java 21 | Spring AI 1.0.x | PGVector. Single RAG endpoint. Requires Docker and an OpenAI API key. See `examples/01-rag-endpoint/app/README.md`.
 
 ---
 
 ## References
 
-- Rahul Garg, [Design-First Collaboration](https://martinfowler.com/articles/reduce-friction-ai/design-first-collaboration.html), martinfowler.com, March 2026
+- Rahul Garg, [Design-First Collaboration](https://martinfowler.com/articles/reduce-fiction-ai/design-first-collaboration.html), martinfowler.com, March 2026
 - Rahul Garg, [Knowledge Priming](https://martinfowler.com/articles/reduce-friction-ai/knowledge-priming.html), martinfowler.com, February 2026

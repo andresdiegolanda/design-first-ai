@@ -10,8 +10,13 @@ target/
 *.iml
 *.ipr
 
-### VS Code ###
-.vscode/
+### VS Code — personal settings only ###
+# .vscode/ is intentionally NOT ignored — settings.json and extensions.json
+# are shared team configuration for Copilot model and recommended extensions.
+# See demo-app/README.md for details.
+.vscode/*.code-snippets
+.vscode/launch.json
+.vscode/tasks.json
 
 ### Local configuration (never commit API keys) ###
 src/main/resources/application-local.yml

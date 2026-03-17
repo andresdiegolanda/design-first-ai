@@ -2,7 +2,9 @@
 
 > Auto-loaded by GitHub Copilot for every chat session in this workspace.
 > This is Layers 1 and 2 of the Design-First AI Collaboration framework.
-> Keep under 150 lines. Last reviewed: 2026-03-08.
+> Keep under 150 lines. Last reviewed: 2026-03-17.
+>
+> Load per task: `#file:context/layer-3-skills.md` (skills) | `#file:context/layer-4-prompt-templates.md` (templates)
 
 ---
 
@@ -119,6 +121,10 @@ src/main/java/com/example/designfirstdemo/
 src/main/resources/
 ├── application.yml       All config — model, temperature, k, threshold
 └── prompts/question.st   Prompt template reference
+
+context/
+├── layer-3-skills.md           Load per task: error handling, testing, logging, RAG, config
+└── layer-4-prompt-templates.md Load per task: new feature, endpoint, tests, bug, prompt
 ```
 
 New files go in the package that matches their layer. A service class goes in `service/`. A DTO goes in `dto/`. Do not create new packages without a clear layering reason.
@@ -135,5 +141,5 @@ New files go in the package that matches their layer. A service class goes in `s
 - Do not use `Optional.get()` without `isPresent()` — always guard
 - Do not add `@SpringBootTest` for unit tests — use `@WebMvcTest` for controllers, Mockito for services
 - Do not call the embedding model directly — use `VectorStore.similaritySearch()`
-- Do not build prompts with string concatenation — use the `.st` template file
+- Do not build prompts with string concatenation — use the `.formatted()` pattern or `PromptTemplate`
 - Do not add streaming, caching, rate limiting, or retry logic — out of scope for this demo

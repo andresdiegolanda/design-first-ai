@@ -1,7 +1,10 @@
 # design-first-demo
 
-Minimal Spring AI service. Exists solely as the baseline for methodology examples in this repo.
+Minimal Spring AI service. Exists solely as the baseline for the 01-rag-endpoint example in this repo.
 Pre-configured for **VS Code + GitHub Copilot**. Default Copilot model: Claude Sonnet 4.6.
+
+This app lives at `examples/01-rag-endpoint/app/`. The design conversation that produced it
+is at `examples/01-rag-endpoint/conversation/design-conversation.md`.
 
 ---
 
@@ -55,11 +58,11 @@ One REST endpoint. One `ChatClient` call. One `VectorStore` query.
 
 ### 1. Open in VS Code
 
-This app lives inside the `design-first-ai` repository. Open the `demo-app` folder directly in VS Code:
+Open the `app` folder directly in VS Code — not the repo root and not the example folder:
 
 ```bash
 git clone https://github.com/[your-username]/design-first-ai
-cd design-first-ai/demo-app
+cd design-first-ai/examples/01-rag-endpoint/app
 code .
 ```
 
@@ -119,7 +122,7 @@ mvn wrapper:wrapper
 
 ### 6. Load documents (optional for testing)
 
-The app has no ingestion endpoint. Add a temporary `CommandLineRunner` to load test data. Place it in any `@Configuration` class:
+The app has no ingestion endpoint. Add a temporary `CommandLineRunner` to load test data:
 
 ```java
 @Bean
@@ -148,10 +151,11 @@ curl -X POST http://localhost:8080/api/v1/questions/ask \
 ### The flow
 
 1. Copilot Chat opens → `.github/copilot-instructions.md` auto-loaded (Layers 1 and 2)
-2. Load Layer 5 story context: `#file:../../context/layer-5-story-context.md` or paste inline
-3. Paste the master prompt from `../../levels/master-prompt.md` (filled in)
-4. Work through Levels 1–4 before any code is generated
-5. Level 5: Copilot generates against the approved contracts
+2. Load Layer 3 skills: `#file:context/layer-3-skills.md`
+3. Load Layer 5 story context: write a new `layer-5-story-context.md` or paste inline
+4. Use a template from `context/layer-4-prompt-templates.md` as your opening message
+5. Work through Levels 1–4 before any code is generated
+6. Level 5: Copilot generates against the approved contracts
 
 ### Inline suggestions and the implementation trap
 
@@ -161,13 +165,9 @@ Only accept inline suggestions after Level 4 contracts are approved.
 
 ### Choosing a model
 
-The framework is model-agnostic — the templates and level structure work the same way regardless of which Claude model processes them. The choice is a speed and cost tradeoff:
-
 **Claude Sonnet 4.6** (default): faster responses, lower cost per token. Suitable for iterative level conversations, generating service and controller code, writing tests.
 
-**Claude Opus 4.6**: stronger reasoning on complex architectural problems. Consider switching at Levels 2–3 for large multi-component features where getting the component boundaries right the first time is worth the extra time and cost. Switch via the model picker in Copilot Chat.
-
-Neither is "better" for this framework. Pick based on the complexity of the task and your tolerance for latency.
+**Claude Opus 4.6**: stronger reasoning on complex architectural problems. Consider switching at Levels 2–3 for large multi-component features. Switch via the model picker in Copilot Chat.
 
 ---
 
@@ -189,6 +189,13 @@ mvn test
 .vscode/
 ├── settings.json               ← Model config + Copilot settings
 └── extensions.json             ← Recommended extensions
+context/
+├── layer-0-architecture.md     ← Layer 0 output: architecture + design constraints
+├── layer-0-design-principles.md ← Layer 0 output: conventions + anti-patterns
+├── layer-1-base-instructions.md ← Layer 1: project identity + non-negotiables
+├── layer-3-skills.md           ← Layer 3: error handling, testing, logging, RAG, config
+├── layer-4-prompt-templates.md ← Layer 4: task prompt templates
+└── layer-5-story-context.md    ← Layer 5: story context (template — write new per task)
 src/
 ├── main/java/com/example/designfirstdemo/
 │   ├── controller/QuestionController.java
@@ -228,6 +235,6 @@ All values are configurable via environment variables or profile yml files. None
 
 ## This App Was Designed Using the Methodology
 
-See `../../examples/01-rag-endpoint/` for the complete Design-First conversation:
+See `../conversation/design-conversation.md` for the complete Design-First conversation:
 the context layers loaded, the full exchange at each level, and two corrections
 caught before any code was written.
