@@ -111,6 +111,9 @@ Write a Layer 5 story context file using the template (`context/layer-5-story-co
 **After every session:**
 Ask Copilot: *"What context were you missing that would have changed your approach?"* Save each answer into the relevant Design Constraints section. The context files improve with every task. Copilot that generated generic patterns on day one is working from your actual architecture by week two.
 
+**Using Claude Code:**
+The framework is compatible with Claude Code. The layers and levels work the same way — the context files load as project knowledge, the level conversation happens in the chat. See `levels/README.md` for how the framework maps to Superpowers, a Claude Code execution layer that pairs naturally with this design methodology.
+
 ---
 
 ## Presentation
@@ -140,8 +143,8 @@ design-first-ai/
 │   └── framework-layer-4-templates.md # L4 prompt templates for working on this repo
 │
 ├── levels/                            # Design-First — conversation level templates
-│   ├── README.md                      # Complexity calibration + Superpowers note
-│   ├── master-prompt.md               # Single opening prompt to set the sequential pattern
+│   ├── README.md                      # Complexity calibration + Superpowers/Claude Code note
+│   ├── master-prompt.md               # Opening prompt template + filled example
 │   ├── level-1-capabilities.md        # What to look for + approval template
 │   ├── level-2-components.md
 │   ├── level-3-interactions.md
