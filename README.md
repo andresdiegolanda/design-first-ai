@@ -103,7 +103,7 @@ Run the Layer 0 generation prompt (`context/layer-0-generation-prompt.md`) again
 Fill in the Layer 1 template (`context/layer-1-base-instructions.md`) manually. Add Layer 2 when you have conventions worth encoding. See `guides/adoption.md` for the week-by-week path.
 
 **I want to see it in action first:**
-Open `examples/01-rag-endpoint/conversation/design-conversation.md`. It shows a complete Design-First conversation with real corrections at Level 2 and Level 4 before any code was written. The app it produced is at `examples/01-rag-endpoint/app/`.
+Open `examples/01-rag-endpoint/conversation/design-conversation.md` for a Java/Spring example, or `examples/02-angular-component/conversation/design-conversation.md` for an Angular example. Both show the full Level 1–5 exchange with corrections caught before any code was written.
 
 **I'm ready to work on a task right now:**
 Write a Layer 5 story context file using the template (`context/layer-5-story-context.md`). Load it in Copilot Chat. Paste `levels/master-prompt.md` as your opening message. Work through the levels.
@@ -150,18 +150,14 @@ design-first-ai/
 │   └── level-5-implementation.md      # Two-pass review: spec compliance then code quality
 │
 ├── examples/                          # Worked examples — design conversation + buildable app
-│   └── 01-rag-endpoint/
-│       ├── app/                       # Spring AI RAG service (Java 21, open as own workspace)
-│       │   ├── .github/
-│       │   │   └── copilot-instructions.md  # L1+L2 for this app (auto-loaded)
-│       │   ├── .vscode/               # Copilot model + extension config
-│       │   ├── context/               # All context layers for this app (L0, L1, L3, L4, L5)
-│       │   ├── src/                   # Java source and tests
-│       │   ├── docker-compose.yml
-│       │   └── pom.xml
+│   ├── 01-rag-endpoint/               # Spring Boot 3.4 | Java 21 | Spring AI | PGVector
+│   │   ├── app/                       # Buildable app (requires Docker + OpenAI key)
+│   │   ├── conversation/
+│   │   └── outcome.md
+│   └── 02-angular-component/          # Angular 17 | TypeScript | RxJS | standalone
+│       ├── app/                       # Buildable app (requires Node 18+ only)
 │       ├── conversation/
-│       │   └── design-conversation.md # Full Level 1–5 exchange with corrections shown
-│       └── outcome.md                 # What was built, what was caught before implementation
+│       └── outcome.md
 │
 ├── docs/
 │   └── design-first-ai.pptx          # 9-slide framework overview deck
@@ -179,6 +175,8 @@ design-first-ai/
 Each example in `examples/` contains a complete, buildable app alongside the design conversation that produced it. Open `examples/NN-name/app/` as its own VS Code workspace — it has its own `.github/copilot-instructions.md`, `.vscode/` config, and `context/` folder with all layer files filled in for that project.
 
 **01-rag-endpoint** — Spring Boot 3.4.3 | Java 21 | Spring AI 1.0.x | PGVector. Single RAG endpoint. Requires Docker and an OpenAI API key. See `examples/01-rag-endpoint/app/README.md`.
+
+**02-angular-component** — Angular 17 | TypeScript 5.4 | RxJS 7.8 | standalone components. Debounced user search with explicit loading/error/empty states. Requires Node 18+ only — no API key, no Docker. See `examples/02-angular-component/app/README.md`.
 
 ---
 

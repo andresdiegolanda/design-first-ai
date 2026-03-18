@@ -1,0 +1,34 @@
+<div class="user-search">
+  <input
+    type="text"
+    class="search-input"
+    placeholder="Search by name, username, or email…"
+    [formControl]="searchControl"
+    aria-label="Search users"
+  />
+
+  <!-- Loading state -->
+  <div *ngIf="loading" class="state-message">Loading users…</div>
+
+  <!-- Error state -->
+  <div *ngIf="error && !loading" class="state-message state-message--error">
+    {{ error }}
+    <button class="retry-button" (click)="retry()">Retry</button>
+  </div>
+
+  <!-- Empty state (loaded, no results) -->
+  <div
+    *ngIf="!loading && !error && filteredUsers.length === 0"
+    class="state-message"
+  >
+    No users match "{{ searchControl.value }}".
+  </div>
+
+  <!-- Results -->
+  <ul *ngIf="!loading && !error && filteredUsers.length > 0" class="user-list">
+    <li *ngFor="let user of filteredUsers" class="user-card">
+      <span class="user-name">{{ user.name }}</span>
+      <span class="user-meta">{{ user.username }} · {{ user.email }}</span>
+    </li>
+  </ul>
+</div>

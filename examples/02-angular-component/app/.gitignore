@@ -1,0 +1,26 @@
+# node and build output
+node_modules/
+dist/
+out-tsc/
+
+# IDE
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Angular cache
+.angular/cache

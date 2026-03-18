@@ -1,0 +1,7 @@
+{
+  "github.copilot.chat.defaultModel": "claude-sonnet-4-5",
+  "github.copilot.chat.codeGeneration.useInstructionFiles": true,
+  "github.copilot.chat.reviewSelection.enabled": true,
+  "github.copilot.renameSuggestions.triggerAutomatically": false,
+  "editor.inlineSuggest.enabled": true
+}

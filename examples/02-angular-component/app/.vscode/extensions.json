@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "GitHub.copilot",
+    "GitHub.copilot-chat",
+    "Angular.ng-template",
+    "dbaeumer.vscode-eslint"
+  ]
+}
