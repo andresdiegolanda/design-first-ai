@@ -4,6 +4,61 @@ All notable changes to this project are documented here.
 
 ---
 
+## [Unreleased] — 2026-03-18
+
+### Added
+
+**Deletability principle** — added throughout the framework.
+
+The principle: every artifact this framework produces must function without the person who
+created it. Context files explain the project without the author. Design documents capture
+decisions without the meeting. Code follows conventions without the engineer who established
+them. Deleting any single layer — person, framework, documents, or code — leaves the
+remaining layers functional.
+
+- **`README.md`** — New "Design for Deletion" section added after "The Problem". Establishes
+  the principle before the methodology is introduced.
+- **`context/README.md`** — Design Constraints section now explicitly connects constraint
+  documentation to deletability: a documented constraint survives the person who discovered it.
+- **`levels/README.md`** — New "The Conversation Record as Reconstruction Manual" section.
+  The design conversation saved in `conversation/` is not documentation — it is the manual
+  for rebuilding the code if it is deleted. The design survives the code.
+- **`guides/adoption.md`** — New "The Long Game — Deletability" section at the end. Connects
+  the retrospective technique to the deletability goal: each answer saved to Design Constraints
+  reduces dependence on any single person's memory.
+
+**Superpowers compatibility** — additive changes referencing Jesse Vincent's
+[Superpowers](https://github.com/obra/superpowers) framework for Claude Code users.
+
+- **`levels/level-4-spec-template.md`** — New file. Structured spec document to fill after
+  Level 4 approval. Captures agreed scope, components, data flow, contracts, and constraints
+  in one page. Input to the Level 5 session; compatible with Superpowers' writing-plans
+  skill format.
+- **`levels/README.md`** — One paragraph noting that the Level 1–4 output maps to Superpowers'
+  brainstorming spec format, and `level-4-spec-template.md` is compatible with its
+  writing-plans input. No dependency required.
+- **`context/layer-0-generation-prompt.md`** — Note added: Layer 0 output files prime
+  Superpowers agents before the brainstorming skill fires, filling the codebase-context gap
+  that Superpowers assumes is already solved.
+
+### Changed
+
+- **`levels/level-5-implementation.md`** — Restructured into two explicit review passes:
+  Pass 1 (Spec Compliance) checks contracts match exactly; Pass 2 (Code Quality) checks
+  conventions, logging, tests, and scope additions. Prevents evaluating both dimensions
+  simultaneously, which is the primary source of missed deviations.
+
+- **`README.md`** — Diagram updated: Level 4 now shows `level-4-spec-template.md` as
+  output; Level 5 notes "against the spec". `levels/` structure block updated to show
+  both new files with inline comments.
+
+### Fixed
+
+- **`README.md`** — `reduce-fiction-ai` corrected to `reduce-friction-ai` in the
+  Design-First Collaboration reference URL.
+
+---
+
 ## [Unreleased] — 2026-03-17
 
 ### Added
@@ -55,14 +110,13 @@ All notable changes to this project are documented here.
 
 - **`examples/01-rag-endpoint/app/README.md`** — Path references updated throughout.
   Project structure diagram updated to show `context/` folder with all layer files.
-  "See Also" link updated from `../../examples/01-rag-endpoint/` to `../conversation/`.
 
 - Scoped implementation to VS Code + GitHub Copilot. The methodology (layers, levels) remains
   tool-agnostic; the tooling instructions commit to one environment.
 - `guides/tool-setup.md` renamed to `guides/copilot-setup.md`. Alternative tool sections removed.
 - "your AI tool" / "any AI coding assistant" / "model-agnostic" replaced with "Copilot" /
-  "VS Code + GitHub Copilot" throughout adoption.md, context/README.md, layer-0-generation-prompt.md,
-  levels/README.md.
+  "VS Code + GitHub Copilot" throughout adoption.md, context/README.md,
+  layer-0-generation-prompt.md, levels/README.md.
 
 ---
 

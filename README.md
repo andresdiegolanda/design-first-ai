@@ -14,6 +14,16 @@ This is what Garg calls the **Implementation Trap**. The fix is to reconstruct t
 
 ---
 
+## Design for Deletion
+
+Every artifact this framework produces must function without the person who created it.
+
+Context files explain the project without the author present. Design documents capture decisions without the meeting. Code follows conventions without the engineer who established them. If any single layer is deleted — person, framework, documents, or code — the remaining layers still function independently.
+
+This is the opposite of tribal knowledge. The expert's value shifts from *being irreplaceable* to *making their knowledge permanent*. The framework succeeds when the author can walk away and nothing breaks.
+
+---
+
 ## Two Complementary Models
 
 ### Knowledge Priming — Loading Context Before the Session
@@ -71,8 +81,8 @@ DURING THE DESIGN CONVERSATION
 Level 1: Capabilities     ← seeded by Layer 5 story context
 Level 2: Components
 Level 3: Interactions
-Level 4: Contracts
-Level 5: Implementation   ← first code written here
+Level 4: Contracts        → fill in level-4-spec-template.md on approval
+Level 5: Implementation   ← first code written here, against the spec
 
 AFTER EVERY SESSION
 ─────────────────────────────────────────────────────────
@@ -130,13 +140,14 @@ design-first-ai/
 │   └── framework-layer-4-templates.md # L4 prompt templates for working on this repo
 │
 ├── levels/                            # Design-First — conversation level templates
-│   ├── README.md                      # Complexity calibration + discipline notes
+│   ├── README.md                      # Complexity calibration + Superpowers note
 │   ├── master-prompt.md               # Single opening prompt to set the sequential pattern
 │   ├── level-1-capabilities.md        # What to look for + approval template
 │   ├── level-2-components.md
 │   ├── level-3-interactions.md
 │   ├── level-4-contracts.md
-│   └── level-5-implementation.md
+│   ├── level-4-spec-template.md       # Fill after Level 4 approval — input to Level 5
+│   └── level-5-implementation.md      # Two-pass review: spec compliance then code quality
 │
 ├── examples/                          # Worked examples — design conversation + buildable app
 │   └── 01-rag-endpoint/
@@ -173,5 +184,5 @@ Each example in `examples/` contains a complete, buildable app alongside the des
 
 ## References
 
-- Rahul Garg, [Design-First Collaboration](https://martinfowler.com/articles/reduce-fiction-ai/design-first-collaboration.html), martinfowler.com, March 2026
+- Rahul Garg, [Design-First Collaboration](https://martinfowler.com/articles/reduce-friction-ai/design-first-collaboration.html), martinfowler.com, March 2026
 - Rahul Garg, [Knowledge Priming](https://martinfowler.com/articles/reduce-friction-ai/knowledge-priming.html), martinfowler.com, February 2026
