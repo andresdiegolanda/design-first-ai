@@ -4,21 +4,18 @@ All notable changes to this project are documented here.
 
 ---
 
-## [Unreleased]
+## v1.2.1 — 2026-03-19
 
 ### Fixed
 
-- **`context/skill-business-story-narration.md`** — Three issues corrected:
-  1. Example output now labels all four sections to match the Output Format spec
-     (`User story statement`, `Business description`, `Acceptance criteria`, `Technical notes`).
-  2. "Out of scope" declaration moved out of the acceptance criteria bullet list into its
-     own labeled line — scope exclusions are not testable criteria.
-  3. Technical notes section added to the example (was declared optional in the spec but
-     absent from the example with no indication). Now shown with a brief implementation
-     reference to clarify when and how to use it.
-  4. Design Constraints section updated: added "Do not list out of scope items as
-     acceptance criteria" and "Do not omit technical notes when implementation details
-     are known."
+- **`context/skill-business-story-narration.md`** — Three issues corrected in the example:
+  1. All four output sections now labeled to match the Output Format spec.
+  2. "Out of scope" declaration moved out of the acceptance criteria bullet list.
+  3. Technical notes section shown in the example with a generic implementation reference.
+  4. Three Fidelity-specific references in Technical notes replaced with generic equivalents
+     (`app.module.ts ENSIGHTEN_CONFIG provider` → `TrackingService initializer`,
+     `'mfa'` fallback detail removed, `BRAEII-2227` → `PROJ-1234`).
+  5. Two new Design Constraints added covering issues 2 and 3.
 
 ---
 

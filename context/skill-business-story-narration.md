@@ -98,9 +98,9 @@ Produce in this order:
 **Out of scope:** Changes to the analytics event schema or tracking endpoint.
 
 **Technical notes:**
-> Affected component: `app.module.ts` ENSIGHTEN_CONFIG provider. The channel property
-> currently falls back to `'mfa'` — fix is to read from consumer-supplied config.
-> Tracked under BRAEII-2227.
+> Affected component: TrackingService initializer. The channel property currently
+> falls back to a hardcoded default — fix is to read from consumer-supplied config.
+> Tracked under PROJ-1234.
 
 ---
 
