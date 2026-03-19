@@ -103,7 +103,7 @@ Run the Layer 0 generation prompt (`context/layer-0-generation-prompt.md`) again
 Fill in the Layer 1 template (`context/layer-1-base-instructions.md`) manually. Add Layer 2 when you have conventions worth encoding. See `guides/adoption.md` for the week-by-week path.
 
 **I want to see it in action first:**
-Open `examples/01-rag-endpoint/conversation/design-conversation.md` for a Java/Spring example, or `examples/02-angular-component/conversation/design-conversation.md` for an Angular example. Both show the full Level 1–5 exchange with corrections caught before any code was written.
+Open `examples/01-spring-mvc/conversation/design-conversation.md` for a Java/Spring MVC example, or `examples/02-angular-component/conversation/design-conversation.md` for an Angular example. Both show the full Level 1–5 exchange with corrections caught before any code was written.
 
 **I'm ready to work on a task right now:**
 Write a Layer 5 story context file using the template (`context/layer-5-story-context.md`). Load it in Copilot Chat. Paste `levels/master-prompt.md` as your opening message. Work through the levels.
@@ -140,7 +140,8 @@ design-first-ai/
 │   ├── layer-4-prompt-templates.md    # New feature / single component / tests / bug / refactor
 │   ├── layer-5-story-context.md       # Current task — scope, constraints, open questions
 │   ├── framework-layer-3-skills.md    # L3 skills for working on this repo
-│   └── framework-layer-4-templates.md # L4 prompt templates for working on this repo
+│   ├── framework-layer-4-templates.md # L4 prompt templates for working on this repo
+│   └── skill-business-story-narration.md # Cross-cutting skill: user story generation
 │
 ├── levels/                            # Design-First — conversation level templates
 │   ├── README.md                      # Complexity calibration + Superpowers/Claude Code note
@@ -153,8 +154,8 @@ design-first-ai/
 │   └── level-5-implementation.md      # Two-pass review: spec compliance then code quality
 │
 ├── examples/                          # Worked examples — design conversation + buildable app
-│   ├── 01-rag-endpoint/               # Spring Boot 3.4 | Java 21 | Spring AI | PGVector
-│   │   ├── app/                       # Buildable app (requires Docker + OpenAI key)
+│   ├── 01-spring-mvc/                 # Spring Boot 3.4 | Java 21 | no DB | no Docker
+│   │   ├── app/                       # Buildable app (requires Java 21 + Maven only)
 │   │   ├── conversation/
 │   │   └── outcome.md
 │   └── 02-angular-component/          # Angular 17 | TypeScript | RxJS | standalone
@@ -177,7 +178,7 @@ design-first-ai/
 
 Each example in `examples/` contains a complete, buildable app alongside the design conversation that produced it. Open `examples/NN-name/app/` as its own VS Code workspace — it has its own `.github/copilot-instructions.md`, `.vscode/` config, and `context/` folder with all layer files filled in for that project.
 
-**01-rag-endpoint** — Spring Boot 3.4.3 | Java 21 | Spring AI 1.0.x | PGVector. Single RAG endpoint. Requires Docker and an OpenAI API key. See `examples/01-rag-endpoint/app/README.md`.
+**01-spring-mvc** — Spring Boot 3.4.3 | Java 21 | spring-boot-starter-web. In-memory product catalog CRUD API. Requires Java 21 + Maven only — no Docker, no API key. See `examples/01-spring-mvc/app/README.md`.
 
 **02-angular-component** — Angular 17 | TypeScript 5.4 | RxJS 7.8 | standalone components. Debounced user search with explicit loading/error/empty states. Requires Node 18+ only — no API key, no Docker. See `examples/02-angular-component/app/README.md`.
 

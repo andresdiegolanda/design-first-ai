@@ -4,6 +4,51 @@ All notable changes to this project are documented here.
 
 ---
 
+## [Unreleased]
+
+### Added
+
+- **`context/skill-business-story-narration.md`** — New cross-cutting Layer 3 skill.
+  Produces two layers from technical context: a business description in plain language
+  (no component names, no implementation details, readable by a product owner) and
+  acceptance criteria in Given/When/Then format (technical precision allowed).
+  Stack-agnostic — load with `#file:context/skill-business-story-narration.md` alongside
+  any Layer 5 story context. Includes before/after example.
+
+- **`examples/01-spring-mvc/`** — Replaced `examples/01-rag-endpoint/`. New first example
+  is a plain Spring MVC in-memory product catalog CRUD API. No database, no AI, no Docker,
+  no API key — runs with `mvn spring-boot:run` on Java 21 + Maven. Removes the OpenAI
+  dependency and Docker requirement that blocked adoption of the first example.
+
+  Contents:
+  - **`app/`** — Spring Boot 3.4.3 | Java 21 | spring-boot-starter-web only.
+    `ProductController`, `ProductService` (ConcurrentHashMap), `Product` /
+    `CreateProductRequest` records, `ProductNotFoundException`, `GlobalExceptionHandler`.
+    17 tests: 8 plain JUnit service tests, 9 `@WebMvcTest` controller tests.
+  - **`app/context/`** — Layer 0 (architecture, design principles), Layer 1, Layer 3
+    (error handling, testing, in-memory store), Layer 4 (four prompt templates),
+    Layer 5 (story context for DEMO-001).
+  - **`app/.github/copilot-instructions.md`** — Layers 1+2 auto-loaded for this app.
+  - **`conversation/design-conversation.md`** — Full Level 1–5 exchange. Two corrections:
+    `ProductRepository` interface removed at Level 2; `Long` IDs replaced with `UUID` at
+    Level 4.
+  - **`outcome.md`** — What was built, what was caught, what the Layer 0 constraints added.
+
+### Changed
+
+- **`examples/01-rag-endpoint/` removed** — replaced by `examples/01-spring-mvc/`.
+  The RAG endpoint example required Docker and an OpenAI API key, creating friction for
+  anyone trying to run the first example. The Spring MVC example has no external
+  dependencies.
+
+- **`README.md`** — Quick Start updated to reference `examples/01-spring-mvc/`.
+  Repository structure diagram updated. "The Example Apps" section updated with new
+  description of 01.
+
+- **`README.md`** — Repository structure diagram updated to include the new skill file.
+
+---
+
 ## v1.1.0 — 2026-03-18
 
 ### Added
@@ -24,13 +69,10 @@ Contents:
   rejected at Level 4.
 - **`outcome.md`** — What was built, what was caught, what the Layer 0 constraints added.
 
-**`levels/master-prompt.md`** — Filled example added below the blank template. Uses
-the DEMO-002 Angular opening message to show the specificity gap between bracket
-placeholders and effective prompts.
+**`levels/master-prompt.md`** — Filled example added below the blank template.
 
-**`README.md`** — "Using Claude Code" added as a sixth Quick Start path. References
-`levels/README.md` for Superpowers mapping. Repository structure diagram inline comments
-updated.
+**`README.md`** — "Using Claude Code" added as a sixth Quick Start path. Repository
+structure diagram updated.
 
 **Deletability principle** — added throughout the framework.
 
@@ -42,18 +84,15 @@ updated.
 **Superpowers compatibility** — additive changes for Claude Code users.
 
 - **`levels/level-4-spec-template.md`** — New file. Spec document output of Level 4 approval.
-  Compatible with Superpowers' writing-plans skill format.
 - **`levels/README.md`** — Superpowers reference paragraph.
-- **`context/layer-0-generation-prompt.md`** — Note on priming Superpowers agents with
-  Layer 0 output.
+- **`context/layer-0-generation-prompt.md`** — Note on priming Superpowers agents.
 
 ### Changed
 
 - **`levels/level-5-implementation.md`** — Two-pass review: Pass 1 (Spec Compliance),
   Pass 2 (Code Quality).
 - **`README.md`** — Quick Start updated for both examples; diagram updated.
-- **`guides/tool-setup.md`** renamed to **`guides/copilot-setup.md`**. Alternative tool
-  sections removed.
+- **`guides/tool-setup.md`** renamed to **`guides/copilot-setup.md`**.
 - **`demo-app/`** removed — apps now live in `examples/NN-name/app/`.
 - Scoped tooling to VS Code + GitHub Copilot throughout.
 
