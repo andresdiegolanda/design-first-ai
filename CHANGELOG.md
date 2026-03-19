@@ -4,7 +4,7 @@ All notable changes to this project are documented here.
 
 ---
 
-## [Unreleased]
+## v1.2.0 — 2026-03-19
 
 ### Added
 
@@ -17,8 +17,7 @@ All notable changes to this project are documented here.
 
 - **`examples/01-spring-mvc/`** — Replaced `examples/01-rag-endpoint/`. New first example
   is a plain Spring MVC in-memory product catalog CRUD API. No database, no AI, no Docker,
-  no API key — runs with `mvn spring-boot:run` on Java 21 + Maven. Removes the OpenAI
-  dependency and Docker requirement that blocked adoption of the first example.
+  no API key — runs with `mvn spring-boot:run` on Java 21 + Maven.
 
   Contents:
   - **`app/`** — Spring Boot 3.4.3 | Java 21 | spring-boot-starter-web only.
@@ -37,15 +36,18 @@ All notable changes to this project are documented here.
 ### Changed
 
 - **`examples/01-rag-endpoint/` removed** — replaced by `examples/01-spring-mvc/`.
-  The RAG endpoint example required Docker and an OpenAI API key, creating friction for
-  anyone trying to run the first example. The Spring MVC example has no external
-  dependencies.
+  The RAG endpoint example required Docker and an OpenAI API key. The Spring MVC example
+  has no external dependencies.
 
-- **`README.md`** — Quick Start updated to reference `examples/01-spring-mvc/`.
-  Repository structure diagram updated. "The Example Apps" section updated with new
-  description of 01.
+- **`.github/copilot-instructions.md`** (root) — Load hint added at the top:
+  `framework-layer-3-skills.md`, `framework-layer-4-templates.md`, and
+  `skill-business-story-narration.md` for story writing. Anti-patterns updated to flag
+  `01-rag-endpoint/` as a stale reference. File naming conventions table updated to
+  include the `skill-name.md` pattern.
 
-- **`README.md`** — Repository structure diagram updated to include the new skill file.
+- **`README.md`** — Quick Start updated to reference `examples/01-spring-mvc/`. Structure
+  diagram updated. "The Example Apps" section updated. Narration skill added to `context/`
+  block in diagram.
 
 ---
 
@@ -71,8 +73,7 @@ Contents:
 
 **`levels/master-prompt.md`** — Filled example added below the blank template.
 
-**`README.md`** — "Using Claude Code" added as a sixth Quick Start path. Repository
-structure diagram updated.
+**`README.md`** — "Using Claude Code" added as a sixth Quick Start path.
 
 **Deletability principle** — added throughout the framework.
 
@@ -91,7 +92,7 @@ structure diagram updated.
 
 - **`levels/level-5-implementation.md`** — Two-pass review: Pass 1 (Spec Compliance),
   Pass 2 (Code Quality).
-- **`README.md`** — Quick Start updated for both examples; diagram updated.
+- **`README.md`** — Quick Start updated; diagram updated.
 - **`guides/tool-setup.md`** renamed to **`guides/copilot-setup.md`**.
 - **`demo-app/`** removed — apps now live in `examples/NN-name/app/`.
 - Scoped tooling to VS Code + GitHub Copilot throughout.

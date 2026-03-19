@@ -2,7 +2,10 @@
 
 > Auto-loaded by GitHub Copilot for every chat session in this workspace.
 > This is Layers 1 and 2 for working on the framework repo itself.
-> Keep under 150 lines. Last reviewed: 2026-03-17.
+> Keep under 150 lines. Last reviewed: 2026-03-19.
+>
+> Load per task: `#file:context/framework-layer-3-skills.md` | `#file:context/framework-layer-4-templates.md`
+> For story writing: `#file:context/skill-business-story-narration.md`
 
 ---
 
@@ -57,9 +60,10 @@ level templates, worked examples with buildable apps, and guides.
 | Layer templates | `layer-N-name.md` | `layer-3-skills.md` |
 | Level templates | `level-N-name.md` | `level-4-contracts.md` |
 | Framework context | `framework-layer-N-*.md` | `framework-layer-3-skills.md` |
+| Cross-cutting skills | `skill-name.md` | `skill-business-story-narration.md` |
 | Guides | descriptive, hyphenated | `copilot-setup.md` |
-| Examples | `NN-kebab-name/` | `01-rag-endpoint/` |
-| Example apps | `examples/NN-name/app/` | `examples/01-rag-endpoint/app/` |
+| Examples | `NN-kebab-name/` | `01-spring-mvc/` |
+| Example apps | `examples/NN-name/app/` | `examples/01-spring-mvc/app/` |
 
 ---
 
@@ -82,18 +86,19 @@ design-first-ai/
 ├── CHANGELOG.md
 ├── context/                             ← generic layer templates (placeholders)
 │   ├── framework-layer-3-skills.md      ← L3 for working on this repo
-│   └── framework-layer-4-templates.md  ← L4 for working on this repo
+│   ├── framework-layer-4-templates.md   ← L4 for working on this repo
+│   └── skill-business-story-narration.md ← cross-cutting skill: user story generation
 ├── levels/                              ← level templates (methodology)
 ├── examples/
-│   └── 01-rag-endpoint/
-│       ├── app/                         ← buildable Spring AI app (open as own workspace)
-│       │   ├── .github/copilot-instructions.md
-│       │   ├── context/                 ← all context files for this app
-│       │   └── src/
+│   ├── 01-spring-mvc/
+│   │   ├── app/                         ← open as own workspace
+│   │   ├── conversation/
+│   │   └── outcome.md
+│   └── 02-angular-component/
+│       ├── app/                         ← open as own workspace
 │       ├── conversation/
 │       └── outcome.md
-├── guides/                              ← practitioner guides
-└── docs/                               ← binary assets
+└── guides/
 ```
 
 ---
@@ -107,4 +112,5 @@ design-first-ai/
 - Do not add motivational or encouraging language to documentation
 - Do not reference `tool-setup.md` — it was renamed to `copilot-setup.md`
 - Do not reference `demo-app/` — it no longer exists; apps live in `examples/NN/app/`
+- Do not reference `01-rag-endpoint/` — it was replaced by `01-spring-mvc/`
 - Do not propose changes to an example app from the repo root workspace — open `app/` separately
