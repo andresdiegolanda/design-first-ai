@@ -4,6 +4,24 @@ All notable changes to this project are documented here.
 
 ---
 
+## [Unreleased]
+
+### Fixed
+
+- **`context/skill-business-story-narration.md`** — Three issues corrected:
+  1. Example output now labels all four sections to match the Output Format spec
+     (`User story statement`, `Business description`, `Acceptance criteria`, `Technical notes`).
+  2. "Out of scope" declaration moved out of the acceptance criteria bullet list into its
+     own labeled line — scope exclusions are not testable criteria.
+  3. Technical notes section added to the example (was declared optional in the spec but
+     absent from the example with no indication). Now shown with a brief implementation
+     reference to clarify when and how to use it.
+  4. Design Constraints section updated: added "Do not list out of scope items as
+     acceptance criteria" and "Do not omit technical notes when implementation details
+     are known."
+
+---
+
 ## v1.2.0 — 2026-03-19
 
 ### Added
