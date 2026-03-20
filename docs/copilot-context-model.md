@@ -156,7 +156,11 @@ by both the agent and any human who needs to understand the work.
 
 ## The Design-First Connection
 
-The document-driven workflow maps directly to the Design-First framework levels:
+This workflow runs **alongside** the Design-First framework, not instead of it. The
+framework provides the structure for what goes into the implementation guide — scope,
+components, interactions, contracts. The document-driven workflow provides the mechanism
+for producing and persisting it. Use both together: work through the design levels to
+produce a rigorous implementation guide, then hand the guide to the agent for execution.
 
 | Framework concept | Document-driven equivalent |
 |-------------------|---------------------------|

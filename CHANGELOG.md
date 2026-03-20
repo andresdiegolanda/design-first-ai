@@ -14,8 +14,11 @@ All notable changes to this project are documented here.
   demand — IDE restarts lose nothing, new conversations lose nothing, only unwritten
   conversation history is volatile. Documents a concrete document-driven workflow: app
   description → implementation guide → execution report. Each document is both a
-  human-readable artifact and the input to the next step. Includes a mapping to
-  Design-First framework concepts.
+  human-readable artifact and the input to the next step. Clarified that the document-driven
+  workflow runs alongside the Design-First framework, not instead of it.
+
+- **`guides/adoption.md`** — One line added at the end of "The Long Game — Deletability"
+  pointing to `docs/copilot-context-model.md` for agent mode users.
 
 - **`README.md`** — Repository structure diagram updated to include `copilot-context-model.md`.
 

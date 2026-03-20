@@ -89,3 +89,5 @@ Each answer saved to Design Constraints from the retrospective reduces the syste
 When that's true, the author can leave. The knowledge stays.
 
 Deletability achieved through iteration, not through documentation sprints.
+
+If you use Copilot in agent mode, the document-driven workflow in `docs/copilot-context-model.md` describes how to use files as persistent session state — an approach that pairs directly with the layer structure and removes the need for manual context management.
