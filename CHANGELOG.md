@@ -4,6 +4,23 @@ All notable changes to this project are documented here.
 
 ---
 
+## [Unreleased]
+
+### Added
+
+- **`docs/copilot-context-model.md`** — Reference document explaining how Copilot + Claude
+  manage context in agent mode. Corrects the common misconception that context is managed
+  via `#file:` tags and context window state. The agent reads workspace files from disk on
+  demand — IDE restarts lose nothing, new conversations lose nothing, only unwritten
+  conversation history is volatile. Documents a concrete document-driven workflow: app
+  description → implementation guide → execution report. Each document is both a
+  human-readable artifact and the input to the next step. Includes a mapping to
+  Design-First framework concepts.
+
+- **`README.md`** — Repository structure diagram updated to include `copilot-context-model.md`.
+
+---
+
 ## v1.2.1 — 2026-03-19
 
 ### Fixed
@@ -12,9 +29,7 @@ All notable changes to this project are documented here.
   1. All four output sections now labeled to match the Output Format spec.
   2. "Out of scope" declaration moved out of the acceptance criteria bullet list.
   3. Technical notes section shown in the example with a generic implementation reference.
-  4. Three Fidelity-specific references in Technical notes replaced with generic equivalents
-     (`app.module.ts ENSIGHTEN_CONFIG provider` → `TrackingService initializer`,
-     `'mfa'` fallback detail removed, `BRAEII-2227` → `PROJ-1234`).
+  4. Company-specific references in Technical notes replaced with generic equivalents.
   5. Two new Design Constraints added covering issues 2 and 3.
 
 ---
