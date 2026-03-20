@@ -1,13 +1,10 @@
-# Tool Setup — VS Code + GitHub Copilot (Primary) and Alternatives
+# Copilot Setup — VS Code + GitHub Copilot
 
-This framework is optimized for **VS Code with GitHub Copilot using Claude Sonnet 4.6**.
-Alternative tool configurations are documented at the end of this file.
+This framework is implemented for **VS Code with GitHub Copilot using Claude Sonnet 4.6**.
 
 ---
 
-## Primary Setup — VS Code + GitHub Copilot + Claude Sonnet 4.6
-
-### Prerequisites
+## Prerequisites
 
 - VS Code 1.90+
 - GitHub Copilot subscription (Individual, Business, or Enterprise)
@@ -156,40 +153,6 @@ Do not use inline suggestions until Level 4 is approved. Inline suggestions are 
 **Model availability:** Not all Claude models are available in all Copilot tiers. If `claude-sonnet-4-5` is unavailable, check the model picker for the current available identifier. Model identifiers in Copilot change as Anthropic releases new versions.
 
 **Instruction file length:** `.github/copilot-instructions.md` above approximately 200 lines starts to dilute context. If you find yourself adding more, split into the file + separate skill files loaded per task with `#file:`.
-
----
-
-## Alternative Tool Configurations
-
-### Claude Code (CLI)
-
-Auto-loaded file: `CLAUDE.md` at project root.
-
-```bash
-# Load layers per session
-/add context/layer-3-skills.md
-/add context/layer-5-story-context.md
-
-# Run the generation prompt
-cat context/layer-0-generation-prompt.md | pbcopy  # paste into session
-```
-
-### Cursor
-
-Auto-loaded file: `.cursor/rules`
-
-On-demand: reference files with `@filename` in the Cursor chat panel.
-
-### Claude.ai Projects
-
-Upload `copilot-instructions.md` equivalent to Project Knowledge.
-Paste Layer 5 content directly into each conversation.
-
-### Any chat interface (no file access)
-
-Create a single `session-start.md` combining Layers 1 and 2.
-Copy-paste at the start of every session.
-Use Mode B of the Layer 0 generation prompt for initial setup.
 
 ---
 
