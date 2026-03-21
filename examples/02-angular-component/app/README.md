@@ -90,17 +90,18 @@ ng test
 
 ```
 .github/
-└── copilot-instructions.md     ← Layers 1+2: auto-loaded by Copilot
+└── copilot-instructions.md     ← Layers 1+2 auto-loaded by Copilot
 .vscode/
 ├── settings.json               ← Model config + Copilot settings
 └── extensions.json             ← Recommended extensions
 context/
-├── layer-0-architecture.md     ← Layer 0 output: architecture + design constraints
-├── layer-0-design-principles.md ← Layer 0 output: conventions + anti-patterns
+├── layer-0-architecture.md     ← Layer 0: architecture + design constraints
+├── layer-0-design-principles.md ← Layer 0: conventions + anti-patterns
 ├── layer-1-base-instructions.md ← Layer 1: project identity + non-negotiables
+├── layer-2-file-patterns.md    ← Layer 2: structure, naming, canonical patterns (source for copilot-instructions.md)
 ├── layer-3-skills.md           ← Layer 3: subscriptions, debounce, state, testing
 ├── layer-4-prompt-templates.md ← Layer 4: task prompt templates
-└── layer-5-story-context.md    ← Layer 5: story context (template — write new per task)
+└── layer-5-story-context.md    ← Layer 5: story context (write new per task)
 src/app/
 ├── models/user.model.ts        ← User interface
 ├── services/user.service.ts    ← HTTP layer

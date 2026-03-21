@@ -112,12 +112,13 @@ Service tests use plain JUnit 5. Controller tests use `@WebMvcTest`.
 ├── settings.json               ← Copilot model config
 └── extensions.json             ← Recommended extensions
 context/
-├── layer-0-architecture.md     ← Architecture + design constraints
-├── layer-0-design-principles.md ← Conventions + anti-patterns
-├── layer-1-base-instructions.md ← Project identity + non-negotiables
-├── layer-3-skills.md           ← Error handling, testing, in-memory store
-├── layer-4-prompt-templates.md ← Task prompt templates
-└── layer-5-story-context.md    ← Story context (template — write new per task)
+├── layer-0-architecture.md     ← Layer 0: architecture + design constraints
+├── layer-0-design-principles.md ← Layer 0: conventions + anti-patterns
+├── layer-1-base-instructions.md ← Layer 1: project identity + non-negotiables
+├── layer-2-file-patterns.md    ← Layer 2: structure, naming, canonical patterns (source for copilot-instructions.md)
+├── layer-3-skills.md           ← Layer 3: error handling, testing, in-memory store
+├── layer-4-prompt-templates.md ← Layer 4: task prompt templates
+└── layer-5-story-context.md    ← Layer 5: story context (write new per task)
 src/main/java/com/example/springmvcdemo/
 ├── controller/  ProductController
 ├── service/     ProductService

@@ -8,6 +8,17 @@ All notable changes to this project are documented here.
 
 ### Added
 
+- **`examples/01-spring-mvc/app/context/layer-2-file-patterns.md`** — Standalone Layer 2
+  file for the Spring MVC example. Contains project structure, naming conventions table,
+  and canonical code patterns (controller, service, exception, request record). This is
+  the authored source; the same content is merged into `.github/copilot-instructions.md`.
+
+- **`examples/02-angular-component/app/context/layer-2-file-patterns.md`** — Standalone
+  Layer 2 file for the Angular example. Contains project structure, naming conventions
+  table, and canonical code patterns (component with subscription cleanup, service,
+  model interface, template state blocks). This is the authored source; the same content
+  is merged into `.github/copilot-instructions.md`.
+
 - **`docs/copilot-context-model.md`** — Reference document explaining how Copilot + Claude
   manage context in agent mode. Corrects the common misconception that context is managed
   via `#file:` tags and context window state. The agent reads workspace files from disk on
@@ -21,6 +32,26 @@ All notable changes to this project are documented here.
   pointing to `docs/copilot-context-model.md` for agent mode users.
 
 - **`README.md`** — Repository structure diagram updated to include `copilot-context-model.md`.
+
+### Changed
+
+- **`context/README.md`** — Layer overview table now shows the concrete Copilot file for
+  each layer: Layers 1+2 mapped to `.github/copilot-instructions.md` (auto-loaded), Layers
+  3–5 mapped to their standalone files (referenced on demand). Layer 1 and Layer 2 section
+  descriptions updated to state explicitly that content goes in `copilot-instructions.md`.
+
+- **`README.md`** — Layer table updated with "Copilot File" column. Layers 1+2 now show
+  `.github/copilot-instructions.md` with auto-load note. "How They Fit Together" diagram
+  updated to show Layers 1+2 as a braced pair loaded from the same file.
+
+- **`examples/01-spring-mvc/app/.github/copilot-instructions.md`** — Header updated to
+  reference `context/layer-2-file-patterns.md` as the Layer 2 source file.
+
+- **`examples/02-angular-component/app/.github/copilot-instructions.md`** — Header updated
+  to reference `context/layer-2-file-patterns.md` as the Layer 2 source file.
+
+- Both example app READMEs — Project Structure diagrams updated to include
+  `layer-2-file-patterns.md` with explanation of its role.
 
 ---
 

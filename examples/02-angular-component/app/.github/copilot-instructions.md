@@ -2,8 +2,9 @@
 
 > Auto-loaded by GitHub Copilot for every chat session in this workspace.
 > This is Layers 1 and 2 of the Design-First AI Collaboration framework.
-> Keep under 150 lines. Last reviewed: 2026-03-18.
+> Keep under 150 lines. Last reviewed: 2026-03-19.
 >
+> Layer 2 source: `context/layer-2-file-patterns.md`
 > Load per task: `#file:context/layer-3-skills.md` | `#file:context/layer-4-prompt-templates.md`
 
 ---
