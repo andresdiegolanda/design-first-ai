@@ -157,7 +157,7 @@ Paste the following files in order, each preceded by its path:
 
 **2. Add what's missing.** The most valuable section in each file is "Design constraints." If the generated version is thin, expand it. These are the guardrails that prevent Copilot from proposing plausible-but-wrong code.
 
-**3. Place the files.** Put the generated files in your project root or in a `context/` folder. Configure Copilot to load them automatically (see `../guides/copilot-setup.md`).
+**3. Place the files.** Put the generated files in your project root or in a `context/` folder. Configure Copilot to load them automatically (see `../docs/copilot-setup.md`).
 
 **4. Commit them.** These are infrastructure, not notes. They go in version control, they're reviewed like code, and they update when the codebase changes significantly.
 
@@ -196,7 +196,6 @@ Once the generated files are in place:
 - They replace the manual Layer 1 and Layer 2 templates for your project
 - Layer 3 skills can be written against them — the conventions are already documented
 - Layer 5 story context references them by section rather than restating them
-- Garg's Level 1 Capabilities conversation starts from a shared vocabulary that's already established
 - If you use Claude Code and [Superpowers](https://github.com/obra/superpowers), run the Layer 0 generation prompt before the brainstorming skill fires. Superpowers assumes the agent already has codebase context; the Layer 0 output files provide exactly that — architecture, stack, conventions, and design constraints — so the agent works from your actual project rather than training data patterns.
 
 The generation step is the onboarding. Everything else runs on top of it.

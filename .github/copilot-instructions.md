@@ -2,7 +2,7 @@
 
 > Auto-loaded by GitHub Copilot for every chat session in this workspace.
 > This is Layers 1 and 2 for working on the framework repo itself.
-> Keep under 150 lines. Last reviewed: 2026-03-19.
+> Keep under 150 lines. Last reviewed: 2026-03-21.
 >
 > Load per task: `#file:context/framework-layer-3-skills.md` | `#file:context/framework-layer-4-templates.md`
 > For story writing: `#file:context/skill-business-story-narration.md`
@@ -11,9 +11,9 @@
 
 ## Project Identity
 
-Public methodology repo implementing Rahul Garg's Knowledge Priming and Design-First
-Collaboration patterns (martinfowler.com, Feb–Mar 2026). Contains layer templates,
-level templates, worked examples with buildable apps, and guides.
+Public methodology repo implementing Rahul Garg's Knowledge Priming, Design-First
+Collaboration, and Context Anchoring patterns (martinfowler.com, Feb–Mar 2026).
+Contains layer templates, worked examples with buildable apps, and docs.
 
 - **Type:** Documentation and methodology repo. Buildable apps live inside `examples/NN-name/app/`.
 - **Audience:** Working engineers. No hand-holding. No tutorials.
@@ -26,18 +26,16 @@ level templates, worked examples with buildable apps, and guides.
 | Folder | Contains | Rule |
 |--------|----------|------|
 | `context/` | Layer templates 0–5 (generic, with placeholders) | Templates only — never filled-in instances |
-| `levels/` | Level templates 1–5 + master-prompt | Methodology descriptions only — no Copilot-specific content |
-| `guides/` | adoption.md, calibration.md, copilot-setup.md | How-to docs for practitioners |
+| `docs/` | Workflow docs, setup guide, adoption guide, presentation deck | Reference docs for practitioners |
 | `examples/` | Worked examples — each has `app/`, `conversation/`, `outcome.md` | Full example per folder — never partial |
 | `examples/NN/app/` | Buildable project + all its context files | Separate project — open `app/` as its own VS Code workspace |
-| `docs/` | Presentation deck | Binary assets only |
 
 ---
 
 ## Non-Negotiables
 
 - `context/` templates stay generic — bracket placeholders, never filled-in for a specific project
-- The methodology (layers, levels) stays tool-agnostic — no Copilot-specific language in `context/` or `levels/`
+- The methodology stays tool-agnostic — no Copilot-specific language in `context/` layer templates
 - Every layer template and Layer 0 output file must have a "Design constraints" section
 - The retrospective question is exactly: *"What context were you missing that would have changed your approach?"* — this wording does not vary
 - All documentation: compressed, imperative. No filler. No padding.
@@ -49,7 +47,6 @@ level templates, worked examples with buildable apps, and guides.
 - Not a code generator or tool — it produces markdown, not runnable output
 - Not a tutorial platform — readers are engineers, not beginners
 - Not documentation for Copilot itself — methodology only
-- Not multi-tool — Cursor, Claude Code, and other alternatives are not referenced
 
 ---
 
@@ -58,10 +55,9 @@ level templates, worked examples with buildable apps, and guides.
 | File Type | Pattern | Example |
 |-----------|---------|---------|
 | Layer templates | `layer-N-name.md` | `layer-3-skills.md` |
-| Level templates | `level-N-name.md` | `level-4-contracts.md` |
 | Framework context | `framework-layer-N-*.md` | `framework-layer-3-skills.md` |
 | Cross-cutting skills | `skill-name.md` | `skill-business-story-narration.md` |
-| Guides | descriptive, hyphenated | `copilot-setup.md` |
+| Docs | descriptive, hyphenated | `design-workflow.md` |
 | Examples | `NN-kebab-name/` | `01-spring-mvc/` |
 | Example apps | `examples/NN-name/app/` | `examples/01-spring-mvc/app/` |
 
@@ -69,11 +65,11 @@ level templates, worked examples with buildable apps, and guides.
 
 ## Documentation Style Rules
 
-- **Imperative, not explanatory.** "Do not use glob patterns." Not "You should avoid using glob patterns because..."
+- **Imperative, not explanatory.**
 - **State the constraint, not the reason.** Add the reason only when it is non-obvious.
-- **No filler openers.** Never: "It's important to note that...", "Remember to...", "Please ensure..."
-- **Short sections.** If a section exceeds one screen, it needs splitting or compression.
-- **Design Constraints last in every section.** They are the most important part — not an afterthought.
+- **No filler openers.**
+- **Short sections.** If a section exceeds one screen, split or compress.
+- **Design Constraints last in every section.**
 
 ---
 
@@ -81,24 +77,17 @@ level templates, worked examples with buildable apps, and guides.
 
 ```
 design-first-ai/
-├── .github/copilot-instructions.md      ← this file (L1+L2 for framework work)
+├── .github/copilot-instructions.md      ← this file
 ├── README.md
 ├── CHANGELOG.md
 ├── context/                             ← generic layer templates (placeholders)
-│   ├── framework-layer-3-skills.md      ← L3 for working on this repo
-│   ├── framework-layer-4-templates.md   ← L4 for working on this repo
-│   └── skill-business-story-narration.md ← cross-cutting skill: user story generation
-├── levels/                              ← level templates (methodology)
+│   ├── framework-layer-3-skills.md
+│   ├── framework-layer-4-templates.md
+│   └── skill-business-story-narration.md
+├── docs/                                ← workflow docs + setup + adoption + deck
 ├── examples/
-│   ├── 01-spring-mvc/
-│   │   ├── app/                         ← open as own workspace
-│   │   ├── conversation/
-│   │   └── outcome.md
-│   └── 02-angular-component/
-│       ├── app/                         ← open as own workspace
-│       ├── conversation/
-│       └── outcome.md
-└── guides/
+│   ├── 01-spring-mvc/app/               ← open as own workspace
+│   └── 02-angular-component/app/        ← open as own workspace
 ```
 
 ---
@@ -106,11 +95,10 @@ design-first-ai/
 ## Anti-Patterns — Never Propose These
 
 - Do not fill in bracket placeholders in `context/layer-*.md` — those are templates
-- Do not add Copilot-specific or tool-specific language to `context/` or `levels/` files
 - Do not create new examples without `app/`, `conversation/`, and `outcome.md`
-- Do not use "model-agnostic" in tooling files — that phrase was removed deliberately
-- Do not add motivational or encouraging language to documentation
-- Do not reference `tool-setup.md` — it was renamed to `copilot-setup.md`
-- Do not reference `demo-app/` — it no longer exists; apps live in `examples/NN/app/`
-- Do not reference `01-rag-endpoint/` — it was replaced by `01-spring-mvc/`
+- Do not reference `guides/` — files moved to `docs/`
+- Do not reference `levels/` — folder removed, replaced by `docs/design-workflow.md`
+- Do not reference `tool-setup.md` — renamed to `copilot-setup.md`, now in `docs/`
+- Do not reference `demo-app/` — replaced by `examples/NN/app/`
+- Do not reference `01-rag-endpoint/` — replaced by `01-spring-mvc/`
 - Do not propose changes to an example app from the repo root workspace — open `app/` separately

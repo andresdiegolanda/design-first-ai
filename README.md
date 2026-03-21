@@ -97,10 +97,10 @@ Save answers → Design Constraints sections of relevant layer files
 ## Quick Start
 
 **I have an existing codebase:**
-Run the Layer 0 generation prompt (`context/layer-0-generation-prompt.md`) against your project. It produces five context files. Configure Copilot to load them automatically (`guides/copilot-setup.md`). Done in 15 minutes.
+Run the Layer 0 generation prompt (`context/layer-0-generation-prompt.md`) against your project. It produces five context files. Configure Copilot to load them automatically (`docs/copilot-setup.md`). Done in 15 minutes.
 
 **I'm starting a new project:**
-Fill in the Layer 1 template (`context/layer-1-base-instructions.md`) manually. Add Layer 2 when you have conventions worth encoding. See `guides/adoption.md` for the week-by-week path.
+Fill in the Layer 1 template (`context/layer-1-base-instructions.md`) manually. Add Layer 2 when you have conventions worth encoding. See `docs/adoption.md` for the week-by-week path.
 
 **I want to understand the workflow:**
 Read `docs/design-workflow.md`. It describes the three-step document-driven process: app description → implementation guide → execution. It includes Garg's five design dimensions as the quality guide for reviewing the impl-guide.
@@ -153,15 +153,12 @@ design-first-ai/
 │       ├── conversation/
 │       └── outcome.md
 │
-├── docs/
-│   ├── design-first-ai.pptx          # 9-slide framework overview deck
-│   ├── design-workflow.md            # Design workflow: impl-guide + execution (primary)
-│   └── copilot-context-model.md      # How Copilot + Claude manage context in agent mode
-│
-└── guides/
-    ├── adoption.md                    # Incremental adoption: start with one layer
-    ├── calibration.md                 # Complexity calibration guide
-    └── copilot-setup.md              # VS Code + GitHub Copilot configuration
+└── docs/
+    ├── design-workflow.md            # Primary workflow: impl-guide + agent execution
+    ├── copilot-context-model.md      # How Copilot + Claude manage context in agent mode
+    ├── adoption.md                   # Incremental adoption: start with one layer
+    ├── copilot-setup.md              # VS Code + GitHub Copilot configuration
+    └── design-first-ai.pptx          # 9-slide framework overview deck
 ```
 
 ---

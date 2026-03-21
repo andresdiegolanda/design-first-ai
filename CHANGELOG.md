@@ -31,25 +31,40 @@ All notable changes to this project are documented here.
   document-driven iterative model. Garg's five design dimensions are preserved as a quality
   review guide within `design-workflow.md`.
 
+- **`guides/calibration.md` deleted** — described calibration for the levels gate model
+  which no longer exists.
+
+- **`guides/adoption.md` moved to `docs/adoption.md`**
+- **`guides/copilot-setup.md` moved to `docs/copilot-setup.md`**
+
+  The `guides/` folder is now empty and removed. All practitioner documentation lives in
+  `docs/`.
+
 - **`docs/copilot-context-model.md`** — Stripped to context mechanics only: how the agent
   reads workspace files, what survives session boundaries, the role of
   `.github/copilot-instructions.md`, and tag-based vs natural language context loading.
   The document-driven workflow content moved to `docs/design-workflow.md`.
 
 - **`README.md`** — Restructured around three Garg patterns (Knowledge Priming, Design-First,
-  Context Anchoring). "Two Complementary Models" → "Three Complementary Patterns". Levels
-  table and sequential gate diagram replaced with the document-driven workflow diagram.
-  Quick Start updated. `levels/` removed from structure diagram. Context Anchoring added
-  to References.
+  Context Anchoring). Levels table and sequential gate diagram replaced with the
+  document-driven workflow diagram. `levels/` and `guides/` removed from structure diagram.
+  `docs/` block updated with all moved and new files. Context Anchoring added to References.
+  Quick Start paths updated.
 
-- **`guides/adoption.md`** — Rewritten to reflect the document-driven workflow. Week 3 now
-  introduces the impl-guide workflow instead of Layer 5 story context. Week 4 is Layer 3
-  skills. References to `levels/` removed. Deletability section updated to point to
-  `docs/design-workflow.md`.
+- **`docs/adoption.md`** — Rewritten to reflect the document-driven workflow. Week 3
+  introduces the impl-guide workflow. Week 4 is Layer 3 skills. References to `levels/`
+  removed. Deletability section updated.
 
-- **`context/README.md`** — Layer overview table shows concrete Copilot file mappings.
-  Layers 1+2 → `.github/copilot-instructions.md` (auto-loaded). Layers 3–5 → referenced
-  by path on demand.
+- **`context/README.md`** — `../guides/copilot-setup.md` reference updated to
+  `../docs/copilot-setup.md`.
+
+- **`context/layer-0-generation-prompt.md`** — `../guides/copilot-setup.md` reference
+  updated to `../docs/copilot-setup.md`. Stale Garg Level reference removed from
+  Connection section.
+
+- **`.github/copilot-instructions.md`** (root) — `guides/` and `levels/` removed from
+  architecture table and repo structure diagram. Anti-patterns updated to flag both as
+  stale references.
 
 - Both example app `copilot-instructions.md` headers — reference `layer-2-file-patterns.md`
   as the Layer 2 source file.

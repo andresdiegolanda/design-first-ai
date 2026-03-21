@@ -31,7 +31,7 @@ Both paths produce the same result: auto-loaded context that primes Copilot befo
 
 **Layers 3–5 are task-specific.** In agent mode, reference them by path in natural language — the agent reads from disk. In chat mode, attach with `#file:`. Either way, load them at the point in the session where they become relevant, not all at the start.
 
-See `../guides/copilot-setup.md` for the full configuration walkthrough.
+See `../docs/copilot-setup.md` for the full configuration walkthrough.
 
 ---
 
@@ -63,13 +63,13 @@ Reusable knowledge patterns for recurring technical concerns: error handling, te
 
 `layer-4-prompt-templates.md`
 
-Standardized opening prompts for recurring task types: new feature (full Design-First flow), single component, test coverage, bug investigation, refactoring. Copy, fill in brackets, paste as opening message.
+Standardized opening prompts for recurring task types: new feature, single component, test coverage, bug investigation, refactoring. Copy, fill in brackets, paste as opening message.
 
 ## Layer 5 — Story Context
 
 `layer-5-story-context.md`
 
-Task-specific context for the current story. What must be built, what is explicitly out of scope, constraints, decisions already made upstream, open questions. A new file for every task. Bridges context loading and the design conversation — Layer 5 seeds Level 1 Capabilities.
+Task-specific context for the current story. What must be built, what is explicitly out of scope, constraints, decisions already made upstream, open questions. A new file for every task.
 
 ---
 
