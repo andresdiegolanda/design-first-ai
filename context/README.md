@@ -18,14 +18,20 @@ Both paths produce the same result: auto-loaded context that primes Copilot befo
 
 ## Layer Overview
 
-| Layer | File | Path | Loaded |
-|-------|------|------|--------|
-| 0 | Generation prompt | `layer-0-generation-prompt.md` | One-time, produces Layers 1–4 |
-| 1 | Base instructions | `layer-1-base-instructions.md` | Every session, automatically |
-| 2 | File-pattern instructions | `layer-2-file-patterns.md` | Every session, automatically |
-| 3 | Skills | `layer-3-skills.md` | Per task, when relevant |
-| 4 | Prompt templates | `layer-4-prompt-templates.md` | Per task, when relevant |
-| 5 | Story context | `layer-5-story-context.md` | Every task, always |
+| Layer | File | How Copilot Loads It |
+|-------|------|----------------------|
+| 0 | Generation prompt | One-time. Produces Layers 1–4 from codebase analysis. |
+| 1 | Base instructions | **Auto-loaded** — content goes in `.github/copilot-instructions.md` |
+| 2 | File-pattern instructions | **Auto-loaded** — content goes in `.github/copilot-instructions.md` |
+| 3 | Skills | Per task — referenced by path in natural language (agent mode) or `#file:` (chat mode) |
+| 4 | Prompt templates | Per task — referenced by path in natural language (agent mode) or `#file:` (chat mode) |
+| 5 | Story context | Every task — referenced by path in natural language (agent mode) or `#file:` (chat mode) |
+
+**Layers 1 and 2 share a single file: `.github/copilot-instructions.md`.** Copilot loads this automatically at session start when `"github.copilot.chat.codeGeneration.useInstructionFiles": true` is set in `.vscode/settings.json`. It is the only layer that loads without any action from you.
+
+**Layers 3–5 are task-specific.** In agent mode, reference them by path in natural language — the agent reads from disk. In chat mode, attach with `#file:`. Either way, load them at the point in the session where they become relevant, not all at the start.
+
+See `../guides/copilot-setup.md` for the full configuration walkthrough.
 
 ---
 
@@ -39,13 +45,13 @@ A one-time prompt that produces your Layers 1–4 by analyzing the codebase. Two
 
 `layer-1-base-instructions.md`
 
-Project-level rules that apply to every session. What the app is, what stack it uses, what is non-negotiable, what it explicitly is not. Copilot reads this and stops defaulting to generic internet patterns.
+Project-level rules that apply to every session. What the app is, what stack it uses, what is non-negotiable, what it explicitly is not. **Place this content in `.github/copilot-instructions.md`** — Copilot reads this and stops defaulting to generic internet patterns.
 
 ## Layer 2 — File-Pattern Instructions
 
 `layer-2-file-patterns.md`
 
-How code is structured and named in this project. Directory layout, naming conventions, canonical patterns for controllers, services, tests. Includes at least one real code example.
+How code is structured and named in this project. Directory layout, naming conventions, canonical patterns for controllers, services, tests. Includes at least one real code example. **Place this content in `.github/copilot-instructions.md`** alongside Layer 1 — both live in the same file, auto-loaded together.
 
 ## Layer 3 — Skills
 
@@ -64,14 +70,6 @@ Standardized opening prompts for recurring task types: new feature (full Design-
 `layer-5-story-context.md`
 
 Task-specific context for the current story. What must be built, what is explicitly out of scope, constraints, decisions already made upstream, open questions. A new file for every task. Bridges context loading and the design conversation — Layer 5 seeds Level 1 Capabilities.
-
----
-
-## Where to Put These Files
-
-See `../guides/copilot-setup.md` for configuration details.
-
-The principle: Layers 1 and 2 (or the generated equivalents) load automatically via `.github/copilot-instructions.md`. Layers 3–5 are referenced explicitly per task using `#file:`.
 
 ---
 

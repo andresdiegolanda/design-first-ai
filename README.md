@@ -32,14 +32,16 @@ Before asking Copilot to design or build anything, give it the project context i
 
 This repo implements Knowledge Priming as a **six-layer context architecture**:
 
-| Layer | Content | When Used |
-|-------|---------|-----------|
-| 0 — Generation | One-time prompt that produces Layers 1–4 from your codebase | Once at project onboarding |
-| 1 — Base Instructions | Project-level rules, constraints, non-negotiables | Every session, automatically |
-| 2 — File-Pattern Instructions | Language and framework-specific rules | Every session, automatically |
-| 3 — Skills | Reusable knowledge patterns (error handling, testing, logging) | Per task, when relevant |
-| 4 — Prompt Templates | Standardized workflows for recurring task types | Per task, when relevant |
-| 5 — Story Context | Current task: requirements, constraints, decisions already made | Every task, always |
+| Layer | Content | Copilot File | When Loaded |
+|-------|---------|--------------|-------------|
+| 0 — Generation | One-time prompt that produces Layers 1–4 from your codebase | — | Once at project onboarding |
+| 1 — Base Instructions | Project-level rules, constraints, non-negotiables | `.github/copilot-instructions.md` | Every session, automatically |
+| 2 — File-Pattern Instructions | Language and framework-specific rules | `.github/copilot-instructions.md` | Every session, automatically |
+| 3 — Skills | Reusable knowledge patterns (error handling, testing, logging) | `context/layer-3-skills.md` | Per task, on demand |
+| 4 — Prompt Templates | Standardized workflows for recurring task types | `context/layer-4-prompt-templates.md` | Per task, on demand |
+| 5 — Story Context | Current task: requirements, constraints, decisions already made | `context/layer-5-story-context.md` | Every task, always |
+
+**Layers 1 and 2 share a single Copilot file: `.github/copilot-instructions.md`.** Copilot loads this automatically at session start — no action required. Layers 3–5 are referenced by path when needed: by natural language in agent mode, or `#file:` in chat mode.
 
 **Layer 0 is the onboarding step.** Run it once against your codebase and it generates Layers 1–4 for you — five specific, accurate context files rather than generic templates filled by hand. For new projects, skip Layer 0 and author Layers 1–4 manually as you make decisions.
 
@@ -70,10 +72,10 @@ Layer 0: Generation prompt → produces ARCHITECTURE.md
 
 BEFORE EACH SESSION
 ─────────────────────────────────────────────────────────
-Layer 1  (auto-loaded)    Project rules and constraints
-Layer 2  (auto-loaded)    File patterns and conventions
-Layer 3  (if relevant)    Skill patterns for this task type
-Layer 4  (if relevant)    Prompt template for this task type
+Layer 1  }  auto-loaded from .github/copilot-instructions.md
+Layer 2  }
+Layer 3  (if relevant)    referenced by path when needed
+Layer 4  (if relevant)    referenced by path when needed
 Layer 5  (every task) ──→ Seeds Level 1 Capabilities
 
 DURING THE DESIGN CONVERSATION
@@ -164,7 +166,8 @@ design-first-ai/
 │       └── outcome.md
 │
 ├── docs/
-│   └── design-first-ai.pptx          # 9-slide framework overview deck
+│   ├── design-first-ai.pptx          # 9-slide framework overview deck
+│   └── copilot-context-model.md      # How Copilot + Claude manage context (agent mode)
 │
 └── guides/
     ├── adoption.md                    # Incremental adoption: start with one layer
