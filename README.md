@@ -1,6 +1,6 @@
 # Design-First AI Collaboration
 
-A practical implementation of Rahul Garg's [Design-First Collaboration](https://martinfowler.com/articles/reduce-friction-ai/design-first-collaboration.html) and [Knowledge Priming](https://martinfowler.com/articles/reduce-friction-ai/knowledge-priming.html) patterns, published on Martin Fowler's site in February–March 2026.
+A practical implementation of Rahul Garg's [Design-First Collaboration](https://martinfowler.com/articles/reduce-friction-ai/design-first-collaboration.html), [Knowledge Priming](https://martinfowler.com/articles/reduce-friction-ai/knowledge-priming.html), and [Context Anchoring](https://martinfowler.com/articles/reduce-friction-ai/context-anchoring.html) patterns, published on Martin Fowler's site in February–March 2026.
 
 The methodology has no code dependencies — it is pure markdown templates and guides. Buildable example apps live inside `examples/` alongside the design conversations that produced them. Implemented for VS Code + GitHub Copilot.
 
@@ -24,7 +24,7 @@ This is the opposite of tribal knowledge. The expert's value shifts from *being 
 
 ---
 
-## Two Complementary Models
+## Three Complementary Patterns
 
 ### Knowledge Priming — Loading Context Before the Session
 
@@ -43,21 +43,19 @@ This repo implements Knowledge Priming as a **six-layer context architecture**:
 
 **Layers 1 and 2 share a single Copilot file: `.github/copilot-instructions.md`.** Copilot loads this automatically at session start — no action required. Layers 3–5 are referenced by path when needed: by natural language in agent mode, or `#file:` in chat mode.
 
-**Layer 0 is the onboarding step.** Run it once against your codebase and it generates Layers 1–4 for you — five specific, accurate context files rather than generic templates filled by hand. For new projects, skip Layer 0 and author Layers 1–4 manually as you make decisions.
+**Layer 0 is the onboarding step.** Run it once against your codebase and it generates Layers 1–4 for you — five specific, accurate context files rather than generic templates filled by hand.
 
-### Design-First Collaboration — Structuring the Design Conversation
+### Design-First Collaboration — Design Before Code
 
-Once context is loaded, structure the design conversation through five progressive levels before writing any code:
+No code until the design is agreed. Garg's five design dimensions — scope, components, interactions, contracts, implementation — are the quality bar for a complete design. Each represents a category of decision that should be explicit before any code is written.
 
-| Level | Question | Output |
-|-------|----------|--------|
-| 1 — Capabilities | What does this need to do? | Scope, requirements, explicit exclusions |
-| 2 — Components | What are the building blocks? | Services, modules, major abstractions |
-| 3 — Interactions | How do components communicate? | Data flow, API calls, events |
-| 4 — Contracts | What are the interfaces? | Function signatures, types, schemas |
-| 5 — Implementation | Now write the code. | Code, generated against agreed design |
+This framework implements Design-First through an iterative implementation guide, not through a sequential conversation gate protocol. The guide is built in two or three passes, reviewed against Garg's five dimensions, and handed to the agent for execution only when every section is correct. See `docs/design-workflow.md` for the full workflow.
 
-**The one rule: no code until Level 5 is approved.**
+### Context Anchoring — Making Design Durable
+
+The design conversation produces decisions worth preserving. Context Anchoring is the practice of capturing those decisions in a living document — the implementation guide and execution report — that persists across sessions, survives IDE restarts, and can be read by the next engineer or the next agent without any session history.
+
+The documents are the session state.
 
 ### How They Fit Together
 
@@ -70,29 +68,29 @@ Layer 0: Generation prompt → produces ARCHITECTURE.md
                                       CODEBASE.md
                                       DESIGN_PRINCIPLES.md
 
-BEFORE EACH SESSION
+FOR EACH FEATURE
 ─────────────────────────────────────────────────────────
 Layer 1  }  auto-loaded from .github/copilot-instructions.md
 Layer 2  }
-Layer 3  (if relevant)    referenced by path when needed
-Layer 4  (if relevant)    referenced by path when needed
-Layer 5  (every task) ──→ Seeds Level 1 Capabilities
-
-DURING THE DESIGN CONVERSATION
-─────────────────────────────────────────────────────────
-Level 1: Capabilities     ← seeded by Layer 5 story context
-Level 2: Components
-Level 3: Interactions
-Level 4: Contracts        → fill in level-4-spec-template.md on approval
-Level 5: Implementation   ← first code written here, against the spec
+                        ↓
+         docs/app-description.md  (once per project)
+                        +
+         story
+                        ↓
+         docs/impl-guide.md  ←  iterate until every section
+         (scope, components,     is correct and clear
+          interactions,
+          contracts)
+                        ↓
+         Agent executes impl-guide.md
+                        ↓
+         Code + docs/execution-report.md
 
 AFTER EVERY SESSION
 ─────────────────────────────────────────────────────────
 Ask: "What context were you missing that would have changed your approach?"
 Save answers → Design Constraints sections of relevant layer files
 ```
-
-The layers eliminate the frustration loop Garg describes in Knowledge Priming. The levels eliminate the implementation trap he describes in Design-First. Neither model alone is complete.
 
 ---
 
@@ -104,23 +102,23 @@ Run the Layer 0 generation prompt (`context/layer-0-generation-prompt.md`) again
 **I'm starting a new project:**
 Fill in the Layer 1 template (`context/layer-1-base-instructions.md`) manually. Add Layer 2 when you have conventions worth encoding. See `guides/adoption.md` for the week-by-week path.
 
-**I want to see it in action first:**
-Open `examples/01-spring-mvc/conversation/design-conversation.md` for a Java/Spring MVC example, or `examples/02-angular-component/conversation/design-conversation.md` for an Angular example. Both show the full Level 1–5 exchange with corrections caught before any code was written.
+**I want to understand the workflow:**
+Read `docs/design-workflow.md`. It describes the three-step document-driven process: app description → implementation guide → execution. It includes Garg's five design dimensions as the quality guide for reviewing the impl-guide.
 
-**I'm ready to work on a task right now:**
-Write a Layer 5 story context file using the template (`context/layer-5-story-context.md`). Load it in Copilot Chat. Paste `levels/master-prompt.md` as your opening message. Work through the levels.
+**I want to see it in action first:**
+Open `examples/01-spring-mvc/conversation/design-conversation.md` for a Java/Spring MVC example, or `examples/02-angular-component/conversation/design-conversation.md` for an Angular example.
 
 **After every session:**
-Ask Copilot: *"What context were you missing that would have changed your approach?"* Save each answer into the relevant Design Constraints section. The context files improve with every task. Copilot that generated generic patterns on day one is working from your actual architecture by week two.
+Ask Copilot: *"What context were you missing that would have changed your approach?"* Save each answer into the relevant Design Constraints section. The context files improve with every task.
 
 **Using Claude Code:**
-The framework is compatible with Claude Code. The layers and levels work the same way — the context files load as project knowledge, the level conversation happens in the chat. See `levels/README.md` for how the framework maps to Superpowers, a Claude Code execution layer that pairs naturally with this design methodology.
+The framework is compatible with Claude Code. The context layers work the same way — files load on natural language reference. For agent execution, [Superpowers](https://github.com/obra/superpowers) by Jesse Vincent pairs naturally with this framework. The implementation guide is the spec document Superpowers' writing-plans skill expects. Layer 0 output primes the agent before the brainstorming skill fires.
 
 ---
 
 ## Presentation
 
-A 9-slide deck covering the full framework is available at `docs/design-first-ai.pptx`. It walks through the problem, both models, all six layers, all five levels, the design constraints principle, the retrospective technique, and the quick start paths. Use it for team onboarding or chapter demos.
+A 9-slide deck covering the full framework is available at `docs/design-first-ai.pptx`. Use it for team onboarding or chapter demos.
 
 ---
 
@@ -138,22 +136,12 @@ design-first-ai/
 │   ├── layer-0-generation-prompt.md   # One-time codebase analysis prompt → produces Layers 1–4
 │   ├── layer-1-base-instructions.md   # Project identity, stack, non-negotiables, anti-patterns
 │   ├── layer-2-file-patterns.md       # Structure, naming, canonical code patterns
-│   ├── layer-3-skills.md              # Error handling, testing, logging, RAG pattern
+│   ├── layer-3-skills.md              # Error handling, testing, logging
 │   ├── layer-4-prompt-templates.md    # New feature / single component / tests / bug / refactor
 │   ├── layer-5-story-context.md       # Current task — scope, constraints, open questions
 │   ├── framework-layer-3-skills.md    # L3 skills for working on this repo
 │   ├── framework-layer-4-templates.md # L4 prompt templates for working on this repo
 │   └── skill-business-story-narration.md # Cross-cutting skill: user story generation
-│
-├── levels/                            # Design-First — conversation level templates
-│   ├── README.md                      # Complexity calibration + Superpowers/Claude Code note
-│   ├── master-prompt.md               # Opening prompt template + filled example
-│   ├── level-1-capabilities.md        # What to look for + approval template
-│   ├── level-2-components.md
-│   ├── level-3-interactions.md
-│   ├── level-4-contracts.md
-│   ├── level-4-spec-template.md       # Fill after Level 4 approval — input to Level 5
-│   └── level-5-implementation.md      # Two-pass review: spec compliance then code quality
 │
 ├── examples/                          # Worked examples — design conversation + buildable app
 │   ├── 01-spring-mvc/                 # Spring Boot 3.4 | Java 21 | no DB | no Docker
@@ -167,11 +155,12 @@ design-first-ai/
 │
 ├── docs/
 │   ├── design-first-ai.pptx          # 9-slide framework overview deck
-│   └── copilot-context-model.md      # How Copilot + Claude manage context (agent mode)
+│   ├── design-workflow.md            # Design workflow: impl-guide + execution (primary)
+│   └── copilot-context-model.md      # How Copilot + Claude manage context in agent mode
 │
 └── guides/
     ├── adoption.md                    # Incremental adoption: start with one layer
-    ├── calibration.md                 # Which levels for which task complexity
+    ├── calibration.md                 # Complexity calibration guide
     └── copilot-setup.md              # VS Code + GitHub Copilot configuration
 ```
 
@@ -179,11 +168,11 @@ design-first-ai/
 
 ## The Example Apps
 
-Each example in `examples/` contains a complete, buildable app alongside the design conversation that produced it. Open `examples/NN-name/app/` as its own VS Code workspace — it has its own `.github/copilot-instructions.md`, `.vscode/` config, and `context/` folder with all layer files filled in for that project.
+Each example in `examples/` contains a complete, buildable app alongside the design conversation that produced it. Open `examples/NN-name/app/` as its own VS Code workspace.
 
 **01-spring-mvc** — Spring Boot 3.4.3 | Java 21 | spring-boot-starter-web. In-memory product catalog CRUD API. Requires Java 21 + Maven only — no Docker, no API key. See `examples/01-spring-mvc/app/README.md`.
 
-**02-angular-component** — Angular 17 | TypeScript 5.4 | RxJS 7.8 | standalone components. Debounced user search with explicit loading/error/empty states. Requires Node 18+ only — no API key, no Docker. See `examples/02-angular-component/app/README.md`.
+**02-angular-component** — Angular 17 | TypeScript 5.4 | RxJS 7.8 | standalone components. Debounced user search with explicit loading/error/empty states. Requires Node 18+ only. See `examples/02-angular-component/app/README.md`.
 
 ---
 
@@ -191,3 +180,4 @@ Each example in `examples/` contains a complete, buildable app alongside the des
 
 - Rahul Garg, [Design-First Collaboration](https://martinfowler.com/articles/reduce-friction-ai/design-first-collaboration.html), martinfowler.com, March 2026
 - Rahul Garg, [Knowledge Priming](https://martinfowler.com/articles/reduce-friction-ai/knowledge-priming.html), martinfowler.com, February 2026
+- Rahul Garg, [Context Anchoring](https://martinfowler.com/articles/reduce-friction-ai/context-anchoring.html), martinfowler.com, 2026

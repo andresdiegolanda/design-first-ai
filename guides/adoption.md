@@ -1,6 +1,6 @@
 # Adoption Guide — Starting Small
 
-The full framework has files across six layers and five levels. Start with one thing. Add the rest when the first thing delivers value.
+The full framework has files across six context layers. Start with one thing. Add the rest when the first thing delivers value.
 
 > **Shortcut for existing codebases:** Skip to the bottom of this file. Layer 0 generates the first four layers for you in one session.
 
@@ -30,37 +30,35 @@ You now have the Knowledge Priming baseline Garg describes. Copilot generates co
 
 ---
 
-## Week 3 — Add Layer 5
+## Week 3 — Try the Design Workflow
 
-Before your next story, write a Layer 5 file (`../context/layer-5-story-context.md`). It should take 10 minutes. Load it at the start of the Copilot Chat session.
+Before your next story, follow the three-step workflow in `../docs/design-workflow.md`:
 
-Notice how the first Copilot response changes. It already knows what you're building, what's out of scope, and what decisions were made upstream.
+1. Ask Copilot to build an app description (`docs/app-description.md`)
+2. Give it the story and ask for an implementation guide (`docs/impl-guide.md`)
+3. Iterate on the guide until every section is clear, then execute it
 
-**What to include:** What must be built (specific), what is explicitly out of scope, constraints that apply to this task, decisions already made that this task must respect, and any open questions the design conversation should resolve.
-
-**Measure:** How many back-and-forth corrections before Copilot understands the task?
-
----
-
-## Week 4 — Add One Level
-
-Add Level 4 (Contracts) to your next feature session. Before asking for implementation, ask for method signatures and types only. Review them. Approve them. Then ask for implementation.
-
-You don't need all five levels to start. Level 4 alone catches the most common problem: Copilot implemented the wrong interface because you never specified the right one.
-
-**How to do it:** Paste `../levels/level-4-contracts.md` checklist before asking for contracts. Use the approval template at the bottom of that file before proceeding to Level 5.
+Notice how the agent's output changes when it works from an implementation guide that it helped design. The first draft of the code is closer. The corrections are fewer.
 
 **Measure:** How many structural changes did you request after seeing the generated code?
 
 ---
 
+## Week 4 — Add Layer 3 Skills
+
+Add a Layer 3 skills file when you notice Copilot consistently getting one concern wrong — error handling, logging, testing strategy. Write the skill once, reference it when relevant. Each skill is a permanent fix for a recurring mistake.
+
+**How:** Copy `../context/layer-3-skills.md` as a starting point. Fill in the patterns specific to your project. Reference it by path in the agent session when the task involves that concern.
+
+**Measure:** Does the same mistake still appear in generated code?
+
+---
+
 ## When to Add the Rest
 
-**Add Layer 3 (Skills)** when you notice Copilot consistently getting one concern wrong — error handling, logging, testing strategy. Write the skill once, load it when relevant. Each skill is a permanent fix for a recurring mistake.
+**Add Layer 4 (Prompt Templates)** when you find yourself writing the same type of opening prompt for the impl-guide repeatedly. Extract it. Reuse it.
 
-**Add Layer 4 (Prompt Templates)** when you find yourself writing the same type of opening prompt repeatedly. Extract it. Reuse it.
-
-**Add Levels 1–3** when you're building a multi-component feature and the implementation trap has cost you time — scope you didn't ask for, components you didn't want, a flow that doesn't match your architecture.
+**Add Layer 5 (Story Context)** when you want a structured template for the story input to the impl-guide. It reduces the information the agent has to infer.
 
 ---
 
@@ -90,4 +88,4 @@ When that's true, the author can leave. The knowledge stays.
 
 Deletability achieved through iteration, not through documentation sprints.
 
-If you use Copilot in agent mode, the document-driven workflow in `docs/copilot-context-model.md` describes how to use files as persistent session state — an approach that pairs directly with the layer structure and removes the need for manual context management.
+The document-driven workflow in `docs/design-workflow.md` is deletability at the feature level — the implementation guide and execution report are the permanent record of every design decision, surviving sessions, IDE restarts, and engineer turnover.
