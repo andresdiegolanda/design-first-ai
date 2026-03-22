@@ -4,6 +4,14 @@ A practical implementation of Rahul Garg's [Design-First Collaboration](https://
 
 The methodology has no code dependencies — it is pure markdown templates and guides. Buildable example apps live inside `examples/` alongside the design conversations that produced them. Implemented for VS Code + GitHub Copilot.
 
+> **Diagram rendering:** Several documents in this repo contain **Mermaid** diagrams.
+> To render them use a Mermaid-aware viewer: VS Code extension
+> [Markdown Preview Mermaid Support](https://marketplace.visualstudio.com/items?itemName=bierner.markdown-mermaid),
+> GitHub (renders natively), or [mermaid.live](https://mermaid.live).
+> PlantUML diagrams use `@startuml` / `@enduml` syntax and can be rendered with the
+> [PlantUML VS Code extension](https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml)
+> or [plantuml.com/plantuml](https://www.plantuml.com/plantuml).
+
 ---
 
 ## The Problem
@@ -100,10 +108,13 @@ Save answers → Design Constraints sections of relevant layer files
 Run the Layer 0 generation prompt (`context/layer-0-generation-prompt.md`) against your project. It produces five context files. Configure Copilot to load them automatically (`docs/copilot-setup.md`). Done in 15 minutes.
 
 **I'm starting a new project:**
-Fill in the Layer 1 template (`context/layer-1-base-instructions.md`) manually. Add Layer 2 when you have conventions worth encoding. See `docs/adoption.md` for the week-by-week path.
+Fill in the Layer 1 template (`context/layer-1-base-instructions.md`) manually. Add Layer 2 when you have conventions worth encoding.
 
 **I want to understand the workflow:**
 Read `docs/design-workflow.md`. It describes the three-step document-driven process: app description → implementation guide → execution. It includes Garg's five design dimensions as the quality guide for reviewing the impl-guide.
+
+**I want to see how the framework maps to Garg's articles:**
+Read `docs/garg-mapping.md`.
 
 **I want to see it in action first:**
 Open `examples/01-spring-mvc/conversation/design-conversation.md` for a Java/Spring MVC example, or `examples/02-angular-component/conversation/design-conversation.md` for an Angular example.
@@ -132,7 +143,7 @@ design-first-ai/
 ├── CHANGELOG.md
 │
 ├── context/                           # Knowledge Priming — layer templates (generic)
-│   ├── README.md                      # Layer overview and the Design Constraints principle
+│   ├── README.md                      # Layer overview, Design Constraints, retrospective technique
 │   ├── layer-0-generation-prompt.md   # One-time codebase analysis prompt → produces Layers 1–4
 │   ├── layer-1-base-instructions.md   # Project identity, stack, non-negotiables, anti-patterns
 │   ├── layer-2-file-patterns.md       # Structure, naming, canonical code patterns
@@ -154,9 +165,9 @@ design-first-ai/
 │       └── outcome.md
 │
 └── docs/
+    ├── garg-mapping.md               # How Garg's three articles map to this framework
     ├── design-workflow.md            # Primary workflow: impl-guide + agent execution
     ├── copilot-context-model.md      # How Copilot + Claude manage context in agent mode
-    ├── adoption.md                   # Incremental adoption: start with one layer
     ├── copilot-setup.md              # VS Code + GitHub Copilot configuration
     └── design-first-ai.pptx          # 9-slide framework overview deck
 ```

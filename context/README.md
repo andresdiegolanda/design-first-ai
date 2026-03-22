@@ -85,7 +85,11 @@ A design constraint is an explicit statement of what Copilot must never propose.
 **Examples of strong priming (shapes):**
 > "Do not use Express.js patterns. Do not use `app.use()` middleware syntax. Do not wrap Fastify in a class."
 
-Design Constraints are also the primary mechanism for deletability. When a constraint is documented here, it no longer lives only in the head of the person who discovered it. The next engineer — or a new Copilot session — loads the file and the constraint applies immediately, with no explanation required.
+Design Constraints are the primary mechanism for deletability. When a constraint is documented here, it no longer lives only in the head of the person who discovered it. The next engineer — or a new Copilot session — loads the file and the constraint applies immediately, with no explanation required.
+
+Each answer saved to Design Constraints from the retrospective reduces the system's dependence on any single person's memory. The goal is context files that contain enough institutional knowledge that a new engineer loads them and produces expert-level output from day one — without asking anyone, without reading Slack history, without finding the person who originally made the decision.
+
+When that's true, the author can leave. The knowledge stays.
 
 ### The retrospective technique
 
@@ -95,8 +99,14 @@ The fastest way to build up your Design Constraints sections is to ask this ques
 
 Copilot surfaces the gap between what it assumed and what is actually true in your project: the constraints it inferred, the conventions it guessed at, the decisions it had no way to know. Add each answer directly to the relevant constraint section of the appropriate file.
 
-This is the primary mechanism for keeping your context files accurate. Each answer narrows the gap between what Copilot assumes about your project and what is actually true. The files compound — each task makes the next one cheaper.
+This is the primary mechanism for keeping your context files accurate. The files compound — each task makes the next one cheaper.
 
 Run this question after every completed task, not just after mistakes. A session that produced good output still contains missing context — Copilot just happened to guess right. The next session might not.
 
-Every answer becomes a design constraint. Document it once, prevent the gap forever.
+---
+
+## What Not to Do
+
+Do not fill in all layers before writing any code. The templates will be wrong the first time. Fill them in for real work, correct them as you go, and let them improve through use.
+
+Do not mandate the full framework for your team at once. Introduce Layer 1. Let people use it for a sprint. The value will be visible without argument.
