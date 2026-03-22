@@ -8,60 +8,79 @@ All notable changes to this project are documented here.
 
 ### Added
 
-- **`docs/garg-mapping.md`** — Maps all three Garg patterns to specific framework files
-  and mechanisms. Includes four Mermaid diagrams: overall pattern-to-file mapping,
-  Knowledge Priming layer flow, Design-First protocol vs document-driven comparison,
-  Context Anchoring document chain, and three-pattern composition. Includes a recommended
-  reading order.
+- **`context/skills/` folder** — New subfolder for reusable, stack-agnostic skill files.
 
-- **`docs/design-workflow.md`** — New primary workflow document. Describes the three-step
-  document-driven process (app description → implementation guide → agent execution),
-  the iterative nature of Step 2, and Garg's five design dimensions as a quality review
-  guide for the implementation guide. Replaces the `levels/` folder.
+- **`context/skills/skill-error-handling.md`** — Named exceptions, global handler pattern,
+  failure category taxonomy. Design Constraints prevent bare RuntimeException and
+  catch-and-rethrow.
+
+- **`context/skills/skill-testing.md`** — Unit tests (Mockito, no Spring context) and
+  controller tests (`@WebMvcTest`). Naming convention `method_condition_result`. Design
+  Constraints prevent `@SpringBootTest` misuse and `should` naming.
+
+- **`context/skills/skill-logging.md`** — SLF4J, level rules (DEBUG/INFO/WARN/ERROR),
+  parameterised placeholders, PII exclusion. Design Constraints prevent
+  `System.out.println` and string concatenation in log statements.
+
+- **`context/skills/skill-configuration.md`** — `@ConfigurationProperties` + `@Validated`,
+  `application.yml` first, fail-fast at startup. Design Constraints prevent hardcoded
+  values and `@Value` sprawl.
+
+- **`docs/garg-mapping.md`** — Maps all three Garg patterns to specific framework files
+  and mechanisms. Includes four Mermaid diagrams. Includes a recommended reading order.
+
+- **`docs/design-workflow.md`** — Three-step document-driven workflow, Garg's five
+  dimensions as quality checklist, execution report, Context Anchoring connection.
 
 - **`examples/01-spring-mvc/app/context/layer-2-file-patterns.md`** — Standalone Layer 2
-  file. Project structure, naming conventions, canonical patterns for controller, service,
-  exception, request record. Authored source for the content merged into
-  `.github/copilot-instructions.md`.
+  source file for the Spring MVC example.
 
 - **`examples/02-angular-component/app/context/layer-2-file-patterns.md`** — Standalone
-  Layer 2 file. Project structure, naming conventions, canonical patterns for component,
-  service, model, template state blocks. Authored source for the content merged into
-  `.github/copilot-instructions.md`.
+  Layer 2 source file for the Angular example.
 
 ### Changed
 
+- **`context/framework-layer-3-skills.md` moved to `.github/copilot-layer-3-skills.md`**
+- **`context/framework-layer-4-templates.md` moved to `.github/copilot-layer-4-templates.md`**
+
+  All Copilot markdown for this repo now lives in `.github/` — consistent with the
+  Fidelity convention and with the principle that `.github/` is where Copilot context lives.
+
+- **`.github/copilot-layer-3-skills.md`** — Renamed from `framework-layer-3-skills.md`.
+  "Writing Level Templates" skill removed (levels/ folder no longer exists). "Writing
+  Skill Files" skill added with the `context/skills/` model. File header updated.
+
+- **`.github/copilot-layer-4-templates.md`** — Renamed from `framework-layer-4-templates.md`.
+  "Write or Revise a Guide" template removed (`guides/` folder no longer exists). "Add a
+  Worked Example" template updated to current folder structure. "Write a New Skill File"
+  template updated to reference `context/skills/`. File header updated.
+
+- **`.github/copilot-instructions.md`** — Load hints updated to `.github/copilot-layer-3-skills.md`
+  and `.github/copilot-layer-4-templates.md`. Architecture table updated: `.github/` row
+  added, `context/skills/` row updated. Repo structure diagram updated. Naming conventions
+  table updated. Anti-patterns updated to flag `context/framework-layer-*.md` as stale.
+
+- **`context/skill-business-story-narration.md` moved to `context/skills/`** — all skills
+  now in one folder.
+
+- **`context/layer-3-skills.md`** — Rewritten as a skills model explanation and index.
+
+- **`context/README.md`** — Layer 3 row updated to reference `context/skills/`. Skills
+  index table added. Deletability principle and "What Not to Do" rules added.
+
 - **`levels/` folder removed** — replaced by `docs/design-workflow.md`.
 
-- **`docs/adoption.md` deleted** — redundant with README Quick Start and `context/README.md`.
-  Useful content absorbed: deletability principle and "What Not to Do" rules moved to
-  `context/README.md`.
+- **`docs/adoption.md` deleted** — redundant. Useful content absorbed into `context/README.md`.
 
 - **`guides/calibration.md` deleted** — levels-specific, no longer relevant.
 
-- **`guides/adoption.md` moved to `docs/adoption.md`**, then deleted (see above).
 - **`guides/copilot-setup.md` moved to `docs/copilot-setup.md`**.
 
-- **`context/README.md`** — Deletability principle and "What Not to Do" rules added.
-  `../guides/copilot-setup.md` reference updated to `../docs/copilot-setup.md`.
+- **`docs/copilot-context-model.md`** — Stripped to context mechanics only.
 
-- **`context/layer-0-generation-prompt.md`** — `../guides/copilot-setup.md` reference
-  updated to `../docs/copilot-setup.md`.
-
-- **`docs/copilot-context-model.md`** — Stripped to context mechanics only. Workflow
-  content moved to `docs/design-workflow.md`.
-
-- **`README.md`** — Three Garg patterns structure. Document-driven workflow diagram.
-  `levels/`, `guides/`, `adoption.md` removed from structure diagram and Quick Start.
-  Diagram rendering note added (Mermaid, PlantUML). `garg-mapping.md` added to docs/
-  block and Quick Start.
-
-- **`.github/copilot-instructions.md`** (root) — `guides/` and `levels/` removed.
-  Anti-patterns updated.
-
-- Both example app `copilot-instructions.md` headers — reference `layer-2-file-patterns.md`.
-
-- Both example app READMEs — structure diagrams updated.
+- **`README.md`** — `.github/` block updated with `copilot-layer-3-skills.md` and
+  `copilot-layer-4-templates.md`. `context/` block: `framework-layer-*.md` removed,
+  `context/skills/` retained. All other unreleased changes included.
 
 ---
 

@@ -2,10 +2,10 @@
 
 > Auto-loaded by GitHub Copilot for every chat session in this workspace.
 > This is Layers 1 and 2 for working on the framework repo itself.
-> Keep under 150 lines. Last reviewed: 2026-03-21.
+> Keep under 150 lines. Last reviewed: 2026-03-22.
 >
-> Load per task: `#file:context/framework-layer-3-skills.md` | `#file:context/framework-layer-4-templates.md`
-> For story writing: `#file:context/skill-business-story-narration.md`
+> Load per task: `#file:.github/copilot-layer-3-skills.md` | `#file:.github/copilot-layer-4-templates.md`
+> For story writing: `#file:context/skills/skill-business-story-narration.md`
 
 ---
 
@@ -25,8 +25,10 @@ Contains layer templates, worked examples with buildable apps, and docs.
 
 | Folder | Contains | Rule |
 |--------|----------|------|
+| `.github/` | Copilot context for this repo — instructions, skills, templates | All Copilot markdown for this repo lives here |
 | `context/` | Layer templates 0–5 (generic, with placeholders) | Templates only — never filled-in instances |
-| `docs/` | Workflow docs, setup guide, adoption guide, presentation deck | Reference docs for practitioners |
+| `context/skills/` | Reusable skill files — one per concern | Stack-agnostic; framework-specific skills go in `.github/` |
+| `docs/` | Workflow docs, setup guide, presentation deck | Reference docs for practitioners |
 | `examples/` | Worked examples — each has `app/`, `conversation/`, `outcome.md` | Full example per folder — never partial |
 | `examples/NN/app/` | Buildable project + all its context files | Separate project — open `app/` as its own VS Code workspace |
 
@@ -37,6 +39,7 @@ Contains layer templates, worked examples with buildable apps, and docs.
 - `context/` templates stay generic — bracket placeholders, never filled-in for a specific project
 - The methodology stays tool-agnostic — no Copilot-specific language in `context/` layer templates
 - Every layer template and Layer 0 output file must have a "Design constraints" section
+- Skills in `context/skills/` stay stack-agnostic — framework-specific patterns belong in `.github/`
 - The retrospective question is exactly: *"What context were you missing that would have changed your approach?"* — this wording does not vary
 - All documentation: compressed, imperative. No filler. No padding.
 
@@ -54,9 +57,10 @@ Contains layer templates, worked examples with buildable apps, and docs.
 
 | File Type | Pattern | Example |
 |-----------|---------|---------|
+| Copilot instructions | `copilot-instructions.md` | `.github/copilot-instructions.md` |
+| Copilot layer context | `copilot-layer-N-name.md` | `copilot-layer-3-skills.md` |
 | Layer templates | `layer-N-name.md` | `layer-3-skills.md` |
-| Framework context | `framework-layer-N-*.md` | `framework-layer-3-skills.md` |
-| Cross-cutting skills | `skill-name.md` | `skill-business-story-narration.md` |
+| Skills | `context/skills/skill-name.md` | `skill-error-handling.md` |
 | Docs | descriptive, hyphenated | `design-workflow.md` |
 | Examples | `NN-kebab-name/` | `01-spring-mvc/` |
 | Example apps | `examples/NN-name/app/` | `examples/01-spring-mvc/app/` |
@@ -77,14 +81,20 @@ Contains layer templates, worked examples with buildable apps, and docs.
 
 ```
 design-first-ai/
-├── .github/copilot-instructions.md      ← this file
+├── .github/
+│   ├── copilot-instructions.md          ← this file (L1+L2, auto-loaded)
+│   ├── copilot-layer-3-skills.md        ← L3 skills for working on this repo
+│   └── copilot-layer-4-templates.md     ← L4 prompt templates for this repo
 ├── README.md
 ├── CHANGELOG.md
 ├── context/                             ← generic layer templates (placeholders)
-│   ├── framework-layer-3-skills.md
-│   ├── framework-layer-4-templates.md
-│   └── skill-business-story-narration.md
-├── docs/                                ← workflow docs + setup + adoption + deck
+│   └── skills/                          ← reusable skill files (stack-agnostic)
+│       ├── skill-error-handling.md
+│       ├── skill-testing.md
+│       ├── skill-logging.md
+│       ├── skill-configuration.md
+│       └── skill-business-story-narration.md
+├── docs/                                ← workflow docs + setup + deck
 ├── examples/
 │   ├── 01-spring-mvc/app/               ← open as own workspace
 │   └── 02-angular-component/app/        ← open as own workspace
@@ -95,10 +105,12 @@ design-first-ai/
 ## Anti-Patterns — Never Propose These
 
 - Do not fill in bracket placeholders in `context/layer-*.md` — those are templates
+- Do not add framework-specific skills to `context/skills/` — they belong in `.github/`
 - Do not create new examples without `app/`, `conversation/`, and `outcome.md`
+- Do not reference `context/framework-layer-*.md` — files moved to `.github/`
 - Do not reference `guides/` — files moved to `docs/`
 - Do not reference `levels/` — folder removed, replaced by `docs/design-workflow.md`
-- Do not reference `tool-setup.md` — renamed to `copilot-setup.md`, now in `docs/`
+- Do not reference `context/skill-business-story-narration.md` — moved to `context/skills/`
 - Do not reference `demo-app/` — replaced by `examples/NN/app/`
 - Do not reference `01-rag-endpoint/` — replaced by `01-spring-mvc/`
 - Do not propose changes to an example app from the repo root workspace — open `app/` separately

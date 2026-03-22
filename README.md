@@ -45,19 +45,19 @@ This repo implements Knowledge Priming as a **six-layer context architecture**:
 | 0 — Generation | One-time prompt that produces Layers 1–4 from your codebase | — | Once at project onboarding |
 | 1 — Base Instructions | Project-level rules, constraints, non-negotiables | `.github/copilot-instructions.md` | Every session, automatically |
 | 2 — File-Pattern Instructions | Language and framework-specific rules | `.github/copilot-instructions.md` | Every session, automatically |
-| 3 — Skills | Reusable knowledge patterns (error handling, testing, logging) | `context/layer-3-skills.md` | Per task, on demand |
+| 3 — Skills | Reusable skill files in `context/skills/` | `context/skills/skill-*.md` | Per task, on demand |
 | 4 — Prompt Templates | Standardized workflows for recurring task types | `context/layer-4-prompt-templates.md` | Per task, on demand |
 | 5 — Story Context | Current task: requirements, constraints, decisions already made | `context/layer-5-story-context.md` | Every task, always |
 
 **Layers 1 and 2 share a single Copilot file: `.github/copilot-instructions.md`.** Copilot loads this automatically at session start — no action required. Layers 3–5 are referenced by path when needed: by natural language in agent mode, or `#file:` in chat mode.
 
-**Layer 0 is the onboarding step.** Run it once against your codebase and it generates Layers 1–4 for you — five specific, accurate context files rather than generic templates filled by hand.
+**Layer 0 is the onboarding step.** Run it once against your codebase and it generates Layers 1–4 for you.
 
 ### Design-First Collaboration — Design Before Code
 
 No code until the design is agreed. Garg's five design dimensions — scope, components, interactions, contracts, implementation — are the quality bar for a complete design. Each represents a category of decision that should be explicit before any code is written.
 
-This framework implements Design-First through an iterative implementation guide, not through a sequential conversation gate protocol. The guide is built in two or three passes, reviewed against Garg's five dimensions, and handed to the agent for execution only when every section is correct. See `docs/design-workflow.md` for the full workflow.
+This framework implements Design-First through an iterative implementation guide. The guide is built in two or three passes, reviewed against Garg's five dimensions, and handed to the agent for execution only when every section is correct. See `docs/design-workflow.md` for the full workflow.
 
 ### Context Anchoring — Making Design Durable
 
@@ -111,7 +111,7 @@ Run the Layer 0 generation prompt (`context/layer-0-generation-prompt.md`) again
 Fill in the Layer 1 template (`context/layer-1-base-instructions.md`) manually. Add Layer 2 when you have conventions worth encoding.
 
 **I want to understand the workflow:**
-Read `docs/design-workflow.md`. It describes the three-step document-driven process: app description → implementation guide → execution. It includes Garg's five design dimensions as the quality guide for reviewing the impl-guide.
+Read `docs/design-workflow.md`. Three-step document-driven process: app description → implementation guide → execution. Includes Garg's five design dimensions as the quality review checklist.
 
 **I want to see how the framework maps to Garg's articles:**
 Read `docs/garg-mapping.md`.
@@ -138,7 +138,9 @@ A 9-slide deck covering the full framework is available at `docs/design-first-ai
 ```
 design-first-ai/
 ├── .github/
-│   └── copilot-instructions.md        # L1+L2 for working on this repo (auto-loaded)
+│   ├── copilot-instructions.md        # L1+L2 for working on this repo (auto-loaded)
+│   ├── copilot-layer-3-skills.md      # L3 skills for working on this repo
+│   └── copilot-layer-4-templates.md   # L4 prompt templates for this repo
 ├── README.md
 ├── CHANGELOG.md
 │
@@ -147,12 +149,15 @@ design-first-ai/
 │   ├── layer-0-generation-prompt.md   # One-time codebase analysis prompt → produces Layers 1–4
 │   ├── layer-1-base-instructions.md   # Project identity, stack, non-negotiables, anti-patterns
 │   ├── layer-2-file-patterns.md       # Structure, naming, canonical code patterns
-│   ├── layer-3-skills.md              # Error handling, testing, logging
+│   ├── layer-3-skills.md              # Skills model explanation + index
 │   ├── layer-4-prompt-templates.md    # New feature / single component / tests / bug / refactor
 │   ├── layer-5-story-context.md       # Current task — scope, constraints, open questions
-│   ├── framework-layer-3-skills.md    # L3 skills for working on this repo
-│   ├── framework-layer-4-templates.md # L4 prompt templates for working on this repo
-│   └── skill-business-story-narration.md # Cross-cutting skill: user story generation
+│   └── skills/                        # Reusable skill files (stack-agnostic)
+│       ├── skill-error-handling.md
+│       ├── skill-testing.md
+│       ├── skill-logging.md
+│       ├── skill-configuration.md
+│       └── skill-business-story-narration.md
 │
 ├── examples/                          # Worked examples — design conversation + buildable app
 │   ├── 01-spring-mvc/                 # Spring Boot 3.4 | Java 21 | no DB | no Docker
