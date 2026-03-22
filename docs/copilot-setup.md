@@ -100,32 +100,37 @@ Add `.vscode/settings.json` to your project:
 
 The critical setting is `"github.copilot.chat.codeGeneration.useInstructionFiles": true` — this ensures `.github/copilot-instructions.md` is loaded for code generation, not just chat.
 
-### Step 4 — Load Layers 3–5 per task
+### Step 4 — Load skills and story context per task
 
-Layers 3–5 are not auto-loaded. Reference them explicitly in Copilot Chat using the `#file:` syntax:
+Skills and story context are not auto-loaded. In agent mode, reference them by path in
+natural language — the agent reads from disk. In chat mode, use `#file:`:
 
 ```
-# Attach a specific file in the chat panel
-#file:context/layer-3-skills.md
+# Load a skill relevant to the current task
+#file:context/skills/skill-error-handling.md
 
-# Attach the story context for the current task
+# Load the story context for the current task
 #file:context/layer-5-story-context.md
 ```
 
 Alternatively, use the paperclip icon in the Copilot Chat panel to attach files directly.
 
-For Layer 5 (story context), pasting the content inline is the most reliable method — it keeps the task context visible in the conversation and forces you to read it before the session starts.
-
 > **`@workspace` vs `#file:`:** `@workspace` in Copilot Chat searches your entire codebase
-> and is useful for questions like "what existing components handle authentication?" — use it
-> at Level 2 (Components) to find reusable code. To load a specific context file, always
-> use `#file:path/to/file.md`. These are different operations.
+> and is useful for discovering existing components. To load a specific context file, always
+> use `#file:path/to/file.md` or reference it by path in natural language. These are different
+> operations.
 
-### Step 5 — Use the master prompt
+### Step 5 — Start the design workflow
 
-Once context is loaded, paste `../levels/master-prompt.md` (filled in) as your first Copilot Chat message. Copilot Chat maintains conversation history within a session — the level discipline holds as long as you keep the chat panel open and do not start a new conversation mid-task.
+With context loaded, follow the three-step workflow in `../docs/design-workflow.md`:
 
-**Copilot Chat session boundary:** Starting a new chat clears the conversation but NOT the auto-loaded `.github/copilot-instructions.md`. Layers 1 and 2 persist. Layers 3–5 must be re-loaded for each new chat session.
+1. Ask the agent to build an app description (`docs/app-description.md`)
+2. Give it the story and ask for an implementation guide (`docs/impl-guide.md`)
+3. Iterate on the guide until every section is correct, then ask the agent to execute it
+
+**Copilot Chat session boundary:** Starting a new chat clears the conversation but NOT
+the auto-loaded `.github/copilot-instructions.md`. Layers 1 and 2 persist. Skills and
+story context must be re-referenced for each new session.
 
 ---
 
@@ -133,26 +138,33 @@ Once context is loaded, paste `../levels/master-prompt.md` (filled in) as your f
 
 Two modes in VS Code Copilot. Use them for different things:
 
-| Mode | Use For | Design-First Role |
-|------|---------|-------------------|
-| **Copilot Chat panel** | Design conversations, levels 1–4, explaining decisions | Levels 1–5 conversation |
-| **Inline suggestions** (`Tab` to accept) | Completing method bodies after contracts are approved | Level 5 only |
+| Mode | Use For |
+|------|---------|
+| **Copilot Chat panel** | Building the app description, iterating the implementation guide, design discussion |
+| **Inline suggestions** (`Tab` to accept) | Completing method bodies during agent execution |
 
-Do not use inline suggestions until Level 4 is approved. Inline suggestions are the fastest path to the implementation trap — they generate code the moment you start typing, before any design discussion has happened.
-
-**Recommendation:** During levels 1–4, keep your cursor in a markdown note or a comment block, not in a Java file. This prevents inline suggestions from firing during design conversations.
+Do not rely on inline suggestions for design work — they generate code the moment you
+start typing, before any design discussion has happened.
 
 ---
 
 ## Copilot-Specific Gotchas
 
-**Context window in chat:** Copilot Chat has a limited context window. Long conversations degrade output quality as earlier levels scroll out of context. For complex features, start a new chat session at Level 5 and re-load the approved contracts explicitly before asking for implementation.
+**Context window in chat:** Copilot Chat has a limited context window. Long conversations
+degrade output quality as earlier content scrolls out. For complex features, start a new
+chat session for execution and re-reference the implementation guide explicitly.
 
-**`@workspace` for component discovery:** Using `@workspace` gives Copilot access to your codebase. Use it at Level 2 (Components) to ask "what existing components handle X?" — Copilot will scan your actual files. This is one of the most underused features for design conversations.
+**`@workspace` for component discovery:** Using `@workspace` gives Copilot access to
+your codebase. Use it when building the implementation guide to ask "what existing
+components handle X?" — Copilot will scan your actual files.
 
-**Model availability:** Not all Claude models are available in all Copilot tiers. If `claude-sonnet-4-5` is unavailable, check the model picker for the current available identifier. Model identifiers in Copilot change as Anthropic releases new versions.
+**Model availability:** Not all Claude models are available in all Copilot tiers. If
+`claude-sonnet-4-5` is unavailable, check the model picker for the current available
+identifier. Model identifiers in Copilot change as Anthropic releases new versions.
 
-**Instruction file length:** `.github/copilot-instructions.md` above approximately 200 lines starts to dilute context. If you find yourself adding more, split into the file + separate skill files loaded per task with `#file:`.
+**Instruction file length:** `.github/copilot-instructions.md` above approximately 200
+lines starts to dilute context. If you find yourself adding more, split into the
+instructions file + separate skill files loaded per task.
 
 ---
 
@@ -166,4 +178,5 @@ Do not use inline suggestions until Level 4 is approved. Inline suggestions are 
 .vscode/extensions.json           # committed — recommends Copilot extension
 ```
 
-Changes to `copilot-instructions.md` go through pull request review. It is shared infrastructure — a change to it changes how the entire team uses Copilot.
+Changes to `copilot-instructions.md` go through pull request review. It is shared
+infrastructure — a change to it changes how the entire team uses Copilot.
