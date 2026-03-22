@@ -23,13 +23,13 @@ Both paths produce the same result: auto-loaded context that primes Copilot befo
 | 0 | Generation prompt | One-time. Produces Layers 1–4 from codebase analysis. |
 | 1 | Base instructions | **Auto-loaded** — content goes in `.github/copilot-instructions.md` |
 | 2 | File-pattern instructions | **Auto-loaded** — content goes in `.github/copilot-instructions.md` |
-| 3 | Skills | Per task — referenced by path in natural language (agent mode) or `#file:` (chat mode) |
+| 3 | Skills | Per task — see `context/skills/` for available skills |
 | 4 | Prompt templates | Per task — referenced by path in natural language (agent mode) or `#file:` (chat mode) |
 | 5 | Story context | Every task — referenced by path in natural language (agent mode) or `#file:` (chat mode) |
 
 **Layers 1 and 2 share a single file: `.github/copilot-instructions.md`.** Copilot loads this automatically at session start when `"github.copilot.chat.codeGeneration.useInstructionFiles": true` is set in `.vscode/settings.json`. It is the only layer that loads without any action from you.
 
-**Layers 3–5 are task-specific.** In agent mode, reference them by path in natural language — the agent reads from disk. In chat mode, attach with `#file:`. Either way, load them at the point in the session where they become relevant, not all at the start.
+**Layers 3–5 are task-specific.** In agent mode, reference them by path in natural language — the agent reads from disk. In chat mode, attach with `#file:`.
 
 See `../docs/copilot-setup.md` for the full configuration walkthrough.
 
@@ -55,9 +55,15 @@ How code is structured and named in this project. Directory layout, naming conve
 
 ## Layer 3 — Skills
 
-`layer-3-skills.md`
+`layer-3-skills.md` explains the skills model. Individual skills live in `context/skills/`:
 
-Reusable knowledge patterns for recurring technical concerns: error handling, testing, logging, framework-specific approaches. Load when relevant to the current task.
+| Skill | File | Load when |
+|-------|------|-----------|
+| Error Handling | `skills/skill-error-handling.md` | Any method that can fail with a business reason |
+| Testing | `skills/skill-testing.md` | Writing any new test or adding coverage |
+| Logging | `skills/skill-logging.md` | Adding or reviewing log statements |
+| Configuration | `skills/skill-configuration.md` | Adding any externalisable value |
+| Business Story Narration | `skills/skill-business-story-narration.md` | Generating or improving user story descriptions |
 
 ## Layer 4 — Prompt Templates
 
@@ -99,9 +105,7 @@ The fastest way to build up your Design Constraints sections is to ask this ques
 
 Copilot surfaces the gap between what it assumed and what is actually true in your project: the constraints it inferred, the conventions it guessed at, the decisions it had no way to know. Add each answer directly to the relevant constraint section of the appropriate file.
 
-This is the primary mechanism for keeping your context files accurate. The files compound — each task makes the next one cheaper.
-
-Run this question after every completed task, not just after mistakes. A session that produced good output still contains missing context — Copilot just happened to guess right. The next session might not.
+The files compound — each task makes the next one cheaper. Run this question after every completed task, not just after mistakes.
 
 ---
 

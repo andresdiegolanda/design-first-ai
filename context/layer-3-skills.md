@@ -1,131 +1,49 @@
 # Layer 3 — Skills
 
-> **What this is:** Reusable knowledge patterns for recurring technical concerns in this project.
-> **When to load it:** When your current task involves one of the skill areas below.
-> **How to use it:** Reference the relevant skill section in your Layer 5 story context, or load the whole file when multiple skills apply.
+> **What this is:** An explanation of the skills model and an index of available skills.
+> **Skills location:** `context/skills/`
+> **How to use skills:** Reference the relevant skill file by path in agent mode, or
+> `#file:context/skills/skill-name.md` in chat mode.
 
 ---
 
-## Skill: Error Handling
+## What Skills Are
 
-Use when: Implementing any service method that can fail with a meaningful business reason.
+Skills are self-contained instruction sets for recurring technical concerns. Each skill
+file tells the agent how to handle one specific concern — error handling, testing, logging,
+and so on — with rules, patterns, and design constraints.
 
-**Pattern:**
-1. Define a domain-specific exception for each failure category (not one generic exception).
-2. Throw at the point of failure with a message that explains the business condition, not the technical cause.
-3. Let the `GlobalExceptionHandler` translate to HTTP responses — never catch-and-translate inside service code.
-4. Never swallow exceptions with empty catch blocks.
+Skills are reusable across projects and tasks. They are not project-specific. When your
+project has stronger or different conventions, add a Design Constraints section to your
+Layer 1 or Layer 2 file and the project constraint wins.
 
-**Error categories to define per feature:**
-- Not found (resource does not exist)
-- Validation failure (input does not meet business rules)
-- External service failure (downstream unavailable or returned unexpected response)
-- Configuration error (required config missing or invalid)
-
-**What not to do:**
-- Do not throw `RuntimeException` with a string message — always a named exception class.
-- Do not catch exceptions in service code and re-throw as the same type — let them propagate.
-- Do not log and rethrow — log once at the boundary.
+The difference between a skill and a layer:
+- **Layer files** are always loaded (Layers 1–2) or loaded per task (Layers 3–5) as context for the whole session.
+- **Skill files** are loaded for a specific concern within a task. You load only what's relevant.
 
 ---
 
-## Skill: Testing
+## Available Skills
 
-Use when: Writing any test in this project.
-
-**Unit tests (service layer):**
-- Use Mockito. No Spring context. Fast.
-- Test method behavior, not implementation. Mock the boundary, not internals.
-- One assertion per test is a guideline, not a rule. Assert what matters.
-- Test naming: `methodName_condition_expectedResult`. Example: `findAnswer_noDocumentsFound_throwsNotFoundException`.
-
-**Integration tests (controller layer):**
-- Use `@WebMvcTest` for controller tests. Do not load the full Spring context.
-- Use `MockMvc`. Assert HTTP status and response body shape.
-- Mock the service layer with `@MockBean`.
-
-**What not to do:**
-- Do not test Spring wiring in unit tests — that is what `@WebMvcTest` is for.
-- Do not use `@SpringBootTest` for tests that only need one layer.
-- Do not assert on exact error message strings — assert on error codes or status.
+| Skill | File | Load when |
+|-------|------|-----------|
+| Error Handling | `context/skills/skill-error-handling.md` | Implementing any method that can fail with a business reason |
+| Testing | `context/skills/skill-testing.md` | Writing any new test or adding coverage |
+| Logging | `context/skills/skill-logging.md` | Adding or reviewing log statements |
+| Configuration | `context/skills/skill-configuration.md` | Adding any externalisable value |
+| Business Story Narration | `context/skills/skill-business-story-narration.md` | Generating or improving user story descriptions |
 
 ---
 
-## Skill: Logging
+## Adding a New Skill
 
-Use when: Adding any log statement.
+Copy any existing skill file as a starting point. A skill file must contain:
 
-**Rules:**
-- Use SLF4J (`LoggerFactory.getLogger()`). Never `System.out.println`.
-- Log at entry and exit of public service methods at `DEBUG` level.
-- Log business events (document retrieved, answer generated) at `INFO` level.
-- Log warnings for recoverable conditions (empty result set, fallback used).
-- Log errors only at exception boundaries — once, with full stack trace.
-- Never log personally identifiable information.
-- Never log full request/response bodies in production — log identifiers only.
+1. A header block — what it does, when to load it, how to load it
+2. **What This Skill Does** — one paragraph, the output and its purpose
+3. **Rules** — numbered, imperative, no padding
+4. **Pattern** — one or more concrete code or text examples
+5. **Design Constraints** — explicit "Do not..." rules
 
-**Pattern:**
-```java
-private static final Logger log = LoggerFactory.getLogger([ClassName].class);
-
-// Service entry
-log.debug("Finding answer for question id={}", questionId);
-
-// Business event
-log.info("Retrieved {} documents for question id={}", documents.size(), questionId);
-
-// Warning
-log.warn("No documents found for question id={}, returning empty answer", questionId);
-
-// Error (at exception boundary only)
-log.error("Failed to query vector store for question id={}", questionId, ex);
-```
-
----
-
-## Skill: Spring AI — RAG Pattern
-
-Use when: Implementing any retrieval-augmented generation feature.
-
-**The pattern has four steps. Always all four:**
-1. **Embed the query** — convert user input to vector (handled by VectorStore internally).
-2. **Retrieve documents** — similarity search against VectorStore with explicit `k` (number of results) and score threshold.
-3. **Build prompt** — inject retrieved documents into system prompt template. Never concatenate strings — use `.st` template files.
-4. **Generate answer** — call ChatClient with the built prompt. Return the response content.
-
-**Configuration that must be explicit:**
-- `k` (number of documents to retrieve) — default of 4 is rarely right for your use case. Set it explicitly.
-- Score threshold — without it, irrelevant documents contaminate the context.
-- Max tokens — set a ceiling to prevent runaway generation costs.
-- Temperature — default (1.0) is too high for factual Q&A. Use 0.2–0.4 for deterministic answers.
-
-**What not to do:**
-- Do not call the embedding model directly — use VectorStore's similarity search.
-- Do not build prompts with Java string concatenation — use template files.
-- Do not ignore the score threshold — low-relevance documents degrade answer quality.
-- Do not let the ChatClient call escape to a try-catch in service code — define a specific exception for model failures.
-
----
-
-## Skill: Configuration
-
-Use when: Adding any new configurable value.
-
-**Rules:**
-- All configurable values go in `application.yml`. Never hardcoded in Java.
-- Group related properties under a custom `@ConfigurationProperties` class. Do not use `@Value` for more than one related property.
-- Validate at startup with `@Validated` on the `@ConfigurationProperties` class. Fail fast — a missing config that is discovered at runtime is worse than a failed startup.
-- Provide sensible defaults for non-critical values. Do not require configuration for things that have an obvious default.
-
-**Pattern:**
-```java
-@ConfigurationProperties(prefix = "[feature]")
-@Validated
-public record [Feature]Properties(
-    @NotBlank String [requiredProperty],
-    @Min(1) @Max(20) int [boundedProperty],
-    @Positive double [positiveProperty]
-) {
-    // Compact constructor for derived defaults if needed
-}
-```
+Keep skills stack-agnostic where possible. Framework-specific skills (e.g. Spring AI RAG
+pattern, Angular RxJS subscriptions) belong in project-level Layer 3 files, not here.
