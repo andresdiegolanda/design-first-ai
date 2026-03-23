@@ -1,8 +1,8 @@
 # Layer 4 — Prompt Templates (spring-mvc-demo)
 
-> **What this is:** Standardized opening prompts for recurring task types in this project.
-> **When to load it:** When your task matches one of the categories below.
-> **How to use it:** Load with `#file:context/layer-4-prompt-templates.md`, copy the relevant template, fill in `[BRACKETS]`, use as your opening Copilot Chat message.
+> **When to load:** When your task matches one of the categories below.
+> **How to load:** Reference by path in agent mode, or `#file:.github/copilot-layer-4-templates.md`
+> Copy the relevant template, fill in `[BRACKETS]`, use as your opening message.
 
 ---
 
@@ -19,27 +19,24 @@ Context loaded:
 - IDs: UUID always — never Long or int
 - No repository layer
 
-Before writing any code, walk me through the design at each level.
+Build an implementation guide for this story.
+The guide must be usable as a prompt input and understandable by a human.
 
-Level 1 — Capabilities:
+Scope:
 The resource must support: [list, get by ID, create, delete — or a subset].
-It must NOT: [exclusion — e.g. no update endpoint, no search].
+It must NOT: [explicit exclusion].
 
-Level 2 — Components:
+Components:
 Existing: ProductController pattern, ProductService pattern, GlobalExceptionHandler.
 Do not add components unless strictly necessary.
-List only new components with one-line purposes. No code.
 
-Level 3 — Interactions:
-Entry point for each endpoint. Exit (response body + status). Error paths.
+Include:
+- Scope section with explicit exclusions
+- Components with single-line purposes
+- Interactions including error paths for every external call
+- Contracts: record definitions, controller signatures, service signatures, exception types
 
-Level 4 — Contracts:
-Record definitions (fields + types + validation annotations).
-Controller method signatures (HTTP method, path, params, return type).
-Service method signatures (params, return type, exceptions thrown).
-No implementation. Wait for my approval.
-
-No code until I approve Level 4.
+No code in the guide. Wait for my approval before executing.
 ```
 
 ---
@@ -57,11 +54,9 @@ Existing service method to call (if any): [method name or "none — needs new se
 Constraints:
 - Constructor injection, UUID IDs, named exceptions, Javadoc on public methods
 
-Level 4 — Contracts first:
-Controller method signature (mapping, params, return type).
-Service method signature if new (params, return type, exception).
-Any new request/response DTO records.
-Wait for my approval before writing the implementation.
+Build an implementation guide for this change.
+Include: scope, contracts (controller + service signatures), error paths.
+No code. Wait for my approval before executing.
 ```
 
 ---
@@ -84,6 +79,7 @@ Scenarios: [list — e.g. valid input returns 201, blank name returns 400, unkno
 Use: @WebMvcTest, @MockBean ProductService, assert $.code for errors.
 
 Generate the tests. Follow patterns in ProductServiceTest and ProductControllerTest.
+Run the tests when done and report results.
 ```
 
 ---
@@ -105,10 +101,4 @@ Relevant code:
 Do not propose a fix yet.
 First identify the most likely causes in order of probability.
 For each cause, tell me what evidence confirms or eliminates it.
-
-Areas to check:
-- ConcurrentHashMap null check (get vs getOrDefault)
-- UUID parsing from path variable
-- @Valid on request body — is the annotation present?
-- GlobalExceptionHandler — is the exception type matched correctly?
 ```

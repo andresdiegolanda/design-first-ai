@@ -1,5 +1,9 @@
 # Layer 1 — Base Instructions (spring-mvc-demo)
 
+> **Source of record for Layer 1 content.**
+> The content below is merged into `copilot-instructions.md` (auto-loaded).
+> Edit this file, then update `copilot-instructions.md` accordingly.
+
 ## Project Identity
 
 - **Name:** spring-mvc-demo

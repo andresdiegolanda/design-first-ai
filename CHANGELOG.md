@@ -8,6 +8,20 @@ All notable changes to this project are documented here.
 
 ### Added
 
+- **`docs/design-workflow.md` — Two-Document Rule section added.** Every story produces
+  exactly two documents: `impl-guide.md` (intention) and `execution-report.md` (result).
+  Defines what belongs in each, what belongs in neither, and why accumulation beyond two
+  is a signal to consolidate. PR review analysis is a prompt exercise — outcome goes into
+  the execution report under "Review feedback addressed."
+
+- **`examples/01-spring-mvc/app/docs/DEMO-001-impl-guide.md`** — Story document 1 for
+  the Spring MVC example. Scope, components, interactions, contracts. Replaces
+  `layer-5-story-context.md` and the gate-model design conversation.
+
+- **`examples/01-spring-mvc/app/docs/DEMO-001-execution-report.md`** — Story document 2
+  for the Spring MVC example. What was built, deviations, how to run, how to test, commit
+  message. Records the two corrections made during impl-guide review.
+
 - **`context/skills/` folder** — New subfolder for reusable, stack-agnostic skill files.
 
 - **`context/skills/skill-error-handling.md`** — Named exceptions, global handler pattern,
@@ -39,6 +53,26 @@ All notable changes to this project are documented here.
   Layer 2 source file for the Angular example.
 
 ### Changed
+
+- **`examples/01-spring-mvc` restructured — all Copilot context moved to `.github/`.**
+  Layer files renamed with `copilot-` prefix and moved from `context/` to `.github/`:
+  `copilot-layer-0-architecture.md`, `copilot-layer-0-design-principles.md`,
+  `copilot-layer-1-base-instructions.md`, `copilot-layer-2-file-patterns.md`,
+  `copilot-layer-3-skills.md`, `copilot-layer-4-templates.md`.
+  `context/` folder removed. `conversation/` folder removed.
+  `docs/` folder added for story documents.
+
+- **`examples/01-spring-mvc/app/.github/copilot-instructions.md`** — Load hints updated
+  to `.github/` paths. `docs/` story document pattern documented in header.
+
+- **`examples/01-spring-mvc/app/README.md`** — Structure diagram updated for new layout.
+  "Using Copilot" section updated to two-document workflow. Story documents table added.
+
+- **`examples/01-spring-mvc/outcome.md`** — Updated to reference `docs/DEMO-001-impl-guide.md`
+  and `docs/DEMO-001-execution-report.md`. Context table updated to `.github/` paths.
+
+- **`README.md`** — Spring MVC example structure diagram updated. Quick Start "See it in
+  action" path updated to story documents. "Example Apps" section updated.
 
 - **`context/framework-layer-3-skills.md` moved to `.github/copilot-layer-3-skills.md`**
 - **`context/framework-layer-4-templates.md` moved to `.github/copilot-layer-4-templates.md`**

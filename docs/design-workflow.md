@@ -172,6 +172,92 @@ and continue the work without asking anyone.
 
 ---
 
+## The Two-Document Rule
+
+Every story produces exactly two documents. Not more.
+
+### Document 1 — The Implementation Guide
+
+**Created:** Before any code is written.
+**Updated:** Iteratively through the design conversation.
+**Purpose:** Captures intention — what will be built, why, and how it will work.
+
+This document is built in passes. It starts with scope and components. Each pass adds
+detail — interactions, contracts, constraints — until every section is correct and clear.
+Only then does execution begin.
+
+**What it contains:**
+- Scope: what must be built, what is explicitly out of scope
+- Components: building blocks and their single-line purpose
+- Interactions: data flow, error paths, external call behavior
+- Contracts: method signatures, types, DTOs
+- Constraints: decisions already made that this story must respect
+- Open questions: resolved before execution, not during
+
+**What it does not contain:** Code snippets, test cases, implementation details.
+Those belong in the execution phase.
+
+---
+
+### Document 2 — The Execution Report
+
+**Created:** After execution begins.
+**Updated:** Iteratively through development — after each significant phase completes.
+**Purpose:** Captures result — what was actually built, how it differs from the plan,
+and everything needed to operate and verify it.
+
+This document is the permanent record. It replaces the conversation history. Anyone
+who needs to understand, operate, or continue the work reads this document first.
+
+**What it contains:**
+- What was implemented and where (file paths, function names)
+- Deviations from the implementation guide and why
+- How to run the application
+- How to run the tests
+- How to test manually
+- A compliant git commit message
+- Review feedback received and how it was addressed
+
+When a PR review comment arrives, the analysis is a prompt exercise — paste the comment,
+get the analysis and the fix. The fix goes into the code. The outcome goes into the
+execution report under "Review feedback addressed." Not into a separate analysis file.
+
+---
+
+### What Goes in Neither Document
+
+Some content is generated during a story but doesn't belong in either deliverable:
+
+| Content | What to do with it |
+|---------|-------------------|
+| Codebase research output | Use as prompt context, discard after |
+| Architecture spike analysis | Summarize the decision into the impl-guide, discard the spike |
+| PR review analysis | Paste as prompt input, commit the fix, record outcome in execution report |
+| Confluence summaries | Separate deliverable for stakeholders — not part of this system |
+
+**The test:** If a document isn't the impl-guide or the execution report, ask:
+"Who reads this next?" If the answer is "nobody — it was input for a prompt,"
+don't save it as a named deliverable.
+
+---
+
+### Why Two and Not More
+
+More documents means more review surface, more maintenance, and more cognitive load
+deciding which document to update. The value of the two-document system is that every
+decision has exactly one home: intention goes in the impl-guide, result goes in the
+execution report.
+
+When the architecture changes mid-implementation, update the impl-guide to reflect the
+new decision. Note the old decision with a one-line explanation. The document stays
+current. The history is the git diff.
+
+If you find yourself generating more than two named deliverables for a story, stop and
+ask which sections of the impl-guide cover the same ground. Accumulation is not
+documentation — it is deferred decision-making about what matters.
+
+---
+
 ## This Is Context Anchoring
 
 Garg's third pattern — Context Anchoring — describes exactly this: after the design

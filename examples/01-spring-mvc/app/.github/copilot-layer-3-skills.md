@@ -1,8 +1,7 @@
 # Layer 3 — Skills (spring-mvc-demo)
 
-> **What this is:** Reusable knowledge patterns for recurring technical concerns in this project.
-> **When to load it:** When your current task involves one of the skill areas below.
-> **How to use it:** Load with `#file:context/layer-3-skills.md` and reference the relevant skill in Layer 5.
+> **When to load:** When your task involves error handling, testing, or in-memory store work.
+> **How to load:** Reference by path in agent mode, or `#file:.github/copilot-layer-3-skills.md`
 
 ---
 
@@ -71,9 +70,6 @@ class ProductControllerTest {
 - Use `willThrow(new XxxException(id)).given(service).method(id)` for void methods.
 
 **Test naming:** `method_condition_expectedResult`
-- `getById_unknownId_throwsProductNotFoundException`
-- `create_validRequest_returns201WithProduct`
-- `delete_unknownId_returns404`
 
 **Design Constraints:**
 - Do not use `@SpringBootTest` — `@WebMvcTest` for controllers, plain JUnit for services

@@ -4,8 +4,8 @@ Minimal Spring MVC REST API for an in-memory product catalog.
 Demonstrates the Design-First methodology on a plain Spring Boot + Web stack.
 No database, no AI, no Docker, no API key.
 
-This app lives at `examples/01-spring-mvc/app/`. The design conversation that produced it
-is at `examples/01-spring-mvc/conversation/design-conversation.md`.
+This app lives at `examples/01-spring-mvc/app/`.
+Story documents live at `app/docs/`.
 
 ---
 
@@ -46,7 +46,7 @@ No Docker. No API key. No external dependencies.
 ## Setup
 
 ```bash
-git clone https://github.com/[your-username]/design-first-ai
+git clone https://github.com/andresdiegolanda/design-first-ai
 cd design-first-ai/examples/01-spring-mvc/app
 code .
 ```
@@ -74,10 +74,10 @@ curl -X POST http://localhost:8080/api/v1/products \
 curl http://localhost:8080/api/v1/products
 
 # Get by ID (replace with actual UUID from create response)
-curl http://localhost:8080/api/v1/products/00000000-0000-0000-0000-000000000001
+curl http://localhost:8080/api/v1/products/{id}
 
 # Delete by ID
-curl -X DELETE http://localhost:8080/api/v1/products/00000000-0000-0000-0000-000000000001
+curl -X DELETE http://localhost:8080/api/v1/products/{id}
 ```
 
 ---
@@ -95,11 +95,11 @@ Service tests use plain JUnit 5. Controller tests use `@WebMvcTest`.
 
 ## Using Copilot with This Project
 
-1. Copilot Chat opens → `.github/copilot-instructions.md` auto-loaded (Layers 1 and 2)
-2. Load Layer 3 skills: `#file:context/layer-3-skills.md`
-3. Write a Layer 5 story context for your task
-4. Use a template from `context/layer-4-prompt-templates.md` as your opening message
-5. Work through Levels 1–4 before any code is generated
+1. Open the workspace — `.github/copilot-instructions.md` auto-loaded (Layers 1+2)
+2. For a new story, read `docs/[STORY-ID]-impl-guide.md` for context
+3. Load skills when relevant: `.github/copilot-layer-3-skills.md`
+4. Use a template from `.github/copilot-layer-4-templates.md` as your opening message
+5. Produce `docs/[STORY-ID]-impl-guide.md`, iterate until correct, then execute
 
 ---
 
@@ -107,18 +107,19 @@ Service tests use plain JUnit 5. Controller tests use `@WebMvcTest`.
 
 ```
 .github/
-└── copilot-instructions.md     ← Layers 1+2 auto-loaded by Copilot
+├── copilot-instructions.md          ← Layers 1+2 auto-loaded by Copilot
+├── copilot-layer-0-architecture.md  ← Architecture + design constraints
+├── copilot-layer-0-design-principles.md ← Conventions + anti-patterns
+├── copilot-layer-1-base-instructions.md ← Project identity + non-negotiables (source)
+├── copilot-layer-2-file-patterns.md ← Structure, naming, canonical patterns (source)
+├── copilot-layer-3-skills.md        ← Error handling, testing, in-memory store
+└── copilot-layer-4-templates.md     ← Task prompt templates
+docs/
+├── DEMO-001-impl-guide.md           ← Story DEMO-001: intention (what + how)
+└── DEMO-001-execution-report.md     ← Story DEMO-001: result (what was built)
 .vscode/
-├── settings.json               ← Copilot model config
-└── extensions.json             ← Recommended extensions
-context/
-├── layer-0-architecture.md     ← Layer 0: architecture + design constraints
-├── layer-0-design-principles.md ← Layer 0: conventions + anti-patterns
-├── layer-1-base-instructions.md ← Layer 1: project identity + non-negotiables
-├── layer-2-file-patterns.md    ← Layer 2: structure, naming, canonical patterns (source for copilot-instructions.md)
-├── layer-3-skills.md           ← Layer 3: error handling, testing, in-memory store
-├── layer-4-prompt-templates.md ← Layer 4: task prompt templates
-└── layer-5-story-context.md    ← Layer 5: story context (write new per task)
+├── settings.json                    ← Copilot model config
+└── extensions.json                  ← Recommended extensions
 src/main/java/com/example/springmvcdemo/
 ├── controller/  ProductController
 ├── service/     ProductService
@@ -128,8 +129,14 @@ src/main/java/com/example/springmvcdemo/
 
 ---
 
-## This App Was Designed Using the Methodology
+## Story Documents
 
-See `../conversation/design-conversation.md` for the complete Design-First conversation:
-two corrections caught before any code was written — repository abstraction removed at
-Level 2, `Long` IDs replaced with `UUID` at Level 4.
+Every story produces exactly two documents in `docs/`:
+
+| File | Purpose |
+|------|---------|
+| `docs/[STORY-ID]-impl-guide.md` | Intention — scope, components, interactions, contracts. Written before any code. |
+| `docs/[STORY-ID]-execution-report.md` | Result — what was built, deviations, how to run, how to test, commit message. |
+
+See `docs/DEMO-001-impl-guide.md` and `docs/DEMO-001-execution-report.md` for the
+initial build of this application.

@@ -1,13 +1,8 @@
 # Layer 2 — File-Pattern Instructions (spring-mvc-demo)
 
-> **What this is:** Project structure, naming conventions, and canonical code patterns
-> specific to this codebase.
-> **Where it lives in Copilot:** This content is merged into `.github/copilot-instructions.md`
-> alongside Layer 1. Both layers are auto-loaded at session start.
-> **How to update:** Edit this file, then copy the changed sections into
-> `copilot-instructions.md`. The standalone file is the source of record.
-
----
+> **Source of record for Layer 2 content.**
+> The content below is merged into `copilot-instructions.md` (auto-loaded).
+> Edit this file, then update `copilot-instructions.md` accordingly.
 
 ## Project Structure
 
@@ -29,8 +24,6 @@ src/main/resources/
 **Rule:** New files go in the package matching their layer. Do not create new packages
 without a clear layering reason. One class per file.
 
----
-
 ## Naming Conventions
 
 | Element | Pattern | Example |
@@ -43,8 +36,6 @@ without a clear layering reason. One class per file.
 | Error response | `ErrorResponse` | `ErrorResponse` |
 | Tests | `{Class}Test` | `ProductServiceTest` |
 | Test methods | `method_condition_expectedResult` | `getById_unknownId_throwsProductNotFoundException` |
-
----
 
 ## Canonical Code Patterns
 
@@ -133,8 +124,6 @@ public record Create[Resource]Request(
         @Positive double price
 ) {}
 ```
-
----
 
 ## Design Constraints
 

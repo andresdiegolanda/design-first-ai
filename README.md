@@ -2,7 +2,7 @@
 
 A practical implementation of Rahul Garg's [Design-First Collaboration](https://martinfowler.com/articles/reduce-friction-ai/design-first-collaboration.html), [Knowledge Priming](https://martinfowler.com/articles/reduce-friction-ai/knowledge-priming.html), and [Context Anchoring](https://martinfowler.com/articles/reduce-friction-ai/context-anchoring.html) patterns, published on Martin Fowler's site in February–March 2026.
 
-The methodology has no code dependencies — it is pure markdown templates and guides. Buildable example apps live inside `examples/` alongside the design conversations that produced them. Implemented for VS Code + GitHub Copilot.
+The methodology has no code dependencies — it is pure markdown templates and guides. Buildable example apps live inside `examples/` alongside the story documents that produced them. Implemented for VS Code + GitHub Copilot.
 
 > **Diagram rendering:** Several documents in this repo contain **Mermaid** diagrams.
 > To render them use a Mermaid-aware viewer: VS Code extension
@@ -117,7 +117,7 @@ Read `docs/design-workflow.md`. Three-step document-driven process: app descript
 Read `docs/garg-mapping.md`.
 
 **I want to see it in action first:**
-Open `examples/01-spring-mvc/conversation/design-conversation.md` for a Java/Spring MVC example, or `examples/02-angular-component/conversation/design-conversation.md` for an Angular example.
+Open `examples/01-spring-mvc/app/docs/DEMO-001-impl-guide.md` and `examples/01-spring-mvc/app/docs/DEMO-001-execution-report.md` for the Spring MVC story documents, or `examples/02-angular-component/conversation/design-conversation.md` for the Angular example.
 
 **After every session:**
 Ask Copilot: *"What context were you missing that would have changed your approach?"* Save each answer into the relevant Design Constraints section. The context files improve with every task.
@@ -159,10 +159,11 @@ design-first-ai/
 │       ├── skill-configuration.md
 │       └── skill-business-story-narration.md
 │
-├── examples/                          # Worked examples — design conversation + buildable app
+├── examples/                          # Worked examples — story documents + buildable app
 │   ├── 01-spring-mvc/                 # Spring Boot 3.4 | Java 21 | no DB | no Docker
 │   │   ├── app/                       # Buildable app (requires Java 21 + Maven only)
-│   │   ├── conversation/
+│   │   │   ├── .github/               # All Copilot context (layers 0–4)
+│   │   │   └── docs/                  # Story documents (impl-guide, execution-report)
 │   │   └── outcome.md
 │   └── 02-angular-component/          # Angular 17 | TypeScript | RxJS | standalone
 │       ├── app/                       # Buildable app (requires Node 18+ only)
@@ -181,7 +182,7 @@ design-first-ai/
 
 ## The Example Apps
 
-Each example in `examples/` contains a complete, buildable app alongside the design conversation that produced it. Open `examples/NN-name/app/` as its own VS Code workspace.
+Each example in `examples/` contains a complete, buildable app alongside the story documents that produced it. Open `examples/NN-name/app/` as its own VS Code workspace.
 
 **01-spring-mvc** — Spring Boot 3.4.3 | Java 21 | spring-boot-starter-web. In-memory product catalog CRUD API. Requires Java 21 + Maven only — no Docker, no API key. See `examples/01-spring-mvc/app/README.md`.
 
