@@ -83,7 +83,7 @@ Use when: Adding a new skill to `context/skills/`.
 - Design Constraints use "Do not" — not "Avoid", "Prefer", or "Consider"
 
 **Design Constraints:**
-- Do not add framework-specific content to `context/skills/` — it belongs in `.github/copilot-layer-3-skills.md`
+- Do not add framework-specific content to `context/skills/` — it belongs in project `.github/copilot-layer-3-skills.md`
 - Do not write skills without a Pattern section — rules without examples are not actionable
 
 ---
@@ -96,34 +96,34 @@ Use when: Adding a new example to `examples/`.
 
 ```
 examples/NN-example-name/
-├── app/                              ← buildable project (open as own workspace)
-│   ├── .github/copilot-instructions.md
-│   ├── context/
-│   │   ├── layer-0-architecture.md
-│   │   ├── layer-0-design-principles.md
-│   │   ├── layer-1-base-instructions.md
-│   │   ├── layer-2-file-patterns.md
-│   │   ├── layer-3-skills.md
-│   │   ├── layer-4-prompt-templates.md
-│   │   └── layer-5-story-context.md
-│   └── src/
-├── conversation/
-│   └── design-conversation.md        ← the full design conversation
-└── outcome.md                        ← what was built and what was caught
+└── app/                              ← buildable project (open as own workspace)
+    ├── .github/
+    │   ├── copilot-instructions.md   ← L1+L2, auto-loaded
+    │   ├── copilot-layer-0-architecture.md
+    │   ├── copilot-layer-0-design-principles.md
+    │   ├── copilot-layer-1-base-instructions.md
+    │   ├── copilot-layer-2-file-patterns.md
+    │   ├── copilot-layer-3-skills.md
+    │   └── copilot-layer-4-templates.md
+    ├── docs/
+    │   ├── [STORY-ID]-impl-guide.md        ← intention: scope, components, contracts
+    │   └── [STORY-ID]-execution-report.md  ← result: what was built, how to run/test
+    └── src/
 ```
 
-**Rules for `conversation/design-conversation.md`:**
-- Show the full exchange — human side and Copilot response.
-- Include at least one correction — the value is that corrections happen before code. Zero corrections is not useful.
-- Do not fabricate corrections — they must reflect a real design decision gap.
+**Rules for `docs/[STORY-ID]-impl-guide.md`:**
+- Contains scope, components, interactions, contracts — no implementation
+- Built iteratively with the agent before any code is written
+- Must include at least one correction documented in the execution report
 
-**Rules for `outcome.md`:**
-- Include what the design conversation specifically prevented — with concrete examples.
-- Include what Layer 0 files added that generic output would have missed.
-- Note any execution corrections needed — if zero, say so.
+**Rules for `docs/[STORY-ID]-execution-report.md`:**
+- Documents what was built, deviations from the impl-guide, and both corrections
+- Includes how to run, how to run tests, how to test manually, and a commit message
 
 **Design Constraints:**
-- Do not create partial examples — `app/`, `conversation/`, and `outcome.md` must all be present
+- Do not create examples with `conversation/` or `outcome.md` — use `docs/` story documents
+- Do not create partial examples — both `docs/` story documents must be present
+- Do not put context files in `context/` — all Copilot context goes in `.github/`
 - Do not fabricate Layer 0 output — it must reflect the actual project structure
 
 ---

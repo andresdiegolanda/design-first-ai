@@ -16,7 +16,7 @@ I need to add a worked example to the design-first-ai repo.
 
 Example: [NN-example-name]
 Project: [brief description of the project used as the example]
-Story: [what feature or component the design conversation covers]
+Story: [what feature or component the story covers]
 
 Context loaded:
 - .github/copilot-instructions.md (auto-loaded)
@@ -27,21 +27,20 @@ Before creating any files, confirm the structure:
 The folder structure must be:
   examples/[NN-example-name]/
     app/
-      .github/copilot-instructions.md
-      context/
-        layer-0-architecture.md
-        layer-0-design-principles.md
-        layer-1-base-instructions.md
-        layer-2-file-patterns.md
-        layer-3-skills.md
-        layer-4-prompt-templates.md
-        layer-5-story-context.md
+      .github/
+        copilot-instructions.md
+        copilot-layer-0-architecture.md
+        copilot-layer-0-design-principles.md
+        copilot-layer-1-base-instructions.md
+        copilot-layer-2-file-patterns.md
+        copilot-layer-3-skills.md
+        copilot-layer-4-templates.md
+      docs/
+        [STORY-ID]-impl-guide.md
+        [STORY-ID]-execution-report.md
       src/
-    conversation/
-      design-conversation.md
-    outcome.md
 
-The design conversation must include at least one correction.
+The impl-guide must document at least one design correction.
 It must NOT include [explicit exclusion].
 
 Confirm which Layer 0 files are needed and what each contains.
