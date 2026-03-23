@@ -25,11 +25,12 @@ Both paths produce the same result: auto-loaded context that primes Copilot befo
 | 2 | File-pattern instructions | **Auto-loaded** — content goes in `.github/copilot-instructions.md` |
 | 3 | Skills | Per task — see `context/skills/` for available skills |
 | 4 | Prompt templates | Per task — referenced by path in natural language (agent mode) or `#file:` (chat mode) |
-| 5 | Story context | **Per story — lives in `docs/[STORY-ID]-impl-guide.md`** (see below) |
+| 5a | Implementation guide | **Per story** — `docs/[STORY-ID]-impl-guide.md` — see `layer-5-impl-guide.md` |
+| 5b | Execution report | **Per story** — `docs/[STORY-ID]-execution-report.md` — see `layer-5-execution-report.md` |
 
 **Layers 1 and 2 share a single file: `.github/copilot-instructions.md`.** Copilot loads this automatically at session start when `"github.copilot.chat.codeGeneration.useInstructionFiles": true` is set in `.vscode/settings.json`.
 
-**Layer 5 is the impl-guide, not a standalone context file.** Under the two-document rule, every story produces `docs/[STORY-ID]-impl-guide.md`. This document is both the story context and the design record. It is built iteratively with the agent, reviewed against Garg's five dimensions, then executed. See `../docs/design-workflow.md` for the full workflow.
+**Layer 5 is two documents, not one file.** Every story produces an impl-guide (intention) and an execution report (result). Both live in `docs/`. Neither is loaded as a session file — they are referenced by the agent by path. The files `layer-5-impl-guide.md` and `layer-5-execution-report.md` in this folder are discovery documents that explain how each is built. See `../docs/design-workflow.md` for the full workflow.
 
 **Layers 3–4 are task-specific.** In agent mode, reference them by path in natural language. In chat mode, attach with `#file:`.
 
@@ -73,18 +74,19 @@ How code is structured and named in this project. Directory layout, naming conve
 
 Standardized opening prompts for recurring task types. Each template drives toward building an implementation guide before any code is written. Copy, fill in brackets, paste as opening message.
 
-## Layer 5 — Story Context → Implementation Guide
+## Layer 5 — Story Documents
 
-`layer-5-story-context.md` is the **template** for building `docs/[STORY-ID]-impl-guide.md`.
+Two discovery files explain how each story document is built:
 
-Under the two-document rule, you do not load a separate story context file. Instead:
+**`layer-5-impl-guide.md`** — What the implementation guide is, what it contains, and how to
+produce it with the agent. The impl-guide captures intention: scope, components, interactions,
+contracts. Built before any code is written.
 
-1. Give the agent the story and `docs/app-description.md`
-2. Ask it to build `docs/[STORY-ID]-impl-guide.md` using the template in `layer-5-story-context.md` as structure
-3. Iterate until every section is correct
-4. Execute
+**`layer-5-execution-report.md`** — What the execution report is, what it contains, and how to
+produce it. The execution report captures result: what was built, deviations, how to run, how
+to test, review feedback addressed. Built during and after execution.
 
-The impl-guide is both the story context (what to build) and the design record (how to build it). It replaces the Layer 5 file as a session artifact — it is a persistent document, not a per-session load.
+Neither file is loaded into Copilot. Both are discovery documents for the developer.
 
 ---
 
@@ -106,4 +108,4 @@ The retrospective technique — ask at the end of every session: **"What context
 
 Do not fill in all layers before writing any code. The templates will be wrong the first time. Fill them in for real work, correct them as you go, and let them improve through use.
 
-Do not create a separate Layer 5 story context file per session. Use `docs/[STORY-ID]-impl-guide.md` — it persists across sessions and contains the same information, plus the design.
+Do not load `layer-5-impl-guide.md` or `layer-5-execution-report.md` into Copilot. They are pointers, not context files. The actual documents they describe live in `docs/`.

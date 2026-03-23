@@ -47,11 +47,12 @@ This repo implements Knowledge Priming as a **six-layer context architecture**:
 | 2 — File-Pattern Instructions | Language and framework-specific rules | `.github/copilot-instructions.md` | Every session, automatically |
 | 3 — Skills | Reusable skill files in `context/skills/` | `context/skills/skill-*.md` | Per task, on demand |
 | 4 — Prompt Templates | Standardized workflows for recurring task types | `context/layer-4-prompt-templates.md` | Per task, on demand |
-| 5 — Story Context | Per-story impl-guide — scope, components, interactions, contracts | `docs/[STORY-ID]-impl-guide.md` | Per story — built iteratively, then executed |
+| 5a — Impl Guide | Intention — scope, components, interactions, contracts | `docs/[STORY-ID]-impl-guide.md` | Per story — built before execution |
+| 5b — Execution Report | Result — what was built, deviations, how to run, how to test | `docs/[STORY-ID]-execution-report.md` | Per story — built during execution |
 
 **Layers 1 and 2 share a single Copilot file: `.github/copilot-instructions.md`.** Copilot loads this automatically at session start — no action required. Layers 3–4 are referenced by path when needed: by natural language in agent mode, or `#file:` in chat mode.
 
-**Layer 5 is the implementation guide.** It is not a session file — it is a persistent story document built iteratively with the agent and stored in `docs/`. See `context/layer-5-story-context.md` for the template structure.
+**Layer 5 is two documents per story, not one session file.** The impl-guide captures intention before execution. The execution report captures result after. Both live in `docs/` and persist across sessions. See `context/layer-5-impl-guide.md` and `context/layer-5-execution-report.md` for how each is built.
 
 **Layer 0 is the onboarding step.** Run it once against your codebase and it generates Layers 1–4 for you.
 
@@ -87,14 +88,14 @@ Layer 2  }
                         +
          story
                         ↓
-         docs/impl-guide.md  ←  iterate until every section
-         (scope, components,     is correct and clear
+         docs/[STORY-ID]-impl-guide.md  ←  iterate until every section
+         (scope, components,                is correct and clear
           interactions,
           contracts)
                         ↓
-         Agent executes impl-guide.md
+         Agent executes impl-guide
                         ↓
-         Code + docs/execution-report.md
+         Code + docs/[STORY-ID]-execution-report.md
 
 AFTER EVERY SESSION
 ─────────────────────────────────────────────────────────
@@ -153,7 +154,8 @@ design-first-ai/
 │   ├── layer-2-file-patterns.md       # Structure, naming, canonical code patterns
 │   ├── layer-3-skills.md              # Skills model explanation + index
 │   ├── layer-4-prompt-templates.md    # New feature / single component / tests / bug / refactor
-│   ├── layer-5-story-context.md       # Template for docs/[STORY-ID]-impl-guide.md
+│   ├── layer-5-impl-guide.md          # Discovery doc — what the impl-guide is and how to build it
+│   ├── layer-5-execution-report.md    # Discovery doc — what the execution report is and how to build it
 │   └── skills/                        # Reusable skill files (stack-agnostic)
 │       ├── skill-error-handling.md
 │       ├── skill-testing.md
