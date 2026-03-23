@@ -25,11 +25,13 @@ Both paths produce the same result: auto-loaded context that primes Copilot befo
 | 2 | File-pattern instructions | **Auto-loaded** — content goes in `.github/copilot-instructions.md` |
 | 3 | Skills | Per task — see `context/skills/` for available skills |
 | 4 | Prompt templates | Per task — referenced by path in natural language (agent mode) or `#file:` (chat mode) |
-| 5 | Story context | Every task — referenced by path in natural language (agent mode) or `#file:` (chat mode) |
+| 5 | Story context | **Per story — lives in `docs/[STORY-ID]-impl-guide.md`** (see below) |
 
-**Layers 1 and 2 share a single file: `.github/copilot-instructions.md`.** Copilot loads this automatically at session start when `"github.copilot.chat.codeGeneration.useInstructionFiles": true` is set in `.vscode/settings.json`. It is the only layer that loads without any action from you.
+**Layers 1 and 2 share a single file: `.github/copilot-instructions.md`.** Copilot loads this automatically at session start when `"github.copilot.chat.codeGeneration.useInstructionFiles": true` is set in `.vscode/settings.json`.
 
-**Layers 3–5 are task-specific.** In agent mode, reference them by path in natural language — the agent reads from disk. In chat mode, attach with `#file:`.
+**Layer 5 is the impl-guide, not a standalone context file.** Under the two-document rule, every story produces `docs/[STORY-ID]-impl-guide.md`. This document is both the story context and the design record. It is built iteratively with the agent, reviewed against Garg's five dimensions, then executed. See `../docs/design-workflow.md` for the full workflow.
+
+**Layers 3–4 are task-specific.** In agent mode, reference them by path in natural language. In chat mode, attach with `#file:`.
 
 See `../docs/copilot-setup.md` for the full configuration walkthrough.
 
@@ -39,19 +41,19 @@ See `../docs/copilot-setup.md` for the full configuration walkthrough.
 
 `layer-0-generation-prompt.md`
 
-A one-time prompt that produces your Layers 1–4 by analyzing the codebase. Two modes: full workspace access (Copilot workspace) and manual file paste (any chat interface). Output is five files — ARCHITECTURE.md, TECH_STACK.md, CONTEXT.md, CODEBASE.md, DESIGN_PRINCIPLES.md — each with a "Design constraints" section that makes the output useful as Copilot context rather than just documentation.
+A one-time prompt that produces your Layers 1–4 by analyzing the codebase. Two modes: full workspace access (Copilot workspace) and manual file paste (any chat interface). Output is five files — ARCHITECTURE.md, TECH_STACK.md, CONTEXT.md, CODEBASE.md, DESIGN_PRINCIPLES.md — each with a "Design constraints" section.
 
 ## Layer 1 — Base Instructions
 
 `layer-1-base-instructions.md`
 
-Project-level rules that apply to every session. What the app is, what stack it uses, what is non-negotiable, what it explicitly is not. **Place this content in `.github/copilot-instructions.md`** — Copilot reads this and stops defaulting to generic internet patterns.
+Project-level rules that apply to every session. What the app is, what stack it uses, what is non-negotiable, what it explicitly is not. **Place this content in `.github/copilot-instructions.md`**.
 
 ## Layer 2 — File-Pattern Instructions
 
 `layer-2-file-patterns.md`
 
-How code is structured and named in this project. Directory layout, naming conventions, canonical patterns for controllers, services, tests. Includes at least one real code example. **Place this content in `.github/copilot-instructions.md`** alongside Layer 1 — both live in the same file, auto-loaded together.
+How code is structured and named in this project. Directory layout, naming conventions, canonical patterns for controllers, services, tests. **Place this content in `.github/copilot-instructions.md`** alongside Layer 1.
 
 ## Layer 3 — Skills
 
@@ -69,43 +71,34 @@ How code is structured and named in this project. Directory layout, naming conve
 
 `layer-4-prompt-templates.md`
 
-Standardized opening prompts for recurring task types: new feature, single component, test coverage, bug investigation, refactoring. Copy, fill in brackets, paste as opening message.
+Standardized opening prompts for recurring task types. Each template drives toward building an implementation guide before any code is written. Copy, fill in brackets, paste as opening message.
 
-## Layer 5 — Story Context
+## Layer 5 — Story Context → Implementation Guide
 
-`layer-5-story-context.md`
+`layer-5-story-context.md` is the **template** for building `docs/[STORY-ID]-impl-guide.md`.
 
-Task-specific context for the current story. What must be built, what is explicitly out of scope, constraints, decisions already made upstream, open questions. A new file for every task.
+Under the two-document rule, you do not load a separate story context file. Instead:
+
+1. Give the agent the story and `docs/app-description.md`
+2. Ask it to build `docs/[STORY-ID]-impl-guide.md` using the template in `layer-5-story-context.md` as structure
+3. Iterate until every section is correct
+4. Execute
+
+The impl-guide is both the story context (what to build) and the design record (how to build it). It replaces the Layer 5 file as a session artifact — it is a persistent document, not a per-session load.
 
 ---
 
 ## The Design Constraints Sections
 
-Every context file — whether generated by Layer 0 or authored manually — should contain a "Design constraints" section. This is the most important part of any priming document.
+Every context file should contain a "Design constraints" section. This is the difference between a context file that informs and one that actively shapes output.
 
-A design constraint is an explicit statement of what Copilot must never propose. It is the difference between a context file that informs and one that actively shapes output.
-
-**Examples of weak priming (informs):**
+**Weak priming (informs):**
 > "This project uses Fastify."
 
-**Examples of strong priming (shapes):**
+**Strong priming (shapes):**
 > "Do not use Express.js patterns. Do not use `app.use()` middleware syntax. Do not wrap Fastify in a class."
 
-Design Constraints are the primary mechanism for deletability. When a constraint is documented here, it no longer lives only in the head of the person who discovered it. The next engineer — or a new Copilot session — loads the file and the constraint applies immediately, with no explanation required.
-
-Each answer saved to Design Constraints from the retrospective reduces the system's dependence on any single person's memory. The goal is context files that contain enough institutional knowledge that a new engineer loads them and produces expert-level output from day one — without asking anyone, without reading Slack history, without finding the person who originally made the decision.
-
-When that's true, the author can leave. The knowledge stays.
-
-### The retrospective technique
-
-The fastest way to build up your Design Constraints sections is to ask this question at the end of every session:
-
-> **"What context were you missing that would have changed your approach?"**
-
-Copilot surfaces the gap between what it assumed and what is actually true in your project: the constraints it inferred, the conventions it guessed at, the decisions it had no way to know. Add each answer directly to the relevant constraint section of the appropriate file.
-
-The files compound — each task makes the next one cheaper. Run this question after every completed task, not just after mistakes.
+The retrospective technique — ask at the end of every session: **"What context were you missing that would have changed your approach?"** — is how these sections grow. Each answer saved here reduces the system's dependence on any single person's memory.
 
 ---
 
@@ -113,4 +106,4 @@ The files compound — each task makes the next one cheaper. Run this question a
 
 Do not fill in all layers before writing any code. The templates will be wrong the first time. Fill them in for real work, correct them as you go, and let them improve through use.
 
-Do not mandate the full framework for your team at once. Introduce Layer 1. Let people use it for a sprint. The value will be visible without argument.
+Do not create a separate Layer 5 story context file per session. Use `docs/[STORY-ID]-impl-guide.md` — it persists across sessions and contains the same information, plus the design.

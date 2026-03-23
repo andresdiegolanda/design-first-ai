@@ -1,70 +1,85 @@
-# Layer 5 — Story Context
+# Layer 5 — Story Context Template
 
-> **What this is:** Task-specific context for the current story or feature. A new file for every task.
-> **When to load it:** Every session. This is the only layer that changes every time.
-> **How to fill it in:** Fill this out before opening the AI session. It takes 5–10 minutes and replaces 20 minutes of corrective back-and-forth.
+> **What this is:** A template for the structure and content of `docs/[STORY-ID]-impl-guide.md`.
+> **How to use it:** When building an impl-guide, give the agent this file as structural guidance.
+> **What it is not:** A file to load per session. Under the two-document rule, the impl-guide
+> itself is the story context — persistent, not transient.
+
+See `../docs/design-workflow.md` for the full workflow.
 
 ---
 
-## Story
+## [STORY-ID] — Implementation Guide
+### [Story title]
 
-**ID:** [JIRA-000 or equivalent]
-**Title:** [story title]
-**Type:** [new feature / bug fix / refactoring / test coverage / other]
+> **Story:** [JIRA-000 or equivalent]
+> **Status:** [Draft / Approved / Executed]
+> **App description:** `docs/app-description.md`
 
-## What Must Be Built
+---
+
+## Scope
 
 [2–5 sentences. The deliverable. Be specific about what done looks like.]
 
-Example:
-> A POST `/api/v1/questions/ask` endpoint that accepts a natural language question, retrieves the top 3 relevant documents from the vector store using cosine similarity, builds a prompt with those documents as context, and returns the chat model's answer as plain text.
+**What must be built:**
+- [requirement 1]
+- [requirement 2]
 
-## What Is Explicitly Out of Scope
+**Explicitly out of scope:**
+- [exclusion 1 — something the agent might reasonably assume is included]
+- [exclusion 2]
 
-[List anything the AI might reasonably assume is included but isn't.]
+---
 
-- [Example: No streaming response — synchronous only]
-- [Example: No conversation history — stateless, single-turn only]
-- [Example: No authentication — assume caller is trusted]
+## Components
+
+| Component | Purpose |
+|-----------|---------|
+| [ExistingComponent] | [why it's involved — one line] |
+| [NewComponent] | [what it does — one line] |
+
+**Constraint:** [any structural rule — e.g. no new abstractions, reuse existing service]
+
+---
+
+## Interactions
+
+```
+[Entry point — e.g. HTTP request, lifecycle event, user action]
+  → [Component.method()]
+  → [what happens]
+  → [exit: response body + status / updated state]
+  → [error path: what is thrown/set, how it surfaces]
+```
+
+---
+
+## Contracts
+
+[Method signatures, types, DTOs, exception classes. No implementation. No method bodies.]
+
+```[language]
+// Records / interfaces / DTOs
+[TypeName]([field: type, ...])
+
+// Method signatures
+[returnType] methodName([params]) throws [ExceptionType]
+```
+
+---
 
 ## Constraints
 
-Technical or architectural constraints that apply to this task specifically.
+[Technical constraints specific to this story.]
 
-- [Example: Must reuse the existing `VectorStoreConfig` bean — do not create a new one]
-- [Example: Temperature must be configurable via `application.yml`, not hardcoded]
-- [Example: Retrieved documents must be logged at DEBUG level before building the prompt]
-
-## Decisions Already Made
-
-Upstream decisions this task must respect. These are not open for discussion.
-
-- [Example: We are using `pgvector` as the vector store — decided in architecture review]
-- [Example: The model is `gpt-4o-mini` — cost decision, not negotiable]
-- [Example: Similarity threshold is 0.7 — validated in spike]
+- [e.g. Must reuse existing X bean — do not create a new one]
+- [e.g. All IDs are UUID — never Long or int]
+- [e.g. Tests must not require Spring context — plain JUnit only]
 
 ## Open Questions
 
-Things not yet decided that the design conversation should resolve.
+[Things not yet decided — resolve before execution, not during.]
 
-- [Example: How many documents should we retrieve? 3 seems right but not validated]
-- [Example: Should the answer include source references, or plain text only?]
-- [Example: What is the correct error response when the vector store is unavailable?]
-
-## Relevant Existing Code
-
-Existing components this task interacts with or must align with.
-
-| Component | Location | Relevance |
-|-----------|----------|-----------|
-| [ComponentName] | `[package.ClassName]` | [why it matters for this task] |
-
-## Skills Needed
-
-Which Layer 3 skills apply to this task.
-
-- [ ] Error Handling
-- [ ] Testing
-- [ ] Logging
-- [ ] Spring AI — RAG Pattern
-- [ ] Configuration
+- [question 1]
+- [question 2]

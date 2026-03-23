@@ -47,9 +47,11 @@ This repo implements Knowledge Priming as a **six-layer context architecture**:
 | 2 — File-Pattern Instructions | Language and framework-specific rules | `.github/copilot-instructions.md` | Every session, automatically |
 | 3 — Skills | Reusable skill files in `context/skills/` | `context/skills/skill-*.md` | Per task, on demand |
 | 4 — Prompt Templates | Standardized workflows for recurring task types | `context/layer-4-prompt-templates.md` | Per task, on demand |
-| 5 — Story Context | Current task: requirements, constraints, decisions already made | `context/layer-5-story-context.md` | Every task, always |
+| 5 — Story Context | Per-story impl-guide — scope, components, interactions, contracts | `docs/[STORY-ID]-impl-guide.md` | Per story — built iteratively, then executed |
 
-**Layers 1 and 2 share a single Copilot file: `.github/copilot-instructions.md`.** Copilot loads this automatically at session start — no action required. Layers 3–5 are referenced by path when needed: by natural language in agent mode, or `#file:` in chat mode.
+**Layers 1 and 2 share a single Copilot file: `.github/copilot-instructions.md`.** Copilot loads this automatically at session start — no action required. Layers 3–4 are referenced by path when needed: by natural language in agent mode, or `#file:` in chat mode.
+
+**Layer 5 is the implementation guide.** It is not a session file — it is a persistent story document built iteratively with the agent and stored in `docs/`. See `context/layer-5-story-context.md` for the template structure.
 
 **Layer 0 is the onboarding step.** Run it once against your codebase and it generates Layers 1–4 for you.
 
@@ -151,7 +153,7 @@ design-first-ai/
 │   ├── layer-2-file-patterns.md       # Structure, naming, canonical code patterns
 │   ├── layer-3-skills.md              # Skills model explanation + index
 │   ├── layer-4-prompt-templates.md    # New feature / single component / tests / bug / refactor
-│   ├── layer-5-story-context.md       # Current task — scope, constraints, open questions
+│   ├── layer-5-story-context.md       # Template for docs/[STORY-ID]-impl-guide.md
 │   └── skills/                        # Reusable skill files (stack-agnostic)
 │       ├── skill-error-handling.md
 │       ├── skill-testing.md
