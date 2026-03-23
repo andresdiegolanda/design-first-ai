@@ -117,7 +117,7 @@ Read `docs/design-workflow.md`. Three-step document-driven process: app descript
 Read `docs/garg-mapping.md`.
 
 **I want to see it in action first:**
-Open `examples/01-spring-mvc/app/docs/DEMO-001-impl-guide.md` and `examples/01-spring-mvc/app/docs/DEMO-001-execution-report.md` for the Spring MVC story documents, or `examples/02-angular-component/conversation/design-conversation.md` for the Angular example.
+Open `examples/01-spring-mvc/app/docs/DEMO-001-impl-guide.md` and `examples/01-spring-mvc/app/docs/DEMO-001-execution-report.md` for the Spring MVC story documents, or `examples/02-angular-component/app/docs/DEMO-002-impl-guide.md` for the Angular example.
 
 **After every session:**
 Ask Copilot: *"What context were you missing that would have changed your approach?"* Save each answer into the relevant Design Constraints section. The context files improve with every task.
@@ -165,9 +165,9 @@ design-first-ai/
 │   │       ├── .github/               # All Copilot context (layers 0–4)
 │   │       └── docs/                  # Story documents (impl-guide, execution-report)
 │   └── 02-angular-component/          # Angular 17 | TypeScript | RxJS | standalone
-│       ├── app/                       # Buildable app (requires Node 18+ only)
-│       ├── conversation/
-│       └── outcome.md
+│       └── app/                       # Buildable app (requires Node 18+ only)
+│           ├── .github/               # All Copilot context (layers 0–4)
+│           └── docs/                  # Story documents (impl-guide, execution-report)
 │
 └── docs/
     ├── garg-mapping.md               # How Garg's three articles map to this framework

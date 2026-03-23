@@ -75,6 +75,24 @@ All notable changes to this project are documented here.
 - **`README.md`** — Spring MVC example structure diagram updated. Quick Start "See it in
   action" path updated to story documents. "Example Apps" section updated.
 
+- **`examples/02-angular-component` restructured — all Copilot context moved to `.github/`.**
+  Layer files renamed with `copilot-` prefix and moved from `context/` to `.github/`:
+  `copilot-layer-0-architecture.md`, `copilot-layer-0-design-principles.md`,
+  `copilot-layer-1-base-instructions.md`, `copilot-layer-2-file-patterns.md`,
+  `copilot-layer-3-skills.md`, `copilot-layer-4-templates.md`.
+  `context/` folder removed. `conversation/` folder removed. `outcome.md` removed —
+  content absorbed into `DEMO-002-execution-report.md`.
+  `docs/` folder added for story documents.
+
+- **`examples/02-angular-component/app/.github/copilot-instructions.md`** — Load hints updated
+  to `.github/` paths. `docs/` story document pattern documented in header.
+
+- **`examples/02-angular-component/app/README.md`** — Structure diagram updated for new layout.
+  "Using Copilot" section updated to two-document workflow. Story documents table added.
+
+- **`README.md`** — Angular example structure diagram updated. Quick Start Angular path
+  updated to `docs/DEMO-002-impl-guide.md`.
+
 - **`context/framework-layer-3-skills.md` moved to `.github/copilot-layer-3-skills.md`**
 - **`context/framework-layer-4-templates.md` moved to `.github/copilot-layer-4-templates.md`**
 

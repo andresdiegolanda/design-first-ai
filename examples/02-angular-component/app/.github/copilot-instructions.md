@@ -2,10 +2,12 @@
 
 > Auto-loaded by GitHub Copilot for every chat session in this workspace.
 > This is Layers 1 and 2 of the Design-First AI Collaboration framework.
-> Keep under 150 lines. Last reviewed: 2026-03-19.
+> Keep under 150 lines. Last reviewed: 2026-03-23.
 >
-> Layer 2 source: `context/layer-2-file-patterns.md`
-> Load per task: `#file:context/layer-3-skills.md` | `#file:context/layer-4-prompt-templates.md`
+> Layer 0 context: `.github/copilot-layer-0-architecture.md` | `.github/copilot-layer-0-design-principles.md`
+> Layer 2 source: `.github/copilot-layer-2-file-patterns.md`
+> Load per task: `.github/copilot-layer-3-skills.md` | `.github/copilot-layer-4-templates.md`
+> Story documents: `docs/[STORY-ID]-impl-guide.md` | `docs/[STORY-ID]-execution-report.md`
 
 ---
 
@@ -77,7 +79,6 @@ export class [Feature]Component implements OnInit, OnDestroy {
 @Injectable({ providedIn: 'root' })
 export class [Feature]Service {
   constructor(private http: HttpClient) {}
-
   getData(): Observable<[Type][]> {
     return this.http.get<[Type][]>(`${this.baseUrl}/[endpoint]`);
   }
@@ -94,7 +95,6 @@ export class [Feature]Service {
 | Services | `{Feature}Service` | `UserService` |
 | Models | `{Entity}.model.ts` | `user.model.ts` |
 | Specs | `{file}.spec.ts` | `user-search.component.spec.ts` |
-| SCSS files | same name as component | `user-search.component.scss` |
 
 ---
 
@@ -108,15 +108,13 @@ src/app/
 ```
 
 New features get their own folder under `src/app/`. One component per folder.
-Models go in `src/app/models/`. Services go in `src/app/services/`.
 
 ---
 
 ## Anti-Patterns — Never Propose These
 
 - Do not use `NgModule` — standalone components only
-- Do not use `async` pipe for state that has loading/error conditions — use explicit
-  properties (`loading`, `error`, `data`)
+- Do not use `async` pipe for state that has loading/error conditions — use explicit properties
 - Do not use `inject()` — constructor injection only
 - Do not subscribe without `takeUntil(this.destroy$)` — memory leaks
 - Do not use `any` type — explicit types always

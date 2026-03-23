@@ -1,8 +1,7 @@
 # Layer 3 — Skills (angular-user-search)
 
-> **What this is:** Reusable knowledge patterns for recurring technical concerns in this project.
-> **When to load it:** When your current task involves one of the skill areas below.
-> **How to use it:** Load with `#file:context/layer-3-skills.md` and reference the relevant skill in Layer 5.
+> **When to load:** When your task involves subscriptions, debounced search, state management, or testing.
+> **How to load:** Reference by path in agent mode, or `#file:.github/copilot-layer-3-skills.md`
 
 ---
 
@@ -58,10 +57,10 @@ ngOnInit(): void {
 ```
 
 **Rules:**
-- `debounceTime(300)` — 300ms is the standard; do not use lower values.
-- `distinctUntilChanged()` — prevents redundant filter runs when value hasn't changed.
-- `query ?? ''` — `valueChanges` can emit `null` after a reset; always coerce to string.
-- The filter method takes a plain string and is synchronous — no Observable inside it.
+- `debounceTime(300)` — 300ms standard. Do not lower.
+- `distinctUntilChanged()` — prevents redundant filter runs.
+- `query ?? ''` — `valueChanges` can emit `null`; always coerce to string.
+- The filter method takes a plain string and is synchronous.
 
 **Template binding:**
 ```html
@@ -88,14 +87,10 @@ error: string | null = null;
 private loadItems(): void {
   this.loading = true;
   this.error = null;
-
   this.itemService.getItems().pipe(
     takeUntil(this.destroy$)
   ).subscribe({
-    next: (items) => {
-      this.items = items;
-      this.loading = false;
-    },
+    next: (items) => { this.items = items; this.loading = false; },
     error: (err) => {
       this.error = 'Failed to load items. Please try again.';
       this.loading = false;
@@ -116,11 +111,11 @@ private loadItems(): void {
 **Rules:**
 - `loading = true` and `error = null` at the start of every load call.
 - `loading = false` in both `next` and `error` callbacks.
-- Error message is a user-readable string — never expose technical details.
+- Error message is user-readable — never expose technical details.
 - `retry()` simply calls the load method again.
 
 **Design Constraints:**
-- Do not use `async` pipe when loading/error states are needed — async pipe cannot represent these
+- Do not use `async` pipe when loading/error states are needed
 - Do not throw errors from the error callback — set `this.error` and stop
 
 ---
@@ -135,7 +130,6 @@ let userServiceSpy: jasmine.SpyObj<UserService>;
 
 beforeEach(async () => {
   userServiceSpy = jasmine.createSpyObj('UserService', ['getUsers']);
-
   await TestBed.configureTestingModule({
     imports: [UserSearchComponent, ReactiveFormsModule],
     providers: [{ provide: UserService, useValue: userServiceSpy }]
@@ -145,17 +139,12 @@ beforeEach(async () => {
 
 **Rules:**
 - Use `jasmine.createSpyObj` — not `jasmine.createSpy`.
-- `imports` array takes the standalone component being tested, plus any modules it needs.
-- Use `of(mockData)` for success, `throwError(() => new Error(...))` for errors.
-- Use `fakeAsync` + `tick(300)` to advance the debounce timer.
-- Assert on component properties (`filteredUsers`, `loading`, `error`) — not DOM.
+- `of(mockData)` for success, `throwError(() => new Error(...))` for errors.
+- `fakeAsync` + `tick(300)` to advance the debounce timer.
+- Assert on component properties — not DOM.
 
 **Test naming:** `method_condition_expectedResult`
-Examples:
-- `loadUsers_onInit_populatesFilteredUsers`
-- `filterUsers_matchingQuery_returnsMatchingUsers`
-- `loadUsers_serviceThrows_setsErrorState`
 
 **Design Constraints:**
-- Do not use `fixture.debugElement` or `nativeElement` queries in tests — component state only
-- Do not use `@SpringBootTest` equivalent (`TestBed.configureTestingModule` with full imports) — import only what's needed
+- Do not use `fixture.debugElement` or `nativeElement` queries — component state only
+- Do not use `TestBed.configureTestingModule` with full imports — import only what's needed

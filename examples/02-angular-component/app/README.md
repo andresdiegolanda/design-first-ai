@@ -3,8 +3,8 @@
 Standalone Angular 17 application demonstrating the Design-First methodology on a frontend component.
 Single feature: search users from JSONPlaceholder by name, username, or email.
 
-This app lives at `examples/02-angular-component/app/`. The design conversation that produced it
-is at `examples/02-angular-component/conversation/design-conversation.md`.
+This app lives at `examples/02-angular-component/app/`.
+Story documents live at `app/docs/`.
 
 ---
 
@@ -38,32 +38,25 @@ No Docker. No API key. JSONPlaceholder is a public API with no authentication.
 
 ## Setup
 
-### 1. Open in VS Code
-
 ```bash
-git clone https://github.com/[your-username]/design-first-ai
+git clone https://github.com/andresdiegolanda/design-first-ai
 cd design-first-ai/examples/02-angular-component/app
 code .
 ```
 
-VS Code will prompt you to install recommended extensions (`.vscode/extensions.json`).
-Install them: GitHub Copilot, GitHub Copilot Chat, Angular Language Service.
-
-### 2. Install dependencies
+VS Code will prompt you to install recommended extensions (`.vscode/extensions.json`):
+GitHub Copilot, GitHub Copilot Chat, Angular Language Service.
 
 ```bash
 npm install
-```
-
-### 3. Run
-
-```bash
 ng serve
 ```
 
-Open `http://localhost:4200`. Type in the search box to filter users.
+Open `http://localhost:4200`.
 
-### 4. Run tests
+---
+
+## Run Tests
 
 ```bash
 ng test
@@ -75,14 +68,11 @@ ng test
 
 ## Using Copilot with This Project
 
-### The flow
-
-1. Copilot Chat opens → `.github/copilot-instructions.md` auto-loaded (Layers 1 and 2)
-2. Load Layer 3 skills: `#file:context/layer-3-skills.md`
-3. Load Layer 4 templates: `#file:context/layer-4-prompt-templates.md`
-4. Write a Layer 5 story context for your task
-5. Work through Levels 1–4 before any code is generated
-6. Level 5: Copilot generates against the approved contracts
+1. Open the workspace — `.github/copilot-instructions.md` auto-loaded (Layers 1+2)
+2. For a new story, read `docs/[STORY-ID]-impl-guide.md` for context
+3. Load skills when relevant: `.github/copilot-layer-3-skills.md`
+4. Use a template from `.github/copilot-layer-4-templates.md` as your opening message
+5. Produce `docs/[STORY-ID]-impl-guide.md`, iterate until correct, then execute
 
 ---
 
@@ -90,22 +80,23 @@ ng test
 
 ```
 .github/
-└── copilot-instructions.md     ← Layers 1+2 auto-loaded by Copilot
+├── copilot-instructions.md              ← Layers 1+2 auto-loaded by Copilot
+├── copilot-layer-0-architecture.md      ← Architecture + design constraints
+├── copilot-layer-0-design-principles.md ← Conventions + anti-patterns
+├── copilot-layer-1-base-instructions.md ← Project identity + non-negotiables (source)
+├── copilot-layer-2-file-patterns.md     ← Structure, naming, canonical patterns (source)
+├── copilot-layer-3-skills.md            ← Subscriptions, debounce, state, testing
+└── copilot-layer-4-templates.md         ← Task prompt templates
+docs/
+├── DEMO-002-impl-guide.md               ← Story DEMO-002: intention (what + how)
+└── DEMO-002-execution-report.md         ← Story DEMO-002: result (what was built)
 .vscode/
-├── settings.json               ← Model config + Copilot settings
-└── extensions.json             ← Recommended extensions
-context/
-├── layer-0-architecture.md     ← Layer 0: architecture + design constraints
-├── layer-0-design-principles.md ← Layer 0: conventions + anti-patterns
-├── layer-1-base-instructions.md ← Layer 1: project identity + non-negotiables
-├── layer-2-file-patterns.md    ← Layer 2: structure, naming, canonical patterns (source for copilot-instructions.md)
-├── layer-3-skills.md           ← Layer 3: subscriptions, debounce, state, testing
-├── layer-4-prompt-templates.md ← Layer 4: task prompt templates
-└── layer-5-story-context.md    ← Layer 5: story context (write new per task)
+├── settings.json                        ← Model config + Copilot settings
+└── extensions.json                      ← Recommended extensions
 src/app/
-├── models/user.model.ts        ← User interface
-├── services/user.service.ts    ← HTTP layer
-└── user-search/                ← Feature folder
+├── models/user.model.ts                 ← User interface
+├── services/user.service.ts             ← HTTP layer
+└── user-search/                         ← Feature folder
     ├── user-search.component.ts
     ├── user-search.component.html
     ├── user-search.component.scss
@@ -114,8 +105,14 @@ src/app/
 
 ---
 
-## This App Was Designed Using the Methodology
+## Story Documents
 
-See `../conversation/design-conversation.md` for the complete Design-First conversation:
-two corrections caught before any code was written — one at Level 2 (unnecessary component),
-one at Level 4 (wrong state pattern).
+Every story produces exactly two documents in `docs/`:
+
+| File | Purpose |
+|------|---------|
+| `docs/[STORY-ID]-impl-guide.md` | Intention — scope, components, interactions, contracts. Written before any code. |
+| `docs/[STORY-ID]-execution-report.md` | Result — what was built, deviations, how to run, how to test, commit message. |
+
+See `docs/DEMO-002-impl-guide.md` and `docs/DEMO-002-execution-report.md` for the
+initial build of this application.
