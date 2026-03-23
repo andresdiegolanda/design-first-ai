@@ -26,10 +26,10 @@ graph TD
     A --> C[".github/copilot-instructions.md"]
 
     D["Garg: Design-First Collaboration"] --> E["docs/design-workflow.md\n(five dimensions as quality bar)"]
-    D --> F["docs/impl-guide.md\n(per-project, not in this repo)"]
+    D --> F["docs/[STORY-ID]-impl-guide.md\n(per story, in project docs/)"]
 
     G["Garg: Context Anchoring"] --> F
-    G --> H["docs/execution-report.md\n(per-project, not in this repo)"]
+    G --> H["docs/[STORY-ID]-execution-report.md\n(per story, in project docs/)"]
 
     C -->|"auto-loaded\nLayers 1+2"| I["Copilot session"]
     B -->|"referenced\non demand"| I
@@ -54,7 +54,7 @@ generic patterns from training data — the "average of the internet."
 | Project context | `context/layer-1-base-instructions.md` | Identity, stack, non-negotiables |
 | File/naming conventions | `context/layer-2-file-patterns.md` | Structure, naming, canonical patterns |
 | Reusable patterns | `context/skills/skill-*.md` | Error handling, testing, logging, configuration |
-| Task-specific context | `context/layer-5-story-context.md` | Per-story scope and constraints |
+| Task-specific context | `docs/[STORY-ID]-impl-guide.md` | Per-story scope, components, contracts |
 | Auto-loaded context | `.github/copilot-instructions.md` | Layers 1+2 merged, loaded at session start |
 | Onboarding shortcut | `context/layer-0-generation-prompt.md` | Generates Layers 1–4 from the codebase |
 
@@ -75,10 +75,14 @@ graph LR
         CI --> L2["Layer 2\nFile patterns"]
     end
 
+    subgraph "Per story — story documents"
+        L5a["docs/[STORY-ID]-impl-guide.md\nIntention"]
+        L5b["docs/[STORY-ID]-execution-report.md\nResult"]
+    end
+
     subgraph "Per task — on demand"
         L3["context/skills/\nSkill files"]
         L4["Layer 4\nPrompt templates"]
-        L5["Layer 5\nStory context"]
     end
 
     GEN -->|content merged into| CI
@@ -112,8 +116,8 @@ dimension before proceeding. This framework implements the same five dimensions 
 |-----------------|----------------------|
 | Sequential dimension conversation | Iterative impl-guide document |
 | Dimension approval message | Document review and rewrite cycles |
-| Dimensions 1–4 output (in conversation) | Sections of `docs/impl-guide.md` |
-| Dimension 5 — agent writes code | Agent executes `docs/impl-guide.md` |
+| Dimensions 1–4 output (in conversation) | Sections of `docs/[STORY-ID]-impl-guide.md` |
+| Dimension 5 — agent writes code | Agent executes the impl-guide |
 
 The five dimensions are preserved in `docs/design-workflow.md` as a review checklist:
 when reading the impl-guide draft, each dimension tells you what to look for and what
@@ -159,11 +163,11 @@ sessions and can be read by the next engineer or the next agent without any hist
 
 | Garg concept | Framework equivalent |
 |-------------|----------------------|
-| Feature document (decisions + reasoning) | `docs/impl-guide.md` |
+| Feature document (decisions + reasoning) | `docs/[STORY-ID]-impl-guide.md` |
 | Current constraints the AI must respect | Design Constraints sections in layer files |
-| Open questions | `docs/impl-guide.md` open questions section |
-| What was done vs what remains | `docs/execution-report.md` |
-| Living ADR in progress | `docs/impl-guide.md` + `docs/execution-report.md` together |
+| Open questions | `docs/[STORY-ID]-impl-guide.md` open questions section |
+| What was done vs what remains | `docs/[STORY-ID]-execution-report.md` |
+| Living ADR in progress | impl-guide + execution-report together |
 
 ```mermaid
 graph LR
@@ -171,9 +175,9 @@ graph LR
         AD["docs/app-description.md\n(project-level anchor)"]
     end
 
-    subgraph "Per feature — Garg's feature document"
-        IG["docs/impl-guide.md\nScope\nComponents\nInteractions\nContracts\nConstraints"]
-        ER["docs/execution-report.md\nWhat was built\nDeviations\nHow to run\nHow to test\nCommit message"]
+    subgraph "Per story — Garg's feature document"
+        IG["docs/[STORY-ID]-impl-guide.md\nScope\nComponents\nInteractions\nContracts\nConstraints"]
+        ER["docs/[STORY-ID]-execution-report.md\nWhat was built\nDeviations\nHow to run\nHow to test\nCommit message"]
     end
 
     AD --> IG
@@ -190,9 +194,9 @@ graph LR
 graph TD
     KP["Knowledge Priming\ncontext/ layer files\n.github/copilot-instructions.md"] -->|"primes the agent\nbefore design begins"| DF
 
-    DF["Design-First Collaboration\ndocs/design-workflow.md\ndocs/impl-guide.md"] -->|"produces a rigorous\ndesign document"| CA
+    DF["Design-First Collaboration\ndocs/design-workflow.md\ndocs/[STORY-ID]-impl-guide.md"] -->|"produces a rigorous\ndesign document"| CA
 
-    CA["Context Anchoring\ndocs/impl-guide.md\ndocs/execution-report.md"] -->|"makes design durable\nacross sessions"| NEXT["Next session\nNext engineer\nNext agent"]
+    CA["Context Anchoring\ndocs/[STORY-ID]-impl-guide.md\ndocs/[STORY-ID]-execution-report.md"] -->|"makes design durable\nacross sessions"| NEXT["Next session\nNext engineer\nNext agent"]
 
     KP -->|"Design Constraints\nsurvive sessions"| NEXT
 ```
@@ -212,7 +216,7 @@ works as well without the other two.
 | `context/skills/` folder | Reusable, stack-agnostic skill files — error handling, testing, logging, configuration — loadable per task |
 | Retrospective technique ("What context were you missing?") | Feedback loop for improving layer files over time — not in any article |
 | `docs/app-description.md` | Project-level anchor document analogous to Knowledge Priming but at the agent session level |
-| `docs/execution-report.md` | Extends Context Anchoring beyond the design phase into the execution record |
+| Two-document rule | Every story produces exactly two documents — impl-guide (intention) and execution-report (result) |
 
 ---
 

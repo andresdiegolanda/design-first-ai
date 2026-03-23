@@ -100,17 +100,17 @@ Add `.vscode/settings.json` to your project:
 
 The critical setting is `"github.copilot.chat.codeGeneration.useInstructionFiles": true` — this ensures `.github/copilot-instructions.md` is loaded for code generation, not just chat.
 
-### Step 4 — Load skills and story context per task
+### Step 4 — Load skills per task
 
-Skills and story context are not auto-loaded. In agent mode, reference them by path in
-natural language — the agent reads from disk. In chat mode, use `#file:`:
+Skills are not auto-loaded. In agent mode, reference them by path in natural language.
+In chat mode, use `#file:`:
 
 ```
 # Load a skill relevant to the current task
 #file:context/skills/skill-error-handling.md
 
-# Load the story context for the current task
-#file:context/layer-5-story-context.md
+# Reference the current story's implementation guide
+#file:docs/[STORY-ID]-impl-guide.md
 ```
 
 Alternatively, use the paperclip icon in the Copilot Chat panel to attach files directly.
@@ -125,12 +125,12 @@ Alternatively, use the paperclip icon in the Copilot Chat panel to attach files 
 With context loaded, follow the three-step workflow in `../docs/design-workflow.md`:
 
 1. Ask the agent to build an app description (`docs/app-description.md`)
-2. Give it the story and ask for an implementation guide (`docs/impl-guide.md`)
+2. Give it the story and ask for an implementation guide (`docs/[STORY-ID]-impl-guide.md`)
 3. Iterate on the guide until every section is correct, then ask the agent to execute it
 
 **Copilot Chat session boundary:** Starting a new chat clears the conversation but NOT
 the auto-loaded `.github/copilot-instructions.md`. Layers 1 and 2 persist. Skills and
-story context must be re-referenced for each new session.
+the implementation guide must be re-referenced for each new session.
 
 ---
 

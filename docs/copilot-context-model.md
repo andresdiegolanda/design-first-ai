@@ -36,7 +36,7 @@ In agent mode, the agent can autonomously access:
 
 You do not need `#file:` tags. Natural language is sufficient:
 
-> "Follow the implementation guide in docs/impl-guide.md"
+> "Follow the implementation guide in docs/[STORY-ID]-impl-guide.md"
 > "Use the application description in docs/app-description.md as context"
 > "The tests are in src/test — run them and report results"
 
@@ -66,8 +66,8 @@ you have everything.
 |------|---------------------|-----|
 | `.github/copilot-instructions.md` | ✓ | File on disk, auto-loaded next session |
 | `docs/app-description.md` | ✓ | File on disk, agent reads on reference |
-| `docs/impl-guide.md` | ✓ | File on disk, agent reads on reference |
-| `docs/execution-report.md` | ✓ | File on disk, agent reads on reference |
+| `docs/[STORY-ID]-impl-guide.md` | ✓ | File on disk, agent reads on reference |
+| `docs/[STORY-ID]-execution-report.md` | ✓ | File on disk, agent reads on reference |
 | Generated source code | ✓ | Files on disk |
 | Conversation history | ✗ | Never written to disk |
 | Clarifications made mid-conversation | ✗ unless written to a file | Live only in the session |
@@ -84,8 +84,8 @@ Some documentation describes an alternative approach using `#file:` tags to expl
 load files into the context window:
 
 ```
-#file:context/layer-3-skills.md
-#file:context/layer-5-story-context.md
+#file:context/skills/skill-error-handling.md
+#file:docs/[STORY-ID]-impl-guide.md
 ```
 
 This approach works but requires manual management — you track which files are loaded,
