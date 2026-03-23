@@ -59,7 +59,8 @@ All notable changes to this project are documented here.
   `copilot-layer-0-architecture.md`, `copilot-layer-0-design-principles.md`,
   `copilot-layer-1-base-instructions.md`, `copilot-layer-2-file-patterns.md`,
   `copilot-layer-3-skills.md`, `copilot-layer-4-templates.md`.
-  `context/` folder removed. `conversation/` folder removed.
+  `context/` folder removed. `conversation/` folder removed. `outcome.md` removed —
+  content absorbed into `DEMO-001-execution-report.md`.
   `docs/` folder added for story documents.
 
 - **`examples/01-spring-mvc/app/.github/copilot-instructions.md`** — Load hints updated
@@ -68,8 +69,8 @@ All notable changes to this project are documented here.
 - **`examples/01-spring-mvc/app/README.md`** — Structure diagram updated for new layout.
   "Using Copilot" section updated to two-document workflow. Story documents table added.
 
-- **`examples/01-spring-mvc/outcome.md`** — Updated to reference `docs/DEMO-001-impl-guide.md`
-  and `docs/DEMO-001-execution-report.md`. Context table updated to `.github/` paths.
+- **`examples/01-spring-mvc/outcome.md` removed** — content absorbed into
+  `docs/DEMO-001-execution-report.md`.
 
 - **`README.md`** — Spring MVC example structure diagram updated. Quick Start "See it in
   action" path updated to story documents. "Example Apps" section updated.

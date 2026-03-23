@@ -161,10 +161,9 @@ design-first-ai/
 │
 ├── examples/                          # Worked examples — story documents + buildable app
 │   ├── 01-spring-mvc/                 # Spring Boot 3.4 | Java 21 | no DB | no Docker
-│   │   ├── app/                       # Buildable app (requires Java 21 + Maven only)
-│   │   │   ├── .github/               # All Copilot context (layers 0–4)
-│   │   │   └── docs/                  # Story documents (impl-guide, execution-report)
-│   │   └── outcome.md
+│   │   └── app/                       # Buildable app (requires Java 21 + Maven only)
+│   │       ├── .github/               # All Copilot context (layers 0–4)
+│   │       └── docs/                  # Story documents (impl-guide, execution-report)
 │   └── 02-angular-component/          # Angular 17 | TypeScript | RxJS | standalone
 │       ├── app/                       # Buildable app (requires Node 18+ only)
 │       ├── conversation/
