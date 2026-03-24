@@ -55,6 +55,76 @@ STEP 3 — Execution
 
 ---
 
+## Understanding Sessions
+
+Each Copilot Chat session is a blank slate. The agent has no memory of previous
+conversations. Closing a chat and opening a new one starts completely fresh — the
+agent does not remember what was discussed, decided, or corrected in prior sessions.
+
+```mermaid
+graph LR
+  subgraph SESSION["New session — not in active context"]
+    direction TB
+    C["prior conversation history\n(stored, not loaded)"]
+    D["decisions not written to a file"]
+  end
+
+  subgraph DISK["Disk — loaded on reference"]
+    direction TB
+    A[".github/copilot-instructions.md ✓  auto-loaded"]
+    B["docs/app-description.md ✓"]
+    E["docs/impl-guide.md ✓"]
+    F["docs/execution-report.md ✓"]
+    G["src/ — generated code ✓"]
+  end
+
+  SESSION -- "new session starts\n→ not in context" --> X["agent doesn't know this"]
+  DISK -- "referenced by path\n→ read from disk" --> NEXT["agent reads fresh"]
+
+  classDef ephemeral fill:#FEF3C7,stroke:#D97706,color:#78350F
+  classDef persistent fill:#D1FAE5,stroke:#059669,color:#064E3B
+  classDef autoload  fill:#DBEAFE,stroke:#2563EB,color:#1E3A8A
+  classDef lost      fill:#FEE2E2,stroke:#DC2626,color:#7F1D1D
+  classDef fresh     fill:#ECFDF5,stroke:#10B981,color:#064E3B
+
+  class C,D ephemeral
+  class B,E,F,G persistent
+  class A autoload
+  class X lost
+  class NEXT fresh
+```
+
+**What persists automatically:** `.github/copilot-instructions.md` only. Copilot
+loads this file at the start of every session without being asked. Layers 1 and 2 are
+always there. Everything else — the app description, the implementation guide, the
+execution report — must be referenced explicitly at the start of each session.
+
+**What this means for the workflow:** The impl-guide and app-description survive session
+boundaries not because the agent remembers them, but because they are files on disk.
+Reference them by path and the agent reads them fresh. The conversation is ephemeral.
+The documents are not. This is why the three-step workflow produces files rather than
+relying on conversation history.
+
+**The practical rule:** If a session produces a correction or a decision, write it into
+the relevant layer file or impl-guide immediately. Do not rely on the conversation to
+carry it forward. The session will end. The file will not.
+
+**Opening a new session mid-story:** When continuing work across days or after a context
+reset, start with a one-paragraph brief:
+
+> "We're continuing [STORY-ID]. Read `docs/[STORY-ID]-impl-guide.md` for context.
+> Current state: [one sentence — e.g. 'implementation complete, 3 failing tests'].
+> Continue from here."
+
+A useful way to think about it: each session is a new expert who knows your project
+deeply through the documents you've built, but forgets everything the moment you close
+the chat. You are not resuming a conversation. You are briefing a collaborator. The
+quality of the session depends on the quality of the briefing. The retrospective question
+— "What context were you missing that would have changed your approach?" — is how you
+improve the briefing over time.
+
+---
+
 ## Step 2 Is Iterative
 
 The implementation guide is not produced in a single pass. Expect two or three iterations.
