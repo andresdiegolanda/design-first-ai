@@ -8,6 +8,24 @@ All notable changes to this project are documented here.
 
 ### Added
 
+- **`DEMO-READINESS-REPORT.md`** — Full demo-readiness assessment covering framework docs,
+  context layers, and both example apps. Includes issues found, pass/fail matrix, and
+  pre-demo checklist.
+
+### Fixed
+
+- **`examples/01-spring-mvc/app/docs/DEMO-001-impl-guide.md`** — Error code in
+  GlobalExceptionHandler mapping table changed from `PRODUCT_NOT_FOUND` to `NOT_FOUND`
+  to match the actual implementation and tests.
+
+- **`examples/01-spring-mvc/app/docs/DEMO-001-execution-report.md`** — Manual testing
+  step 5 updated to expect `NOT_FOUND` instead of `PRODUCT_NOT_FOUND`.
+
+- **`.gitignore`** — Added Node.js entries (`node_modules/`, `dist/`, `.angular/`) to
+  prevent Angular example build artifacts from appearing as untracked files.
+
+### Added
+
 - **`docs/design-workflow.md` — Two-Document Rule section added.** Every story produces
   exactly two documents: `impl-guide.md` (intention) and `execution-report.md` (result).
   Defines what belongs in each, what belongs in neither, and why accumulation beyond two
