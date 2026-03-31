@@ -102,7 +102,7 @@ mvn test
 2. Create a product — verify HTTP 201 and UUID in response
 3. List products — verify the created product appears
 4. Get by UUID — verify HTTP 200
-5. Get by unknown UUID — verify HTTP 404 with `{"code":"PRODUCT_NOT_FOUND",...}`
+5. Get by unknown UUID — verify HTTP 404 with `{"code":"NOT_FOUND",...}`
 6. Create with blank name — verify HTTP 400 with `{"code":"VALIDATION_ERROR",...}`
 7. Delete by UUID — verify HTTP 204
 8. Get after delete — verify HTTP 404

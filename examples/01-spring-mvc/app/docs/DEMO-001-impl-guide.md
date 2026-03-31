@@ -124,7 +124,7 @@ public class ProductNotFoundException extends RuntimeException {
 
 | Exception | HTTP status | Error code |
 |-----------|-------------|------------|
-| `ProductNotFoundException` | 404 | `PRODUCT_NOT_FOUND` |
+| `ProductNotFoundException` | 404 | `NOT_FOUND` |
 | `MethodArgumentNotValidException` | 400 | `VALIDATION_ERROR` |
 
 ---

@@ -7,6 +7,11 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+# Node.js
+node_modules/
+dist/
+.angular/
+
 # IDE
 .idea/
 *.iws
