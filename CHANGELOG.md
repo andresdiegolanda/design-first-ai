@@ -4,25 +4,7 @@ All notable changes to this project are documented here.
 
 ---
 
-## [Unreleased]
-
-### Added
-
-- **`DEMO-READINESS-REPORT.md`** — Full demo-readiness assessment covering framework docs,
-  context layers, and both example apps. Includes issues found, pass/fail matrix, and
-  pre-demo checklist.
-
-### Fixed
-
-- **`examples/01-spring-mvc/app/docs/DEMO-001-impl-guide.md`** — Error code in
-  GlobalExceptionHandler mapping table changed from `PRODUCT_NOT_FOUND` to `NOT_FOUND`
-  to match the actual implementation and tests.
-
-- **`examples/01-spring-mvc/app/docs/DEMO-001-execution-report.md`** — Manual testing
-  step 5 updated to expect `NOT_FOUND` instead of `PRODUCT_NOT_FOUND`.
-
-- **`.gitignore`** — Added Node.js entries (`node_modules/`, `dist/`, `.angular/`) to
-  prevent Angular example build artifacts from appearing as untracked files.
+## v1.3.0 — 2026-03-31
 
 ### Added
 
@@ -152,6 +134,22 @@ All notable changes to this project are documented here.
 - **`README.md`** — `.github/` block updated with `copilot-layer-3-skills.md` and
   `copilot-layer-4-templates.md`. `context/` block: `framework-layer-*.md` removed,
   `context/skills/` retained. All other unreleased changes included.
+
+- **`README.md`** — Example Apps section clarified: examples demonstrate workflow
+  mechanics; framework value compounds on features with ambiguous scope, multi-service
+  interactions, or cross-cutting concerns.
+
+### Fixed
+
+- **`examples/01-spring-mvc/app/docs/DEMO-001-impl-guide.md`** — Error code in
+  GlobalExceptionHandler mapping table changed from `PRODUCT_NOT_FOUND` to `NOT_FOUND`
+  to match the actual implementation and tests.
+
+- **`examples/01-spring-mvc/app/docs/DEMO-001-execution-report.md`** — Manual testing
+  step 5 updated to expect `NOT_FOUND` instead of `PRODUCT_NOT_FOUND`.
+
+- **`.gitignore`** — Added Node.js entries (`node_modules/`, `dist/`, `.angular/`) to
+  prevent Angular example build artifacts from appearing as untracked files.
 
 ---
 
