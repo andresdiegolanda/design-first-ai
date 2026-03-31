@@ -30,6 +30,7 @@ class ProductControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
 
+    @SuppressWarnings("deprecation")
     @MockBean
     private ProductService productService;
 
