@@ -185,7 +185,7 @@ design-first-ai/
 
 ## The Example Apps
 
-Each example in `examples/` contains a complete, buildable app alongside the story documents that produced it. Open `examples/NN-name/app/` as its own VS Code workspace.
+Each example in `examples/` contains a complete, buildable app alongside the story documents that produced it. Open `examples/NN-name/app/` as its own VS Code workspace. These examples demonstrate the workflow mechanics. The framework's value compounds on features with ambiguous scope, multi-service interactions, or cross-cutting concerns.
 
 **01-spring-mvc** — Spring Boot 3.4.3 | Java 21 | spring-boot-starter-web. In-memory product catalog CRUD API. Requires Java 21 + Maven only — no Docker, no API key. See `examples/01-spring-mvc/app/README.md`.
 
