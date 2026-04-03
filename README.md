@@ -1,6 +1,6 @@
 # Design-First AI Collaboration
 
-A practical implementation of Rahul Garg's [Design-First Collaboration](https://martinfowler.com/articles/reduce-friction-ai/design-first-collaboration.html), [Knowledge Priming](https://martinfowler.com/articles/reduce-friction-ai/knowledge-priming.html), and [Context Anchoring](https://martinfowler.com/articles/reduce-friction-ai/context-anchoring.html) patterns, published on Martin Fowler's site in February–March 2026.
+A practical implementation of Rahul Garg's [Design-First Collaboration](https://martinfowler.com/articles/reduce-friction-ai/design-first-collaboration.html), [Knowledge Priming](https://martinfowler.com/articles/reduce-friction-ai/knowledge-priming.html), [Context Anchoring](https://martinfowler.com/articles/reduce-friction-ai/context-anchoring.html), and [Encoding Team Standards](https://martinfowler.com/articles/reduce-friction-ai/encoding-team-standards.html) patterns, published on Martin Fowler's site in February–March 2026.
 
 The methodology has no code dependencies — it is pure markdown templates and guides. Buildable example apps live inside `examples/` alongside the story documents that produced them. Implemented for VS Code + GitHub Copilot.
 
@@ -20,6 +20,8 @@ AI coding assistants collapse design and implementation into one step. You descr
 
 This is what Garg calls the **Implementation Trap**. The fix is to reconstruct the whiteboard conversation that human pairs do naturally: explicit design alignment before any code exists.
 
+A second problem compounds this: two developers on the same team, same codebase, same tool, produce different quality because the senior's judgment lives in her head. The junior asks the AI to "create a notification service." The senior instinctively specifies architecture patterns, error handling, naming, test expectations. Same AI. Different quality gates. The fix is to encode that judgment as versioned, shared instructions that execute for everyone.
+
 ---
 
 ## Design for Deletion
@@ -32,7 +34,7 @@ This is the opposite of tribal knowledge. The expert's value shifts from *being 
 
 ---
 
-## Three Complementary Patterns
+## Four Complementary Patterns
 
 ### Knowledge Priming — Loading Context Before the Session
 
@@ -68,6 +70,14 @@ The design conversation produces decisions worth preserving. Context Anchoring i
 
 The documents are the session state.
 
+### Encoding Team Standards — Making Quality Consistent
+
+Individual context is not enough. When each developer prompts the AI differently, the senior becomes a bottleneck — not because she writes the code, but because she is the only one who knows what to ask for. The solution is to encode her judgment as versioned AI instructions that execute for everyone.
+
+This framework implements Encoding Team Standards through the layer files and skill files themselves. The Design Constraints section in every layer file is the executable standard — not advice to remember, but a rule the agent applies. The skill files in `context/skills/` are the team's reusable instruction sets for recurring concerns. Both live in the repository, change through pull requests, and improve through the retrospective technique after each task.
+
+The retrospective question — *"What context were you missing that would have changed your approach?"* — is the extraction mechanism. Each answer is a constraint that was in someone's head and is now in a file.
+
 ### How They Fit Together
 
 ```
@@ -82,7 +92,7 @@ Layer 0: Generation prompt → produces ARCHITECTURE.md
 FOR EACH FEATURE
 ─────────────────────────────────────────────────────────
 Layer 1  }  auto-loaded from .github/copilot-instructions.md
-Layer 2  }
+Layer 2  }  (team standards for generation — Pattern 4)
                         ↓
          docs/app-description.md  (once per project)
                         +
@@ -101,6 +111,7 @@ AFTER EVERY SESSION
 ─────────────────────────────────────────────────────────
 Ask: "What context were you missing that would have changed your approach?"
 Save answers → Design Constraints sections of relevant layer files
+              (tacit knowledge → executable standard — Pattern 4)
 ```
 
 ---
@@ -156,12 +167,16 @@ design-first-ai/
 │   ├── layer-4-prompt-templates.md    # New feature / single component / tests / bug / refactor
 │   ├── layer-5-impl-guide.md          # Discovery doc — what the impl-guide is and how to build it
 │   ├── layer-5-execution-report.md    # Discovery doc — what the execution report is and how to build it
-│   └── skills/                        # Reusable skill files (stack-agnostic)
+│   └── skills/                        # Reusable skill files — Garg's executable team standards
+│       ├── README.md
 │       ├── skill-error-handling.md
 │       ├── skill-testing.md
 │       ├── skill-logging.md
 │       ├── skill-configuration.md
-│       └── skill-business-story-narration.md
+│       ├── skill-business-story-narration.md
+│       ├── skill-refactoring.md       # Team standards for improving existing code
+│       ├── skill-security-review.md   # Team threat model as executable instruction
+│       └── skill-code-review.md       # Team quality gate as executable instruction
 │
 ├── examples/                          # Worked examples — story documents + buildable app
 │   ├── 01-spring-mvc/                 # Spring Boot 3.4 | Java 21 | no DB | no Docker
@@ -174,7 +189,7 @@ design-first-ai/
 │           └── docs/                  # Story documents (impl-guide, execution-report)
 │
 └── docs/
-    ├── garg-mapping.md               # How Garg's three articles map to this framework
+    ├── garg-mapping.md               # How Garg's four articles map to this framework
     ├── design-workflow.md            # Primary workflow: impl-guide + agent execution
     ├── copilot-context-model.md      # How Copilot + Claude manage context in agent mode
     ├── copilot-setup.md              # VS Code + GitHub Copilot configuration
@@ -185,7 +200,7 @@ design-first-ai/
 
 ## The Example Apps
 
-Each example in `examples/` contains a complete, buildable app alongside the story documents that produced it. Open `examples/NN-name/app/` as its own VS Code workspace. These examples demonstrate the workflow mechanics. The framework's value compounds on features with ambiguous scope, multi-service interactions, or cross-cutting concerns.
+Each example in `examples/` contains a complete, buildable app alongside the story documents that produced it. Open `examples/NN-name/app/` as its own VS Code workspace.
 
 **01-spring-mvc** — Spring Boot 3.4.3 | Java 21 | spring-boot-starter-web. In-memory product catalog CRUD API. Requires Java 21 + Maven only — no Docker, no API key. See `examples/01-spring-mvc/app/README.md`.
 
@@ -195,6 +210,7 @@ Each example in `examples/` contains a complete, buildable app alongside the sto
 
 ## References
 
+- Rahul Garg, [Encoding Team Standards](https://martinfowler.com/articles/reduce-friction-ai/encoding-team-standards.html), martinfowler.com, March 2026
 - Rahul Garg, [Design-First Collaboration](https://martinfowler.com/articles/reduce-friction-ai/design-first-collaboration.html), martinfowler.com, March 2026
 - Rahul Garg, [Knowledge Priming](https://martinfowler.com/articles/reduce-friction-ai/knowledge-priming.html), martinfowler.com, February 2026
 - Rahul Garg, [Context Anchoring](https://martinfowler.com/articles/reduce-friction-ai/context-anchoring.html), martinfowler.com, 2026

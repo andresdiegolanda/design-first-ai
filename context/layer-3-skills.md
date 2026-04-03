@@ -13,6 +13,13 @@ Skills are self-contained instruction sets for recurring technical concerns. Eac
 file tells the agent how to handle one specific concern — error handling, testing, logging,
 and so on — with rules, patterns, and design constraints.
 
+Skills are the framework's implementation of Garg's Encoding Team Standards pattern.
+Where `.github/copilot-instructions.md` encodes the team's generation standards (applied
+every session automatically), skills encode the team's standards for specific activities
+— refactoring, security review, code review — loaded only when that activity is relevant.
+Each skill is a single-purpose instruction set that executes the team's judgment
+consistently, regardless of who invokes it.
+
 Skills are reusable across projects and tasks. They are not project-specific. When your
 project has stronger or different conventions, add a Design Constraints section to your
 Layer 1 or Layer 2 file and the project constraint wins.
@@ -32,6 +39,9 @@ The difference between a skill and a layer:
 | Logging | `context/skills/skill-logging.md` | Adding or reviewing log statements |
 | Configuration | `context/skills/skill-configuration.md` | Adding any externalisable value |
 | Business Story Narration | `context/skills/skill-business-story-narration.md` | Generating or improving user story descriptions |
+| Refactoring | `context/skills/skill-refactoring.md` | Improving existing code without changing behaviour |
+| Security Review | `context/skills/skill-security-review.md` | Checking code against the team's threat model |
+| Code Review | `context/skills/skill-code-review.md` | Applying the team's quality gate to a piece of work |
 
 ---
 

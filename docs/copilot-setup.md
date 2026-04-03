@@ -178,5 +178,11 @@ instructions file + separate skill files loaded per task.
 .vscode/extensions.json           # committed — recommends Copilot extension
 ```
 
-Changes to `copilot-instructions.md` go through pull request review. It is shared
-infrastructure — a change to it changes how the entire team uses Copilot.
+`context/skills/` goes in version control too. Skill files are team infrastructure in
+the same way as linting rules or CI configuration — versioned, shared by default, and
+improved through pull requests.
+
+Changes to `copilot-instructions.md` and skill files go through pull request review.
+These are not personal productivity preferences. They are executable team standards —
+a change to them changes how every developer and every AI session on this project
+behaves. Treat them with the same discipline as a change to `pom.xml` or `package.json`.

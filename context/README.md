@@ -67,6 +67,9 @@ How code is structured and named in this project. Directory layout, naming conve
 | Logging | `skills/skill-logging.md` | Adding or reviewing log statements |
 | Configuration | `skills/skill-configuration.md` | Adding any externalisable value |
 | Business Story Narration | `skills/skill-business-story-narration.md` | Generating or improving user story descriptions |
+| Refactoring | `skills/skill-refactoring.md` | Improving existing code without changing behaviour |
+| Security Review | `skills/skill-security-review.md` | Checking code against the team's threat model |
+| Code Review | `skills/skill-code-review.md` | Applying the team's quality gate to a piece of work |
 
 ## Layer 4 — Prompt Templates
 
@@ -100,7 +103,9 @@ Every context file should contain a "Design constraints" section. This is the di
 **Strong priming (shapes):**
 > "Do not use Express.js patterns. Do not use `app.use()` middleware syntax. Do not wrap Fastify in a class."
 
-The retrospective technique — ask at the end of every session: **"What context were you missing that would have changed your approach?"** — is how these sections grow. Each answer saved here reduces the system's dependence on any single person's memory.
+This mechanism is the framework's implementation of Garg's Encoding Team Standards pattern — tacit judgment made explicit and shared. The retrospective technique — ask at the end of every session: **"What context were you missing that would have changed your approach?"** — is how these sections grow. Each answer saved here is a constraint that was in someone's head and is now in the shared infrastructure.
+
+Changes to `.github/copilot-instructions.md` and the layer files are changes to shared infrastructure. Review them through pull requests.
 
 ---
 
@@ -109,3 +114,5 @@ The retrospective technique — ask at the end of every session: **"What context
 Do not fill in all layers before writing any code. The templates will be wrong the first time. Fill them in for real work, correct them as you go, and let them improve through use.
 
 Do not load `layer-5-impl-guide.md` or `layer-5-execution-report.md` into Copilot. They are pointers, not context files. The actual documents they describe live in `docs/`.
+
+Do not treat `.github/copilot-instructions.md` as a personal file. It is team infrastructure — a change to it changes how every developer uses Copilot on this project.

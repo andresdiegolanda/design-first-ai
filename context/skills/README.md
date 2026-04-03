@@ -2,6 +2,10 @@
 
 This folder contains skill files for Layer 3 of the Design-First framework.
 
+Skills are the framework's implementation of Garg's Encoding Team Standards pattern.
+Each skill file is a single-purpose instruction set that encodes the team's judgment for
+one recurring activity — applied consistently regardless of who invokes it.
+
 ---
 
 ## What skills are
@@ -29,8 +33,9 @@ The agent reads it and applies it for the duration of the task.
 ```
 
 **Modify for your project:** Copy the file into your project's `.github/` folder,
-rename it, and adapt the patterns and constraints to your stack. The original in
-this folder stays generic.
+rename it, and adapt the patterns and constraints to your stack. The security review
+and code review skills in particular contain placeholder Design Constraints — replace
+them with your team's actual threat model and review criteria before use.
 
 ---
 
@@ -43,6 +48,9 @@ this folder stays generic.
 | `skill-logging.md` | Adding or reviewing log statements |
 | `skill-configuration.md` | Adding any externalisable value |
 | `skill-business-story-narration.md` | Generating or improving user story descriptions |
+| `skill-refactoring.md` | Improving existing code without changing behaviour |
+| `skill-security-review.md` | Checking code against the team's threat model |
+| `skill-code-review.md` | Applying the team's quality gate to a piece of work |
 
 ---
 

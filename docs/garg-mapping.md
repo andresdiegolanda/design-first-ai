@@ -1,19 +1,20 @@
 # Garg Patterns → Framework Mapping
 
-This document maps Rahul Garg's three published patterns from martinfowler.com to the
+This document maps Rahul Garg's four published patterns from martinfowler.com to the
 concrete files and mechanisms in this framework. Read it alongside the original articles.
 
 ---
 
-## The Three Patterns
+## The Four Patterns
 
-Garg published three patterns on martinfowler.com between February and March 2026:
+Garg published four patterns on martinfowler.com between February and March 2026:
 
 1. **Knowledge Priming** — Prime the AI with project-specific context before any session
 2. **Design-First Collaboration** — Structure design thinking in five dimensions before writing code
 3. **Context Anchoring** — Preserve design decisions in a living document that persists across sessions
+4. **Encoding Team Standards** — Version team judgment as executable instructions shared across all developers
 
-This framework implements all three. The mapping below shows exactly where each concept
+This framework implements all four. The mapping below shows exactly where each concept
 lands in the repo.
 
 ---
@@ -30,6 +31,10 @@ graph TD
 
     G["Garg: Context Anchoring"] --> F
     G --> H["docs/[STORY-ID]-execution-report.md\n(per story, in project docs/)"]
+
+    TS["Garg: Encoding Team Standards"] --> C
+    TS --> SK["context/skills/skill-*.md\n(executable team instructions)"]
+    TS --> DC["Design Constraints sections\nin every layer file"]
 
     C -->|"auto-loaded\nLayers 1+2"| I["Copilot session"]
     B -->|"referenced\non demand"| I
@@ -57,12 +62,6 @@ generic patterns from training data — the "average of the internet."
 | Task-specific context | `docs/[STORY-ID]-impl-guide.md` | Per-story scope, components, contracts |
 | Auto-loaded context | `.github/copilot-instructions.md` | Layers 1+2 merged, loaded at session start |
 | Onboarding shortcut | `context/layer-0-generation-prompt.md` | Generates Layers 1–4 from the codebase |
-
-**The Design Constraints principle** (framework addition, not in the article):
-Garg describes loading context. The framework adds a specific mechanism for making that
-context shape output rather than merely inform it: every layer file has a "Design
-constraints" section with explicit "Do not..." rules. Weak priming informs. Strong
-priming constrains.
 
 ```mermaid
 graph LR
@@ -188,7 +187,95 @@ graph LR
 
 ---
 
-## How the Three Patterns Compose
+## Pattern 4 — Encoding Team Standards
+
+**Article:** [Encoding Team Standards](https://martinfowler.com/articles/reduce-friction-ai/encoding-team-standards.html)
+
+**Garg's concept:** Patterns 1–3 solve the individual developer problem. Pattern 4 solves
+a different one: two developers on the same team, same codebase, same tool, producing
+different quality because the senior's judgment lives in her head, not in shared
+infrastructure. The solution is to encode that judgment as versioned AI instructions —
+reviewed through pull requests, shared by default, applied consistently regardless of who
+is prompting.
+
+Garg identifies two moves. First: from tacit to explicit — extract the senior's instincts
+into written rules. Second: from documentation to execution — put those rules where the AI
+executes them, not where humans might read them. The result is what he calls executable
+governance: the team's quality bar is applied as a side effect of the workflow.
+
+**Framework implementation:**
+
+| Garg concept | Framework file | How it works |
+|-------------|----------------|--------------|
+| Generation instruction | `.github/copilot-instructions.md` + Layers 1–2 | Project-wide constraints auto-applied every session |
+| Reusable instruction sets | `context/skills/skill-*.md` | Per-concern instructions for error handling, testing, logging, configuration, refactoring, security, review |
+| Categorized standards (must/should/nice) | Design Constraints sections in every layer file | Explicit "Do not..." rules — the team's priority tiers made concrete |
+| Extraction process | Retrospective technique | "What context were you missing?" surfaces tacit knowledge after each task |
+| Versioned shared artifact | Repo + PR review | All layer files and skill files change through pull requests, not individual preference |
+
+**What Garg describes as the four instruction types:**
+
+| Instruction type | Purpose | Framework location |
+|-----------------|---------|-------------------|
+| Generation | Encode how the team builds new code | Layers 1–2 in `.github/copilot-instructions.md` |
+| Refactoring | Encode how the team improves existing code | `context/skills/skill-refactoring.md` |
+| Security | Encode the team's threat model | `context/skills/skill-security-review.md` |
+| Review | Encode the team's quality gate | `context/skills/skill-code-review.md` |
+
+**Anatomy of an executable instruction** (applies to all four types):
+
+| Element | Purpose |
+|---------|---------|
+| Role definition | Sets expertise level and perspective — the lens through which everything else applies |
+| Context requirements | What must be present before the instruction operates — makes dependencies explicit |
+| Categorized standards | Priority tiers (must / should / nice to have) — encodes judgment, not just knowledge |
+| Output format | Structured response with summary, categorized findings, clear next steps |
+
+```mermaid
+graph TD
+    subgraph "Tacit knowledge (in senior's head)"
+        T1["Architectural patterns\nto enforce"]
+        T2["Conventions corrected\nmost in review"]
+        T3["Security checks\napplied instinctively"]
+        T4["What triggers\nimmediate rejection"]
+    end
+
+    subgraph "Extraction (retrospective technique)"
+        RQ["'What context were you missing\nthat would have changed your approach?'"]
+    end
+
+    subgraph "Executable infrastructure (in repo)"
+        CI[".github/copilot-instructions.md\nGeneration standards"]
+        SK["context/skills/\nRefactoring, security, review"]
+        DC["Design Constraints sections\nin every layer file"]
+    end
+
+    T1 --> RQ
+    T2 --> RQ
+    T3 --> RQ
+    T4 --> RQ
+
+    RQ -->|"answer → commit\nreviewed via PR"| CI
+    RQ -->|"answer → commit\nreviewed via PR"| SK
+    RQ -->|"answer → commit\nreviewed via PR"| DC
+
+    CI -->|"auto-applied\nevery session"| OUT["Consistent output\nregardless of who prompts"]
+    SK -->|"loaded per task"| OUT
+    DC -->|"shapes agent\noutput"| OUT
+```
+
+**What's the same as Garg's article:** Standards encoded as AI instructions. Four instruction
+types (generation, refactoring, security, review). Versioned in the repository, reviewed
+through pull requests. The retrospective technique as the extraction mechanism.
+
+**What's different:** Garg describes creating these instructions from scratch via extraction
+interviews. This framework generates Layers 1–2 from the codebase (Layer 0 prompt) and
+grows the constraints through the retrospective technique after each task. The interview
+is replaced by accumulated practice.
+
+---
+
+## How the Four Patterns Compose
 
 ```mermaid
 graph TD
@@ -198,12 +285,17 @@ graph TD
 
     CA["Context Anchoring\ndocs/[STORY-ID]-impl-guide.md\ndocs/[STORY-ID]-execution-report.md"] -->|"makes design durable\nacross sessions"| NEXT["Next session\nNext engineer\nNext agent"]
 
+    TS["Encoding Team Standards\n.github/copilot-instructions.md\ncontext/skills/\nDesign Constraints sections"] -->|"makes quality consistent\nacross developers"| KP
+    TS --> DF
+    TS --> CA
+
     KP -->|"Design Constraints\nsurvive sessions"| NEXT
 ```
 
 Knowledge Priming eliminates the cold-start problem. Design-First eliminates the
-implementation trap. Context Anchoring eliminates the amnesia problem. None of the three
-works as well without the other two.
+implementation trap. Context Anchoring eliminates the amnesia problem. Encoding Team
+Standards eliminates the consistency problem — the gap between what the senior produces
+and what everyone else produces. None of the four works as well without the other three.
 
 ---
 
@@ -212,11 +304,9 @@ works as well without the other two.
 | Framework addition | Why it exists |
 |-------------------|---------------|
 | Layer 0 generation prompt | Garg describes manual authoring. Layer 0 generates Layers 1–4 from the codebase in one session |
-| Design Constraints sections in every layer file | Makes context files shape output rather than merely inform it |
-| `context/skills/` folder | Reusable, stack-agnostic skill files — error handling, testing, logging, configuration — loadable per task |
-| Retrospective technique ("What context were you missing?") | Feedback loop for improving layer files over time — not in any article |
-| `docs/app-description.md` | Project-level anchor document analogous to Knowledge Priming but at the agent session level |
+| `docs/app-description.md` | Project-level anchor document — Knowledge Priming at the session level |
 | Two-document rule | Every story produces exactly two documents — impl-guide (intention) and execution-report (result) |
+| `context/skills/` folder | Reusable, stack-agnostic instruction sets — Garg's four instruction types made available as shared library files |
 
 ---
 
@@ -228,3 +318,5 @@ works as well without the other two.
 4. `docs/design-workflow.md` — see how the framework implements it
 5. [Context Anchoring](https://martinfowler.com/articles/reduce-friction-ai/context-anchoring.html) — understand why decisions need to be written down
 6. `docs/copilot-context-model.md` — understand how the agent reads files across sessions
+7. [Encoding Team Standards](https://martinfowler.com/articles/reduce-friction-ai/encoding-team-standards.html) — understand why individual practice is not enough
+8. `context/layer-3-skills.md` + `context/skills/` — see how team standards are encoded as executable instructions
