@@ -4,6 +4,59 @@ All notable changes to this project are documented here.
 
 ---
 
+## [Unreleased]
+
+### Added
+
+- **`context/skills/skill-refactoring.md`** — New skill. Team standard for improving
+  existing code without changing behaviour. Rules: preserve public contract, incremental
+  changes, identify problem first, stop at the boundary of the stated problem. Prompt
+  and response structure templates included. Design Constraints are stack-agnostic stubs.
+
+- **`context/skills/skill-security-review.md`** — New skill. Team threat model as
+  executable instruction. Three-tier severity model: critical (block merge), important
+  (must address), advisory (track and evaluate). Design Constraints section contains
+  placeholders — replace with team's actual threat model before use.
+
+- **`context/skills/skill-code-review.md`** — New skill. Team quality gate as executable
+  instruction. Rules: check impl-guide first, categorise before explaining, one finding
+  per observation. Three-tier output: breaking / important / suggestions. Design
+  Constraints section contains placeholders — replace with team's actual review criteria.
+
+### Changed
+
+- **`docs/garg-mapping.md`** — Updated from three to four patterns. New Pattern 4 section
+  for Encoding Team Standards: article summary, framework mapping table, four instruction
+  types (generation, refactoring, security, review), instruction anatomy table, Mermaid
+  extraction diagram. Overview diagram updated. Composition section updated to four
+  patterns. 'What the Framework Adds' table updated: Design Constraints and retrospective
+  technique moved from framework additions into Pattern 4 mapping. Reading order extended.
+
+- **`README.md`** — Updated from three to four complementary patterns. New Encoding Team
+  Standards section added. 'How They Fit Together' diagram annotated with Pattern 4.
+  Repository structure updated with three new skill files. References updated with
+  article 4 link.
+
+- **`context/README.md`** — Design Constraints section updated: named as the
+  implementation of Garg's Encoding Team Standards pattern. Skills table updated with
+  three new entries. 'What Not to Do' updated with copilot-instructions.md PR review
+  requirement.
+
+- **`context/layer-3-skills.md`** — Paragraph added connecting skills to Garg's
+  Encoding Team Standards: skills are single-purpose instruction sets encoding team
+  judgment for specific activities. Skills table updated with three new entries.
+
+- **`context/skills/README.md`** — Updated with Encoding Team Standards framing. Skills
+  table updated with three new entries. Modification guidance updated for security and
+  code review placeholder constraints.
+
+- **`docs/copilot-setup.md`** — 'Commit These Files' section updated: `context/skills/`
+  added to committed files list. Closing paragraph rewritten with Pattern 4 framing:
+  skill files are executable team standards, changes require PR review, same discipline
+  as build configuration files.
+
+---
+
 ## v1.3.0 — 2026-03-31
 
 ### Added
