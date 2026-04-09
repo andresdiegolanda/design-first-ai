@@ -1,20 +1,21 @@
 # Garg Patterns → Framework Mapping
 
-This document maps Rahul Garg's four published patterns from martinfowler.com to the
+This document maps Rahul Garg's five published patterns from martinfowler.com to the
 concrete files and mechanisms in this framework. Read it alongside the original articles.
 
 ---
 
-## The Four Patterns
+## The Five Patterns
 
-Garg published four patterns on martinfowler.com between February and March 2026:
+Garg published five patterns on martinfowler.com between February and April 2026:
 
 1. **Knowledge Priming** — Prime the AI with project-specific context before any session
 2. **Design-First Collaboration** — Structure design thinking in five dimensions before writing code
 3. **Context Anchoring** — Preserve design decisions in a living document that persists across sessions
 4. **Encoding Team Standards** — Version team judgment as executable instructions shared across all developers
+5. **Feedback Flywheel** — Harvest learnings from AI sessions and feed them back into shared artifacts
 
-This framework implements all four. The mapping below shows exactly where each concept
+This framework implements all five. The mapping below shows exactly where each concept
 lands in the repo.
 
 ---
@@ -36,10 +37,16 @@ graph TD
     TS --> SK["context/skills/skill-*.md\n(executable team instructions)"]
     TS --> DC["Design Constraints sections\nin every layer file"]
 
+    FF["Garg: Feedback Flywheel"] -->|"context signal"| C
+    FF -->|"instruction signal"| SK
+    FF -->|"workflow signal"| E
+    FF -->|"failure signal"| DC
+
     C -->|"auto-loaded\nLayers 1+2"| I["Copilot session"]
     B -->|"referenced\non demand"| I
     F -->|"agent executes"| J["Code + tests"]
     J --> H
+    J -->|"generates signal"| FF
 ```
 
 ---
@@ -275,7 +282,52 @@ is replaced by accumulated practice.
 
 ---
 
-## How the Four Patterns Compose
+## Pattern 5 — Feedback Flywheel
+
+**Article:** [Feedback Flywheel](https://martinfowler.com/articles/reduce-friction-ai/feedback-flywheel.html)
+
+**Garg's concept:** The four earlier patterns create surfaces that can absorb learning —
+but surfaces alone are passive. Teams plateau because individual experience does not
+transfer. The Feedback Flywheel is a structured practice of harvesting signal from AI
+sessions and feeding it back into the team's shared artifacts, turning individual intuition
+into collective improvement.
+
+Garg identifies four signal types, each mapping to a specific artifact:
+
+| Signal type | What it captures | Artifact destination |
+|-------------|-----------------|---------------------|
+| Context signal | What the AI needed but didn't have | Priming documents |
+| Instruction signal | Prompts that produced notably good or bad results | Shared commands / skills |
+| Workflow signal | Interaction sequences that succeeded | Team playbooks |
+| Failure signal | Where the AI went wrong and the root cause | Guardrails, anti-patterns |
+
+And four cadences: after each session (one question), at the standup (one additional
+question), at the retrospective (agenda item), and periodically (quarterly review).
+
+**Framework implementation:**
+
+| Garg concept | Framework equivalent |
+|-------------|----------------------|
+| Context signal → priming documents | Layers 1–2 (`.github/copilot-instructions.md`), Layer 0 outputs |
+| Instruction signal → shared commands | `context/skills/skill-*.md` |
+| Workflow signal → team playbooks | `docs/design-workflow.md`, Layer 4 prompt templates |
+| Failure signal → guardrails | Design Constraints sections, anti-pattern lists |
+| After-session question | Retrospective question (already in framework) extended to four signal types |
+| Retrospective agenda item | Sprint retrospective — concrete artifact updates as output |
+| Periodic review | Quarterly audit of artifact currency |
+| Feedback signal in story documents | `docs/[STORY-ID]-execution-report.md` Feedback Signal section |
+
+**What's the same as Garg's article:** Four signal types with specific destinations. Four
+cadences matched to update weight. Lightweight by design — no new meetings.
+
+**What's different:** The framework already had the retrospective question as an extraction
+mechanism for context signal. The flywheel extends it to all four signal types. The
+execution report gains a Feedback Signal section to capture observations during story
+execution, not just after.
+
+---
+
+## How the Five Patterns Compose
 
 ```mermaid
 graph TD
@@ -289,13 +341,19 @@ graph TD
     TS --> DF
     TS --> CA
 
+    FF["Feedback Flywheel\ndocs/feedback-flywheel.md\nretrospective practice"] -->|"improves all artifacts\nafter every session"| KP
+    FF --> TS
+    FF --> DF
+    FF --> CA
+
     KP -->|"Design Constraints\nsurvive sessions"| NEXT
 ```
 
 Knowledge Priming eliminates the cold-start problem. Design-First eliminates the
 implementation trap. Context Anchoring eliminates the amnesia problem. Encoding Team
-Standards eliminates the consistency problem — the gap between what the senior produces
-and what everyone else produces. None of the four works as well without the other three.
+Standards eliminates the consistency problem. Feedback Flywheel eliminates the plateau
+problem — the gap between adopting AI tools and getting better with them over time. None
+of the five works as well without the other four.
 
 ---
 
@@ -307,6 +365,7 @@ and what everyone else produces. None of the four works as well without the othe
 | `docs/app-description.md` | Project-level anchor document — Knowledge Priming at the session level |
 | Two-document rule | Every story produces exactly two documents — impl-guide (intention) and execution-report (result) |
 | `context/skills/` folder | Reusable, stack-agnostic instruction sets — Garg's four instruction types made available as shared library files |
+| Execution report Feedback Signal section | Garg describes after-session reflection. The framework embeds signal capture into the execution report itself |
 
 ---
 
@@ -320,3 +379,5 @@ and what everyone else produces. None of the four works as well without the othe
 6. `docs/copilot-context-model.md` — understand how the agent reads files across sessions
 7. [Encoding Team Standards](https://martinfowler.com/articles/reduce-friction-ai/encoding-team-standards.html) — understand why individual practice is not enough
 8. `context/layer-3-skills.md` + `context/skills/` — see how team standards are encoded as executable instructions
+9. [Feedback Flywheel](https://martinfowler.com/articles/reduce-friction-ai/feedback-flywheel.html) — understand how to maintain and improve the infrastructure
+10. `docs/feedback-flywheel.md` — see how the framework implements it

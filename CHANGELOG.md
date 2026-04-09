@@ -4,6 +4,45 @@ All notable changes to this project are documented here.
 
 ---
 
+## [Unreleased]
+
+---
+
+## v1.5.0 — 2026-04-09
+
+### Added
+
+- **`docs/feedback-flywheel.md`** — New doc. Maps Garg's fifth pattern (Feedback Flywheel,
+  8 April 2026) to the framework. Four signal types (context, instruction, workflow,
+  failure) with specific artifact destinations. Four cadences (after session, standup,
+  retrospective, quarterly). Extended retrospective question covering all signal types.
+  Design Constraints section included.
+
+### Changed
+
+- **`docs/garg-mapping.md`** — Updated from four to five patterns. New Pattern 5 section
+  for Feedback Flywheel: article summary, signal-to-artifact mapping table, framework
+  implementation table. Overview diagram updated with flywheel node and signal edges.
+  Composition section renamed to five patterns, diagram updated, description updated.
+  'What the Framework Adds' table extended with execution report feedback signal row.
+  Reading order extended with items 9–10.
+
+- **`README.md`** — Updated from four to five patterns. Opening paragraph updated with
+  Feedback Flywheel link and date range (Feb–Apr 2026). New Feedback Flywheel section
+  added. 'How They Fit Together' diagram updated: after-session block rewritten with
+  four signal types replacing single retrospective question. References updated with
+  article 5 link. Repository structure updated with `feedback-flywheel.md`. garg-mapping
+  comment updated from four to five articles.
+
+- **`.github/copilot-instructions.md`** — Project Identity updated to five named patterns.
+  Date range updated to Feb–Apr 2026. Last reviewed date updated.
+
+- **`context/layer-5-execution-report.md`** — 'What it contains' updated with Feedback
+  Signal section: observations classified by type (context, instruction, workflow, failure).
+  Prompt template updated to include feedback signal capture.
+
+---
+
 ## v1.4.0 — 2026-04-03
 
 ### Added

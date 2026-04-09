@@ -1,6 +1,6 @@
 # Design-First AI Collaboration
 
-A practical implementation of Rahul Garg's [Design-First Collaboration](https://martinfowler.com/articles/reduce-friction-ai/design-first-collaboration.html), [Knowledge Priming](https://martinfowler.com/articles/reduce-friction-ai/knowledge-priming.html), [Context Anchoring](https://martinfowler.com/articles/reduce-friction-ai/context-anchoring.html), and [Encoding Team Standards](https://martinfowler.com/articles/reduce-friction-ai/encoding-team-standards.html) patterns, published on Martin Fowler's site in February–March 2026.
+A practical implementation of Rahul Garg's [Knowledge Priming](https://martinfowler.com/articles/reduce-friction-ai/knowledge-priming.html), [Design-First Collaboration](https://martinfowler.com/articles/reduce-friction-ai/design-first-collaboration.html), [Context Anchoring](https://martinfowler.com/articles/reduce-friction-ai/context-anchoring.html), [Encoding Team Standards](https://martinfowler.com/articles/reduce-friction-ai/encoding-team-standards.html), and [Feedback Flywheel](https://martinfowler.com/articles/reduce-friction-ai/feedback-flywheel.html) patterns, published on Martin Fowler's site in February–April 2026.
 
 The methodology has no code dependencies — it is pure markdown templates and guides. Buildable example apps live inside `examples/` alongside the story documents that produced them. Implemented for VS Code + GitHub Copilot.
 
@@ -34,7 +34,7 @@ This is the opposite of tribal knowledge. The expert's value shifts from *being 
 
 ---
 
-## Four Complementary Patterns
+## Five Complementary Patterns
 
 ### Knowledge Priming — Loading Context Before the Session
 
@@ -78,6 +78,20 @@ This framework implements Encoding Team Standards through the layer files and sk
 
 The retrospective question — *"What context were you missing that would have changed your approach?"* — is the extraction mechanism. Each answer is a constraint that was in someone's head and is now in a file.
 
+### Feedback Flywheel — Turning Sessions Into Improvements
+
+Teams plateau with AI tools when individual experience does not transfer. The Feedback
+Flywheel is a structured practice of harvesting signal from AI sessions and feeding it
+back into the team's shared artifacts. Four signal types — context, instruction, workflow,
+failure — each map to a specific artifact in the framework. Four cadences — after each
+session, at standup, at retrospective, periodically — keep the overhead minimal.
+
+The retrospective question — *"What context were you missing that would have changed your
+approach?"* — is one instance of the flywheel. The full practice extends it to all four
+signal types and embeds signal capture in the execution report.
+
+See `docs/feedback-flywheel.md` for the full mapping.
+
 ### How They Fit Together
 
 ```
@@ -107,11 +121,18 @@ Layer 2  }  (team standards for generation — Pattern 4)
                         ↓
          Code + docs/[STORY-ID]-execution-report.md
 
-AFTER EVERY SESSION
+AFTER EVERY SESSION (Feedback Flywheel — Pattern 5)
 ─────────────────────────────────────────────────────────
-Ask: "What context were you missing that would have changed your approach?"
-Save answers → Design Constraints sections of relevant layer files
-              (tacit knowledge → executable standard — Pattern 4)
+Ask: "Did anything in this session change a shared artifact?"
+Classify signal:
+  Context signal  → Layers 1–2, priming documents
+  Instruction signal → Skill files (context/skills/)
+  Workflow signal → design-workflow.md, prompt templates
+  Failure signal → Design Constraints, anti-patterns
+
+The retrospective question remains:
+  "What context were you missing that would have changed your approach?"
+  (one instance of context signal — Pattern 4 extraction still applies)
 ```
 
 ---
@@ -189,7 +210,8 @@ design-first-ai/
 │           └── docs/                  # Story documents (impl-guide, execution-report)
 │
 └── docs/
-    ├── garg-mapping.md               # How Garg's four articles map to this framework
+    ├── garg-mapping.md               # How Garg's five articles map to this framework
+    ├── feedback-flywheel.md          # Pattern 5 — signal types, cadences, measurement
     ├── design-workflow.md            # Primary workflow: impl-guide + agent execution
     ├── copilot-context-model.md      # How Copilot + Claude manage context in agent mode
     ├── copilot-setup.md              # VS Code + GitHub Copilot configuration
@@ -210,6 +232,7 @@ Each example in `examples/` contains a complete, buildable app alongside the sto
 
 ## References
 
+- Rahul Garg, [Feedback Flywheel](https://martinfowler.com/articles/reduce-friction-ai/feedback-flywheel.html), martinfowler.com, April 2026
 - Rahul Garg, [Encoding Team Standards](https://martinfowler.com/articles/reduce-friction-ai/encoding-team-standards.html), martinfowler.com, March 2026
 - Rahul Garg, [Design-First Collaboration](https://martinfowler.com/articles/reduce-friction-ai/design-first-collaboration.html), martinfowler.com, March 2026
 - Rahul Garg, [Knowledge Priming](https://martinfowler.com/articles/reduce-friction-ai/knowledge-priming.html), martinfowler.com, February 2026

@@ -25,6 +25,9 @@ continue the work reads this document first.
 - **How to test manually** — step-by-step smoke test
 - **Review feedback addressed** — PR comments received, analysis, and fix applied
 - **Commit message** — ready to paste, follows project conventions
+- **Feedback signal** — observations from execution worth feeding back into shared
+  artifacts, classified by type: context (priming gaps), instruction (prompt quality),
+  workflow (interaction patterns), failure (root causes)
 
 ---
 
@@ -36,7 +39,9 @@ After executing the impl-guide, ask the agent:
   "Create the execution report as docs/[STORY-ID]-execution-report.md.
    Include: what was built and where, any deviations from the impl-guide
    and why, how to run the app, how to run the tests, how to test
-   manually, and a compliant git commit message."
+   manually, a compliant git commit message, and any feedback signal
+   (context gaps, instruction quality, workflow patterns, failure root
+   causes) worth feeding back into shared artifacts."
 
 Update it when PR review feedback arrives:
   Paste the review comment as a prompt.

@@ -2,7 +2,7 @@
 
 > Auto-loaded by GitHub Copilot for every chat session in this workspace.
 > This is Layers 1 and 2 for working on the framework repo itself.
-> Keep under 150 lines. Last reviewed: 2026-03-23.
+> Keep under 150 lines. Last reviewed: 2026-04-09.
 >
 > Load per task: `#file:.github/copilot-layer-3-skills.md` | `#file:.github/copilot-layer-4-templates.md`
 > For story writing: `#file:context/skills/skill-business-story-narration.md`
@@ -12,7 +12,8 @@
 ## Project Identity
 
 Public methodology repo implementing Rahul Garg's Knowledge Priming, Design-First
-Collaboration, and Context Anchoring patterns (martinfowler.com, Feb–Mar 2026).
+Collaboration, Context Anchoring, Encoding Team Standards, and Feedback Flywheel
+patterns (martinfowler.com, Feb–Apr 2026).
 Contains layer templates, worked examples with buildable apps, and docs.
 
 - **Type:** Documentation and methodology repo. Buildable apps live inside `examples/NN-name/app/`.
