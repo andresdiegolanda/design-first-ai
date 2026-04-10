@@ -1,9 +1,12 @@
+---
+name: configuration
+description: Type-safe validated configuration properties from application.yml. Use when adding any externalisable value.
+---
+
 # Skill: Configuration
 
-> **What this is:** A reusable skill for externalising configurable values correctly.
 > **When to load it:** When adding any new configurable value or environment-specific
 > behaviour to a feature.
-> **How to load it:** Reference by path in agent mode, or `#file:context/skills/skill-configuration.md`
 
 ---
 

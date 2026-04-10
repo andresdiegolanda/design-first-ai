@@ -1,6 +1,9 @@
-# Skill: Testing (spring-mvc-demo)
+---
+name: testing
+description: JUnit and WebMvcTest patterns for the Spring MVC demo. Use when writing any new test or adding coverage.
+---
 
-> **Use when:** Writing tests for any controller or service in this project.
+# Skill: Testing (spring-mvc-demo)
 
 ## Service tests (plain JUnit, no Spring)
 

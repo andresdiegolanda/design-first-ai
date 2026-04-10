@@ -8,24 +8,47 @@ All notable changes to this project are documented here.
 
 ### Changed
 
-- **`examples/01-spring-mvc/app/.github/`** — Skills extracted from inlined
-  `copilot-layer-3-skills.md` into individual `skill-*.md` files: `skill-error-handling.md`,
-  `skill-testing.md`, `skill-in-memory-store.md`. `copilot-layer-3-skills.md` rewritten as
-  skills index with table referencing individual files. Aligns with `context/skills/`
-  naming convention.
+- **`context/skills/`** — All 8 skill files restructured to Copilot agent skills convention.
+  Flat `skill-*.md` files replaced with `{name}/SKILL.md` subdirectories. Each SKILL.md
+  has YAML frontmatter with `name` and `description` fields. Follows the official
+  [GitHub Copilot agent skills](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/cloud-agent/create-skills)
+  convention: directory name matches skill name, file is always `SKILL.md`.
 
-- **`examples/02-angular-component/app/.github/`** — Skills extracted from inlined
-  `copilot-layer-3-skills.md` into individual `skill-*.md` files:
-  `skill-subscription-management.md`, `skill-debounced-search.md`,
-  `skill-explicit-state-management.md`, `skill-testing.md`. `copilot-layer-3-skills.md`
-  rewritten as skills index. Aligns with `context/skills/` naming convention.
+- **`context/skills/README.md`** — Rewritten for agent skills convention. Paths updated
+  to subdirectory format. 'Adding a new skill' section updated with YAML frontmatter
+  requirements. Reference to Copilot agent skills docs added.
 
-- **`examples/01-spring-mvc/app/README.md`** — Project Structure updated with individual
-  skill files. 'Using Copilot' step 3 updated to reference individual skill files.
+- **`context/layer-3-skills.md`** — Updated for agent skills convention. Paths updated.
+  Skills invocation updated to `/skill-name` slash commands. Link to Copilot docs added.
+
+- **`examples/01-spring-mvc/app/.github/skills/`** — New directory. 3 project-specific
+  skills created as `{name}/SKILL.md`: `error-handling/`, `testing/`, `in-memory-store/`.
+  Replaces flat `skill-*.md` files in `.github/`.
+
+- **`examples/02-angular-component/app/.github/skills/`** — New directory. 4 project-specific
+  skills created as `{name}/SKILL.md`: `subscription-management/`, `debounced-search/`,
+  `explicit-state-management/`, `testing/`. Replaces flat `skill-*.md` files in `.github/`.
+
+- **`examples/01-spring-mvc/app/.github/copilot-layer-3-skills.md`** — Rewritten as index
+  referencing `.github/skills/{name}/` directories. Slash command invocation documented.
+
+- **`examples/02-angular-component/app/.github/copilot-layer-3-skills.md`** — Rewritten as
+  index referencing `.github/skills/{name}/` directories. Slash command invocation documented.
+
+- **`examples/01-spring-mvc/app/README.md`** — Project Structure updated with
+  `.github/skills/` subdirectories. 'Using Copilot' step 3 updated to slash commands.
 
 - **`examples/02-angular-component/app/README.md`** — Project Structure updated with
-  individual skill files. 'Using Copilot' step 3 updated to reference individual skill
-  files.
+  `.github/skills/` subdirectories. 'Using Copilot' step 3 updated to slash commands.
+
+- **`README.md`** — Repository Structure updated: `context/skills/` shows subdirectory
+  convention. Knowledge Priming table updated for auto-discovered skills. Layer 3 skills
+  convention link added. Example `.github/` entries updated with `skills/` subdirectory.
+
+- **`.github/copilot-instructions.md`** — Architecture table updated for `context/skills/`
+  subdirectory convention. File Naming Conventions updated. Repo Structure updated.
+  Anti-Patterns updated: `context/skills/skill-*.md` flagged as stale path. Last reviewed
+  date updated.
 
 ---
 

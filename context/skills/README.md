@@ -1,39 +1,44 @@
 # Skills — Reusable Knowledge Patterns
 
-This folder contains skill files for Layer 3 of the Design-First framework.
+This folder contains skill directories for Layer 3 of the Design-First framework.
 
 Skills are the framework's implementation of Garg's Encoding Team Standards pattern.
-Each skill file is a single-purpose instruction set that encodes the team's judgment for
-one recurring activity — applied consistently regardless of who invokes it.
+Each skill is a named subdirectory containing a `SKILL.md` file — a single-purpose
+instruction set that encodes the team's judgment for one recurring activity, applied
+consistently regardless of who invokes it.
+
+Skills follow the [GitHub Copilot agent skills convention](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/cloud-agent/create-skills):
+each skill lives in its own subdirectory, the file is always named `SKILL.md`, and the
+directory name matches the skill's `name` field in YAML frontmatter.
 
 ---
 
 ## What skills are
 
-A skill file is a self-contained instruction set for one recurring technical concern.
-Each file tells the agent how to handle that concern — with rules, canonical patterns,
+A skill is a self-contained instruction set for one recurring technical concern.
+Each `SKILL.md` tells the agent how to handle that concern — with rules, canonical patterns,
 and design constraints.
 
 Skills are **stack-agnostic**. They do not reference specific frameworks or libraries.
-Framework-specific patterns belong in the project's own Layer 3 file inside `.github/`.
+Framework-specific patterns belong in the project's own `.github/skills/` directory.
 
 ---
 
 ## How to use them
 
-**Use as-is:** Reference the skill by path in your opening prompt or impl-guide.
-The agent reads it and applies it for the duration of the task.
+Copilot auto-discovers skills based on the `description` field in frontmatter. You can
+also invoke a skill explicitly:
 
 ```
-# In agent mode — reference by path in natural language
-"Use the error handling skill at context/skills/skill-error-handling.md"
+# In chat — slash command
+/error-handling
 
-# In chat mode — attach with #file:
-#file:context/skills/skill-error-handling.md
+# In agent mode — reference by name in natural language
+"Use the /testing skill for this task"
 ```
 
-**Modify for your project:** Copy the file into your project's `.github/` folder,
-rename it, and adapt the patterns and constraints to your stack. The security review
+**Modify for your project:** Copy the skill directory into your project's `.github/skills/`
+folder and adapt the patterns and constraints to your stack. The security review
 and code review skills in particular contain placeholder Design Constraints — replace
 them with your team's actual threat model and review criteria before use.
 
@@ -41,28 +46,31 @@ them with your team's actual threat model and review criteria before use.
 
 ## Available skills
 
-| File | When to load |
-|------|-------------|
-| `skill-error-handling.md` | Any method that can fail with a business reason |
-| `skill-testing.md` | Writing any new test or adding coverage |
-| `skill-logging.md` | Adding or reviewing log statements |
-| `skill-configuration.md` | Adding any externalisable value |
-| `skill-business-story-narration.md` | Generating or improving user story descriptions |
-| `skill-refactoring.md` | Improving existing code without changing behaviour |
-| `skill-security-review.md` | Checking code against the team's threat model |
-| `skill-code-review.md` | Applying the team's quality gate to a piece of work |
+| Skill | Directory | When to load |
+|-------|-----------|-------------|
+| Error Handling | `error-handling/` | Any method that can fail with a business reason |
+| Testing | `testing/` | Writing any new test or adding coverage |
+| Logging | `logging/` | Adding or reviewing log statements |
+| Configuration | `configuration/` | Adding any externalisable value |
+| Business Story Narration | `business-story-narration/` | Generating or improving user story descriptions |
+| Refactoring | `refactoring/` | Improving existing code without changing behaviour |
+| Security Review | `security-review/` | Checking code against the team's threat model |
+| Code Review | `code-review/` | Applying the team's quality gate to a piece of work |
 
 ---
 
 ## Adding a new skill
 
-Copy any existing skill file as a starting point. Every skill must contain:
+1. Create a subdirectory under `context/skills/` named with lowercase hyphens (e.g., `my-skill/`).
+2. Create `SKILL.md` inside with YAML frontmatter:
 
-1. Header block — what it does, when to load it, how to load it
-2. **What This Skill Does** — one paragraph
-3. **Rules** — numbered, imperative, no padding
-4. **Pattern** — at least one concrete code or text example
-5. **Design Constraints** — explicit "Do not..." rules
+```yaml
+---
+name: my-skill
+description: What this skill does and when Copilot should use it.
+---
+```
 
-Keep it stack-agnostic. If the skill requires a specific framework, it belongs in the
-project's `.github/` folder, not here.
+3. The `name` field must match the directory name.
+4. The body must contain: What This Skill Does, Rules, Pattern, Design Constraints.
+5. Keep it stack-agnostic. Framework-specific skills belong in `.github/skills/`.

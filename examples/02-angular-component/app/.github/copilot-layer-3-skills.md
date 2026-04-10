@@ -1,19 +1,19 @@
 # Layer 3 — Skills (angular-user-search)
 
 > **When to load:** When your task involves subscriptions, debounced search, state management, or testing.
-> **How to load:** Reference individual skill files by path in agent mode, or attach with
-> `#file:` in chat mode. Load only the skills relevant to the task.
+> **Skills location:** `.github/skills/` — each skill in its own subdirectory with a `SKILL.md` file.
+> **How to invoke:** `/skill-name` in chat, or reference by name in agent mode.
 
 ## Available Skills
 
-| Skill | File | Load when |
-|-------|------|-----------|
-| Subscription Management | `.github/skill-subscription-management.md` | Adding any Observable subscription |
-| Debounced Search | `.github/skill-debounced-search.md` | Implementing search or filter inputs |
-| Explicit State Management | `.github/skill-explicit-state-management.md` | Loading data with loading/error/empty states |
-| Testing | `.github/skill-testing.md` | Writing any new test or adding coverage |
+| Skill | Directory | Load when |
+|-------|-----------|-----------|
+| Subscription Management | `.github/skills/subscription-management/` | Adding any Observable subscription |
+| Debounced Search | `.github/skills/debounced-search/` | Implementing search or filter inputs |
+| Explicit State Management | `.github/skills/explicit-state-management/` | Loading data with loading/error/empty states |
+| Testing | `.github/skills/testing/` | Writing any new test or adding coverage |
 
 ## Design Constraints
 
-- Do not inline skill content in this file — each skill is a standalone file
+- Do not inline skill content in this file — each skill is a `SKILL.md` in its own directory
 - Do not load all skills at once — load only what the task requires

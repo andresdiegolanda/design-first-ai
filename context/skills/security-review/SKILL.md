@@ -1,8 +1,11 @@
+---
+name: security-review
+description: Team threat model as executable instruction. Use when checking code for security issues before merge.
+---
+
 # Skill: Security Review
 
-> **What this is:** The team's threat model as an executable instruction.
 > **When to load it:** When checking code for security issues before merge or during review.
-> **How to load it:** Reference by path in agent mode, or `#file:context/skills/skill-security-review.md`
 
 ---
 
@@ -40,7 +43,7 @@ Opening prompt structure:
 ```
 Review the following code for security issues.
 
-Apply the security review skill at context/skills/skill-security-review.md.
+Use the /security-review skill.
 
 Code under review:
 [paste the code]

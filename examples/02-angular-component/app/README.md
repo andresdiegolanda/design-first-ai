@@ -70,7 +70,7 @@ ng test
 
 1. Open the workspace — `.github/copilot-instructions.md` auto-loaded (Layers 1+2)
 2. For a new story, read `docs/[STORY-ID]-impl-guide.md` for context
-3. Load individual skills when relevant: `.github/skill-subscription-management.md`, `.github/skill-debounced-search.md`, `.github/skill-explicit-state-management.md`, `.github/skill-testing.md`
+3. Skills auto-discovered from `.github/skills/` — invoke with `/subscription-management`, `/debounced-search`, `/explicit-state-management`, `/testing`
 4. Use a template from `.github/copilot-layer-4-templates.md` as your opening message
 5. Produce `docs/[STORY-ID]-impl-guide.md`, iterate until correct, then execute
 
@@ -85,12 +85,13 @@ ng test
 ├── copilot-layer-0-design-principles.md ← Conventions + anti-patterns
 ├── copilot-layer-1-base-instructions.md ← Project identity + non-negotiables (source)
 ├── copilot-layer-2-file-patterns.md     ← Structure, naming, canonical patterns (source)
-├── copilot-layer-3-skills.md            ← Skills index (references individual skill files)
+├── copilot-layer-3-skills.md            ← Skills index
 ├── copilot-layer-4-templates.md         ← Task prompt templates
-├── skill-subscription-management.md     ← takeUntil pattern for Observable cleanup
-├── skill-debounced-search.md            ← FormControl + debounceTime pattern
-├── skill-explicit-state-management.md   ← loading/error/empty state pattern
-└── skill-testing.md                     ← Jasmine + TestBed patterns
+└── skills/                              ← Agent skills (auto-discovered by Copilot)
+    ├── subscription-management/SKILL.md ← takeUntil pattern for Observable cleanup
+    ├── debounced-search/SKILL.md        ← FormControl + debounceTime pattern
+    ├── explicit-state-management/SKILL.md ← loading/error/empty state pattern
+    └── testing/SKILL.md                 ← Jasmine + TestBed patterns
 docs/
 ├── DEMO-002-impl-guide.md              ← Story DEMO-002: intention (what + how)
 └── DEMO-002-execution-report.md         ← Story DEMO-002: result (what was built)

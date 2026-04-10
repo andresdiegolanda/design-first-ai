@@ -1,10 +1,12 @@
+---
+name: error-handling
+description: Consistent error handling with named exceptions and global handler. Use when implementing any method that can fail with a business reason.
+---
+
 # Skill: Error Handling
 
-> **What this is:** A reusable skill for implementing consistent error handling across
-> service and controller layers.
 > **When to load it:** When implementing any service method that can fail with a meaningful
 > business reason, or when adding exception handling to an existing feature.
-> **How to load it:** Reference by path in agent mode, or `#file:context/skills/skill-error-handling.md`
 
 ---
 

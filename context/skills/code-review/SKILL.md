@@ -1,8 +1,11 @@
+---
+name: code-review
+description: Team quality gate as executable instruction. Use when reviewing completed work before merge.
+---
+
 # Skill: Code Review
 
-> **What this is:** The team's quality gate as an executable instruction.
 > **When to load it:** When reviewing a completed piece of work before merge.
-> **How to load it:** Reference by path in agent mode, or `#file:context/skills/skill-code-review.md`
 
 ---
 
@@ -41,7 +44,7 @@ Opening prompt structure:
 ```
 Review the following code.
 
-Apply the code review skill at context/skills/skill-code-review.md.
+Use the /code-review skill.
 [Optional: Also load the implementation guide at docs/[STORY-ID]-impl-guide.md
 to check for deviations from the agreed design.]
 
@@ -89,6 +92,6 @@ or a required change.
 
 **What this skill does NOT cover:**
 - Do not use this skill instead of running the test suite — tests must pass before review
-- Do not use this skill for security review — use skill-security-review.md separately
+- Do not use this skill for security review — use the /security-review skill separately
 - Do not apply this skill to generated code mid-execution — review happens after the
   feature is complete

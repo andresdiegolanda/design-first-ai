@@ -1,10 +1,13 @@
+---
+name: business-story-narration
+description: Generate well-formed user stories from technical context. Use when generating or improving story descriptions for an issue tracker.
+---
+
 # Skill: Business Story Narration
 
-> **What this is:** A reusable skill for generating well-formed user stories from technical context.
 > **When to load it:** When generating or improving story descriptions for an issue tracker
-> (Jira, Linear, Azure DevOps, or equivalent). Load alongside the Layer 5 story context
-> file for the current task.
-> **How to load it:** `#file:context/skill-business-story-narration.md`
+> (Jira, Linear, Azure DevOps, or equivalent). Load alongside the story documents
+> for the current task.
 
 ---
 
@@ -27,7 +30,7 @@ under-specify expected behavior.
 
 | Input | What it contributes |
 |-------|---------------------|
-| Layer 5 story context | Technical scope, components affected, decisions already made |
+| Story documents | Technical scope, components affected, decisions already made |
 | Figma design or exported diagram | Visual representation of the user experience |
 | Architecture docs | System boundaries, integration points |
 | Existing story title or description | Starting point to translate or improve |
@@ -106,9 +109,9 @@ Produce in this order:
 
 ## How to Use
 
-Open Copilot Chat with your Layer 5 story context loaded. Ask:
+Open Copilot Chat with your story documents loaded. Ask:
 
-> *"Using the Business Story Narration skill, produce a story description for [story title]."*
+> *"Using the /business-story-narration skill, produce a story description for [story title]."*
 
 Provide whatever inputs you have. Review the business layer before copying into your issue tracker.
 

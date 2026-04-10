@@ -1,6 +1,9 @@
-# Skill: In-Memory Store (spring-mvc-demo)
+---
+name: in-memory-store
+description: ConcurrentHashMap CRUD pattern for the Spring MVC demo. Use when adding a new resource type with in-memory CRUD.
+---
 
-> **Use when:** Adding a new resource type that needs in-memory CRUD.
+# Skill: In-Memory Store (spring-mvc-demo)
 
 ## Pattern — `ConcurrentHashMap` in the service
 

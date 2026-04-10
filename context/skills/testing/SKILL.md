@@ -1,10 +1,11 @@
+---
+name: testing
+description: Consistent test structure for service and controller layers. Use when writing any new test or adding coverage.
+---
+
 # Skill: Testing
 
-> **What this is:** A reusable skill for writing consistent, well-structured tests across
-> service and controller layers.
-> **When to load it:** When writing any new test, or adding test coverage to an existing
-> feature.
-> **How to load it:** Reference by path in agent mode, or `#file:context/skills/skill-testing.md`
+> **When to load it:** When writing any new test, or adding test coverage to an existing feature.
 
 ---
 

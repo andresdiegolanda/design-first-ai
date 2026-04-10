@@ -1,6 +1,9 @@
-# Skill: Error Handling (spring-mvc-demo)
+---
+name: error-handling
+description: Named exceptions and global handler for the Spring MVC demo. Use when adding any method that can fail with a domain reason.
+---
 
-> **Use when:** Adding any service method that can fail with a domain-meaningful reason.
+# Skill: Error Handling (spring-mvc-demo)
 
 ## Pattern — one named exception per failure category
 

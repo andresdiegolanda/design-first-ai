@@ -1,6 +1,9 @@
-# Skill: Explicit State Management (angular-user-search)
+---
+name: explicit-state-management
+description: Loading/error/empty state pattern for HTTP data. Use when a component loads data and must show loading, error, and empty states.
+---
 
-> **Use when:** A component loads data from HTTP and must show loading/error/empty states.
+# Skill: Explicit State Management (angular-user-search)
 
 ## The pattern — three explicit state properties
 

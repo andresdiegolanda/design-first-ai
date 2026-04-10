@@ -1,6 +1,9 @@
-# Skill: Debounced Search (angular-user-search)
+---
+name: debounced-search
+description: FormControl with debounceTime pattern for search inputs. Use when implementing any search or filter input.
+---
 
-> **Use when:** Implementing any input that triggers a search or filter operation.
+# Skill: Debounced Search (angular-user-search)
 
 ## The pattern — `FormControl` + debounce
 

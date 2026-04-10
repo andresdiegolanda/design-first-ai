@@ -1,6 +1,9 @@
-# Skill: Testing Angular Components (angular-user-search)
+---
+name: testing
+description: Jasmine and TestBed patterns for Angular components. Use when writing any new test or adding coverage.
+---
 
-> **Use when:** Writing tests for any component in this project.
+# Skill: Testing Angular Components (angular-user-search)
 
 ## Setup pattern
 

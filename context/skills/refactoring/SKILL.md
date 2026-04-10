@@ -1,8 +1,11 @@
+---
+name: refactoring
+description: Team standard for improving existing code without changing behaviour. Use when refactoring code.
+---
+
 # Skill: Refactoring
 
-> **What this is:** The team's executable standard for improving existing code.
 > **When to load it:** When improving existing code without changing observable behaviour.
-> **How to load it:** Reference by path in agent mode, or `#file:context/skills/skill-refactoring.md`
 
 ---
 

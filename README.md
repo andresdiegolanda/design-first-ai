@@ -47,12 +47,14 @@ This repo implements Knowledge Priming as a **six-layer context architecture**:
 | 0 — Generation | One-time prompt that produces Layers 1–4 from your codebase | — | Once at project onboarding |
 | 1 — Base Instructions | Project-level rules, constraints, non-negotiables | `.github/copilot-instructions.md` | Every session, automatically |
 | 2 — File-Pattern Instructions | Language and framework-specific rules | `.github/copilot-instructions.md` | Every session, automatically |
-| 3 — Skills | Reusable skill files in `context/skills/` | `context/skills/skill-*.md` | Per task, on demand |
+| 3 — Skills | Reusable skills in `context/skills/{name}/SKILL.md` | Auto-discovered by Copilot | Per task, on demand |
 | 4 — Prompt Templates | Standardized workflows for recurring task types | `context/layer-4-prompt-templates.md` | Per task, on demand |
 | 5a — Impl Guide | Intention — scope, components, interactions, contracts | `docs/[STORY-ID]-impl-guide.md` | Per story — built before execution |
 | 5b — Execution Report | Result — what was built, deviations, how to run, how to test | `docs/[STORY-ID]-execution-report.md` | Per story — built during execution |
 
 **Layers 1 and 2 share a single Copilot file: `.github/copilot-instructions.md`.** Copilot loads this automatically at session start — no action required. Layers 3–4 are referenced by path when needed: by natural language in agent mode, or `#file:` in chat mode.
+
+**Layer 3 skills follow the [Copilot agent skills convention](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/cloud-agent/create-skills):** each skill is a named subdirectory with a `SKILL.md` file. Copilot auto-discovers skills and invokes them when relevant. You can also invoke explicitly with `/skill-name` in chat.
 
 **Layer 5 is two documents per story, not one session file.** The impl-guide captures intention before execution. The execution report captures result after. Both live in `docs/` and persist across sessions. See `context/layer-5-impl-guide.md` and `context/layer-5-execution-report.md` for how each is built.
 
@@ -188,25 +190,25 @@ design-first-ai/
 │   ├── layer-4-prompt-templates.md    # New feature / single component / tests / bug / refactor
 │   ├── layer-5-impl-guide.md          # Discovery doc — what the impl-guide is and how to build it
 │   ├── layer-5-execution-report.md    # Discovery doc — what the execution report is and how to build it
-│   └── skills/                        # Reusable skill files — Garg's executable team standards
+│   └── skills/                        # Reusable agent skills — one SKILL.md per subdirectory
 │       ├── README.md
-│       ├── skill-error-handling.md
-│       ├── skill-testing.md
-│       ├── skill-logging.md
-│       ├── skill-configuration.md
-│       ├── skill-business-story-narration.md
-│       ├── skill-refactoring.md       # Team standards for improving existing code
-│       ├── skill-security-review.md   # Team threat model as executable instruction
-│       └── skill-code-review.md       # Team quality gate as executable instruction
+│       ├── error-handling/SKILL.md
+│       ├── testing/SKILL.md
+│       ├── logging/SKILL.md
+│       ├── configuration/SKILL.md
+│       ├── business-story-narration/SKILL.md
+│       ├── refactoring/SKILL.md
+│       ├── security-review/SKILL.md
+│       └── code-review/SKILL.md
 │
 ├── examples/                          # Worked examples — story documents + buildable app
 │   ├── 01-spring-mvc/                 # Spring Boot 3.4 | Java 21 | no DB | no Docker
 │   │   └── app/                       # Buildable app (requires Java 21 + Maven only)
-│   │       ├── .github/               # All Copilot context (layers 0–4)
+│   │       ├── .github/               # Copilot context (layers 0–4) + skills/
 │   │       └── docs/                  # Story documents (impl-guide, execution-report)
 │   └── 02-angular-component/          # Angular 17 | TypeScript | RxJS | standalone
 │       └── app/                       # Buildable app (requires Node 18+ only)
-│           ├── .github/               # All Copilot context (layers 0–4)
+│           ├── .github/               # Copilot context (layers 0–4) + skills/
 │           └── docs/                  # Story documents (impl-guide, execution-report)
 │
 └── docs/

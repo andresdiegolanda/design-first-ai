@@ -97,7 +97,7 @@ Service tests use plain JUnit 5. Controller tests use `@WebMvcTest`.
 
 1. Open the workspace — `.github/copilot-instructions.md` auto-loaded (Layers 1+2)
 2. For a new story, read `docs/[STORY-ID]-impl-guide.md` for context
-3. Load individual skills when relevant: `.github/skill-error-handling.md`, `.github/skill-testing.md`, `.github/skill-in-memory-store.md`
+3. Skills auto-discovered from `.github/skills/` — invoke with `/error-handling`, `/testing`, `/in-memory-store`
 4. Use a template from `.github/copilot-layer-4-templates.md` as your opening message
 5. Produce `docs/[STORY-ID]-impl-guide.md`, iterate until correct, then execute
 
@@ -111,11 +111,12 @@ Service tests use plain JUnit 5. Controller tests use `@WebMvcTest`.
 ├── copilot-layer-0-design-principles.md ← Conventions + anti-patterns
 ├── copilot-layer-1-base-instructions.md ← Project identity + non-negotiables (source)
 ├── copilot-layer-2-file-patterns.md     ← Structure, naming, canonical patterns (source)
-├── copilot-layer-3-skills.md            ← Skills index (references individual skill files)
+├── copilot-layer-3-skills.md            ← Skills index
 ├── copilot-layer-4-templates.md         ← Task prompt templates
-├── skill-error-handling.md              ← Named exceptions, global handler pattern
-├── skill-testing.md                     ← JUnit + @WebMvcTest patterns
-└── skill-in-memory-store.md             ← ConcurrentHashMap CRUD pattern
+└── skills/                              ← Agent skills (auto-discovered by Copilot)
+    ├── error-handling/SKILL.md          ← Named exceptions, global handler pattern
+    ├── testing/SKILL.md                 ← JUnit + @WebMvcTest patterns
+    └── in-memory-store/SKILL.md         ← ConcurrentHashMap CRUD pattern
 docs/
 ├── DEMO-001-impl-guide.md              ← Story DEMO-001: intention (what + how)
 └── DEMO-001-execution-report.md         ← Story DEMO-001: result (what was built)

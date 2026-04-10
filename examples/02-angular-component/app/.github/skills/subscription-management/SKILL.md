@@ -1,6 +1,9 @@
-# Skill: Subscription Management (angular-user-search)
+---
+name: subscription-management
+description: takeUntil pattern for Observable cleanup. Use when adding any Observable subscription to a component.
+---
 
-> **Use when:** Adding any Observable subscription to a component.
+# Skill: Subscription Management (angular-user-search)
 
 ## The pattern — always `takeUntil`
 

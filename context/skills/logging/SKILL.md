@@ -1,9 +1,12 @@
+---
+name: logging
+description: Consistent, safe log statements with correct levels and no PII. Use when adding or reviewing log statements.
+---
+
 # Skill: Logging
 
-> **What this is:** A reusable skill for adding consistent, safe log statements.
 > **When to load it:** When adding any new log statement, or when reviewing log coverage
 > in an existing feature.
-> **How to load it:** Reference by path in agent mode, or `#file:context/skills/skill-logging.md`
 
 ---
 
