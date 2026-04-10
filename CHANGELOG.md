@@ -6,6 +6,27 @@ All notable changes to this project are documented here.
 
 ## [Unreleased]
 
+### Changed
+
+- **`examples/01-spring-mvc/app/.github/`** — Skills extracted from inlined
+  `copilot-layer-3-skills.md` into individual `skill-*.md` files: `skill-error-handling.md`,
+  `skill-testing.md`, `skill-in-memory-store.md`. `copilot-layer-3-skills.md` rewritten as
+  skills index with table referencing individual files. Aligns with `context/skills/`
+  naming convention.
+
+- **`examples/02-angular-component/app/.github/`** — Skills extracted from inlined
+  `copilot-layer-3-skills.md` into individual `skill-*.md` files:
+  `skill-subscription-management.md`, `skill-debounced-search.md`,
+  `skill-explicit-state-management.md`, `skill-testing.md`. `copilot-layer-3-skills.md`
+  rewritten as skills index. Aligns with `context/skills/` naming convention.
+
+- **`examples/01-spring-mvc/app/README.md`** — Project Structure updated with individual
+  skill files. 'Using Copilot' step 3 updated to reference individual skill files.
+
+- **`examples/02-angular-component/app/README.md`** — Project Structure updated with
+  individual skill files. 'Using Copilot' step 3 updated to reference individual skill
+  files.
+
 ---
 
 ## v1.5.0 — 2026-04-09
