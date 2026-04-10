@@ -6,7 +6,25 @@ All notable changes to this project are documented here.
 
 ## [Unreleased]
 
+### Removed
+
+- **`examples/01-spring-mvc/app/.github/copilot-layer-3-skills.md`** — Deleted. Skills are
+  auto-discovered from `.github/skills/` — manual index file was redundant.
+
+- **`examples/02-angular-component/app/.github/copilot-layer-3-skills.md`** — Deleted. Same
+  reason.
+
 ### Changed
+
+- **`examples/01-spring-mvc/app/.github/copilot-instructions.md`** — Removed
+  `copilot-layer-3-skills.md` from "Load per task" header. Added skills auto-discovery line.
+  Last reviewed date updated.
+
+- **`examples/01-spring-mvc/app/README.md`** — Removed `copilot-layer-3-skills.md` from
+  Project Structure.
+
+- **`examples/02-angular-component/app/README.md`** — Removed `copilot-layer-3-skills.md`
+  from Project Structure.
 
 - **`context/skills/`** — All 8 skill files restructured to Copilot agent skills convention.
   Flat `skill-*.md` files replaced with `{name}/SKILL.md` subdirectories. Each SKILL.md
@@ -29,17 +47,17 @@ All notable changes to this project are documented here.
   skills created as `{name}/SKILL.md`: `subscription-management/`, `debounced-search/`,
   `explicit-state-management/`, `testing/`. Replaces flat `skill-*.md` files in `.github/`.
 
-- **`examples/01-spring-mvc/app/.github/copilot-layer-3-skills.md`** — Rewritten as index
-  referencing `.github/skills/{name}/` directories. Slash command invocation documented.
+- **`examples/01-spring-mvc/app/README.md`** — Project Structure updated: removed
+  `copilot-layer-3-skills.md`, shows `.github/skills/` subdirectories only. 'Using Copilot'
+  step 3 updated to slash commands.
 
-- **`examples/02-angular-component/app/.github/copilot-layer-3-skills.md`** — Rewritten as
-  index referencing `.github/skills/{name}/` directories. Slash command invocation documented.
+- **`examples/02-angular-component/app/README.md`** — Project Structure updated: removed
+  `copilot-layer-3-skills.md`, shows `.github/skills/` subdirectories only. 'Using Copilot'
+  step 3 updated to slash commands.
 
-- **`examples/01-spring-mvc/app/README.md`** — Project Structure updated with
-  `.github/skills/` subdirectories. 'Using Copilot' step 3 updated to slash commands.
-
-- **`examples/02-angular-component/app/README.md`** — Project Structure updated with
-  `.github/skills/` subdirectories. 'Using Copilot' step 3 updated to slash commands.
+- **`examples/02-angular-component/app/.github/copilot-instructions.md`** — Header updated:
+  removed `copilot-layer-3-skills.md` from 'Load per task' line. Skills line added
+  referencing auto-discovery from `.github/skills/`. Last reviewed date updated.
 
 - **`README.md`** — Repository Structure updated: `context/skills/` shows subdirectory
   convention. Knowledge Priming table updated for auto-discovered skills. Layer 3 skills
@@ -49,6 +67,14 @@ All notable changes to this project are documented here.
   subdirectory convention. File Naming Conventions updated. Repo Structure updated.
   Anti-Patterns updated: `context/skills/skill-*.md` flagged as stale path. Last reviewed
   date updated.
+
+### Removed
+
+- **`examples/01-spring-mvc/app/.github/copilot-layer-3-skills.md`** — Redundant. Skills
+  are auto-discovered from `.github/skills/` by Copilot. No index file needed.
+
+- **`examples/02-angular-component/app/.github/copilot-layer-3-skills.md`** — Redundant.
+  Skills are auto-discovered from `.github/skills/` by Copilot. No index file needed.
 
 ---
 

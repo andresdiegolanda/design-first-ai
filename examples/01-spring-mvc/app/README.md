@@ -95,7 +95,7 @@ Service tests use plain JUnit 5. Controller tests use `@WebMvcTest`.
 
 ## Using Copilot with This Project
 
-1. Open the workspace — `.github/copilot-instructions.md` auto-loaded (Layers 1+2)
+1. Open the workspace — Layers 1+2 auto-loaded
 2. For a new story, read `docs/[STORY-ID]-impl-guide.md` for context
 3. Skills auto-discovered from `.github/skills/` — invoke with `/error-handling`, `/testing`, `/in-memory-store`
 4. Use a template from `.github/copilot-layer-4-templates.md` as your opening message
@@ -111,7 +111,6 @@ Service tests use plain JUnit 5. Controller tests use `@WebMvcTest`.
 ├── copilot-layer-0-design-principles.md ← Conventions + anti-patterns
 ├── copilot-layer-1-base-instructions.md ← Project identity + non-negotiables (source)
 ├── copilot-layer-2-file-patterns.md     ← Structure, naming, canonical patterns (source)
-├── copilot-layer-3-skills.md            ← Skills index
 ├── copilot-layer-4-templates.md         ← Task prompt templates
 └── skills/                              ← Agent skills (auto-discovered by Copilot)
     ├── error-handling/SKILL.md          ← Named exceptions, global handler pattern

@@ -2,11 +2,12 @@
 
 > Auto-loaded by GitHub Copilot for every chat session in this workspace.
 > This is Layers 1 and 2 of the Design-First AI Collaboration framework.
-> Keep under 150 lines. Last reviewed: 2026-03-23.
+> Keep under 150 lines. Last reviewed: 2026-04-10.
 >
 > Layer 0 context: `.github/copilot-layer-0-architecture.md` | `.github/copilot-layer-0-design-principles.md`
 > Layer 2 source: `.github/copilot-layer-2-file-patterns.md`
-> Load per task: `.github/copilot-layer-3-skills.md` | `.github/copilot-layer-4-templates.md`
+> Load per task: `.github/copilot-layer-4-templates.md`
+> Skills: auto-discovered from `.github/skills/` — invoke with `/skill-name`
 > Story documents: `docs/[STORY-ID]-impl-guide.md` | `docs/[STORY-ID]-execution-report.md`
 
 ---

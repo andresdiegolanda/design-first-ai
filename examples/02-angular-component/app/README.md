@@ -85,7 +85,6 @@ ng test
 ├── copilot-layer-0-design-principles.md ← Conventions + anti-patterns
 ├── copilot-layer-1-base-instructions.md ← Project identity + non-negotiables (source)
 ├── copilot-layer-2-file-patterns.md     ← Structure, naming, canonical patterns (source)
-├── copilot-layer-3-skills.md            ← Skills index
 ├── copilot-layer-4-templates.md         ← Task prompt templates
 └── skills/                              ← Agent skills (auto-discovered by Copilot)
     ├── subscription-management/SKILL.md ← takeUntil pattern for Observable cleanup
