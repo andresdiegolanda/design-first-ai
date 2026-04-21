@@ -83,7 +83,7 @@ Testing requirements:
   - [scenario 2 — e.g. not-found case]
   - [scenario 3 — e.g. validation failure]
 
-Follow the testing skill in context/skills/skill-testing.md.
+Follow the testing skill in context/skills/testing/SKILL.md.
 Use the naming convention: method_condition_expectedResult.
 Do not test framework wiring — only business behavior.
 Generate the tests. Run them when done and report results.
@@ -139,3 +139,38 @@ Build an implementation guide for this refactor. Include:
 
 Wait for my approval before making any changes.
 ```
+
+---
+
+## Template: Address PR Review Comments
+
+Use when: A PR has received review comments and you need to triage and respond.
+
+```
+Read pr[XXX]-diff-[NN].md and pr[XXX]-comments-[NN].md.
+
+Use the /code-review skill.
+
+For each review comment: classify as fix, clarify, or discuss.
+- Fix: the reviewer is right — give me the corrected code.
+- Clarify: the code is correct — write a reply with evidence from the diff.
+- Discuss: it is a design question — give me options with trade-offs.
+
+Apply fixes to the codebase. Do not commit.
+
+Write a document pr[XXX]-comments-[NN]-response.md containing:
+- Each comment and its classification
+- What was changed and why (for fixes)
+- Suggested reply text (for clarifications and discussions)
+- A commit message summarising all changes
+```
+
+**File preparation:** Before running this prompt, copy two files from GitHub:
+- `pr[XXX]-diff-[NN].md` — paste from the "Files changed" tab
+- `pr[XXX]-comments-[NN].md` — paste from the "Conversation" tab
+
+Where `XXX` is the PR number and `NN` is the review round (01, 02, ...).
+
+**Output:** Code changes in the working tree (not committed) + `pr[XXX]-comments-[NN]-response.md`.
+Review both before staging. See `context/skills/code-review/SKILL.md` for full details
+including next-round file naming.

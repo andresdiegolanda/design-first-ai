@@ -291,6 +291,8 @@ who needs to understand, operate, or continue the work reads this document first
 When a PR review comment arrives, the analysis is a prompt exercise — paste the comment,
 get the analysis and the fix. The fix goes into the code. The outcome goes into the
 execution report under "Review feedback addressed." Not into a separate analysis file.
+For structured triage across multiple comments in one round, use the Layer 4 template
+"Address PR Review Comments" with the `/code-review` skill.
 
 ---
 

@@ -68,6 +68,25 @@ All notable changes to this project are documented here.
   Anti-Patterns updated: `context/skills/skill-*.md` flagged as stale path. Last reviewed
   date updated.
 
+- **`context/skills/code-review/SKILL.md`** — Added PR Review Response section. Skill now
+  covers two modes: pre-merge review and responding to reviewer comments. Triage model
+  added (fix / clarify / discuss). File naming convention for multi-round PRs documented
+  (`prXXX-diff-NN.md` / `prXXX-comments-NN.md`). Opening prompt template and two-output
+  model (code changes + response doc) added. Skill description updated.
+
+- **`context/layer-4-prompt-templates.md`** — New template: Address PR Review Comments.
+  Sixth template added. Includes file preparation steps, opening prompt, output
+  description, and pointer to the `/code-review` skill for full details.
+
+- **`docs/design-workflow.md`** — Two sentences added after the PR review paragraph in
+  Document 2 section: references the Layer 4 template and `/code-review` skill for
+  structured multi-comment triage.
+
+- **`docs/garg-mapping.md`** — PR review as measurement signal paragraph added to Pattern
+  4. Convention comments in review are a gap in the standards, not a developer failure.
+  Each one is a candidate for the retrospective question. Review rounds get shorter as
+  the standard base accumulates.
+
 ### Removed
 
 - **`examples/01-spring-mvc/app/.github/copilot-layer-3-skills.md`** — Redundant. Skills
