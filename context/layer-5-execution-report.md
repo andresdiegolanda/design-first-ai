@@ -23,6 +23,7 @@ continue the work reads this document first.
 - **How to run** — the exact commands to start the application
 - **How to run tests** — the exact commands to run the test suite
 - **How to test manually** — step-by-step smoke test
+- **Acceptance criteria** — each criterion from the guide, met or not, with evidence
 - **Review feedback addressed** — PR comments received, analysis, and fix applied
 - **Commit message** — ready to paste, follows project conventions
 - **Feedback signal** — observations from execution worth feeding back into shared
@@ -34,14 +35,13 @@ continue the work reads this document first.
 ## How it is produced
 
 ```
-After executing the impl-guide, ask the agent:
+Execute the impl-guide with the skill — it writes the report as it goes:
 
-  "Create the execution report as docs/[STORY-ID]-execution-report.md.
-   Include: what was built and where, any deviations from the impl-guide
-   and why, how to run the app, how to run the tests, how to test
-   manually, a compliant git commit message, and any feedback signal
-   (context gaps, instruction quality, workflow patterns, failure root
-   causes) worth feeding back into shared artifacts."
+  "Use /apply-implementation-guide.
+   Guide: docs/[STORY-ID]-impl-guide.md"
+
+A story shipped as several pull requests is applied one part per run.
+Each run adds its part to the same report.
 
 Update it when PR review feedback arrives:
   Paste the review comment as a prompt.
@@ -49,6 +49,7 @@ Update it when PR review feedback arrives:
   Add the outcome to the execution report under 'Review feedback addressed.'
 ```
 
+Skill: `skills/apply-implementation-guide/SKILL.md`
 Full workflow: `../docs/design-workflow.md`
 Two-document rule: `../docs/design-workflow.md#the-two-document-rule`
 

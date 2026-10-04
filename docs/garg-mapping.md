@@ -182,7 +182,7 @@ graph LR
     end
 
     subgraph "Per story — Garg's feature document"
-        IG["docs/[STORY-ID]-impl-guide.md\nScope\nComponents\nInteractions\nContracts\nConstraints"]
+        IG["docs/[STORY-ID]-impl-guide.md\nScope\nComponents\nInteractions\nContracts\nChange map\nConstraints"]
         ER["docs/[STORY-ID]-execution-report.md\nWhat was built\nDeviations\nHow to run\nHow to test\nCommit message"]
     end
 

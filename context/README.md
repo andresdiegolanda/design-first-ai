@@ -62,14 +62,16 @@ How code is structured and named in this project. Directory layout, naming conve
 
 | Skill | File | Load when |
 |-------|------|-----------|
-| Error Handling | `skills/skill-error-handling.md` | Any method that can fail with a business reason |
-| Testing | `skills/skill-testing.md` | Writing any new test or adding coverage |
-| Logging | `skills/skill-logging.md` | Adding or reviewing log statements |
-| Configuration | `skills/skill-configuration.md` | Adding any externalisable value |
-| Business Story Narration | `skills/skill-business-story-narration.md` | Generating or improving user story descriptions |
-| Refactoring | `skills/skill-refactoring.md` | Improving existing code without changing behaviour |
-| Security Review | `skills/skill-security-review.md` | Checking code against the team's threat model |
-| Code Review | `skills/skill-code-review.md` | Applying the team's quality gate to a piece of work |
+| Error Handling | `skills/error-handling/SKILL.md` | Any method that can fail with a business reason |
+| Testing | `skills/testing/SKILL.md` | Writing any new test or adding coverage |
+| Logging | `skills/logging/SKILL.md` | Adding or reviewing log statements |
+| Configuration | `skills/configuration/SKILL.md` | Adding any externalisable value |
+| Business Story Narration | `skills/business-story-narration/SKILL.md` | Generating or improving user story descriptions |
+| Refactoring | `skills/refactoring/SKILL.md` | Improving existing code without changing behaviour |
+| Security Review | `skills/security-review/SKILL.md` | Checking code against the team's threat model |
+| Code Review | `skills/code-review/SKILL.md` | Applying the team's quality gate to a piece of work |
+| Create Implementation Guide | `skills/create-implementation-guide/SKILL.md` | Building a story's impl-guide from the story and the code |
+| Apply Implementation Guide | `skills/apply-implementation-guide/SKILL.md` | Executing a reviewed impl-guide: code, tests, execution report |
 
 ## Layer 4 — Prompt Templates
 
@@ -83,7 +85,7 @@ Two discovery files explain how each story document is built:
 
 **`layer-5-impl-guide.md`** — What the implementation guide is, what it contains, and how to
 produce it with the agent. The impl-guide captures intention: scope, components, interactions,
-contracts. Built before any code is written.
+contracts, and a change map of where each edit lands. Built before any code is written.
 
 **`layer-5-execution-report.md`** — What the execution report is, what it contains, and how to
 produce it. The execution report captures result: what was built, deviations, how to run, how

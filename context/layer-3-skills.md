@@ -45,6 +45,8 @@ The difference between a skill and a layer:
 | Refactoring | `context/skills/refactoring/` | Improving existing code without changing behaviour |
 | Security Review | `context/skills/security-review/` | Checking code against the team's threat model |
 | Code Review | `context/skills/code-review/` | Applying the team's quality gate to a piece of work |
+| Create Implementation Guide | `context/skills/create-implementation-guide/` | Building a story's impl-guide from the story and the code |
+| Apply Implementation Guide | `context/skills/apply-implementation-guide/` | Executing a reviewed impl-guide: code, tests, execution report |
 
 ---
 

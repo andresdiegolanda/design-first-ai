@@ -112,7 +112,7 @@ examples/NN-example-name/
 ```
 
 **Rules for `docs/[STORY-ID]-impl-guide.md`:**
-- Contains scope, components, interactions, contracts — no implementation
+- Contains scope, components, interactions, contracts, and a change map when existing code changes — no code
 - Built iteratively with the agent before any code is written
 - Must include at least one correction documented in the execution report
 

@@ -56,6 +56,8 @@ them with your team's actual threat model and review criteria before use.
 | Refactoring | `refactoring/` | Improving existing code without changing behaviour |
 | Security Review | `security-review/` | Checking code against the team's threat model |
 | Code Review | `code-review/` | Applying the team's quality gate to a piece of work |
+| Create Implementation Guide | `create-implementation-guide/` | Building a story's impl-guide from the story and the code |
+| Apply Implementation Guide | `apply-implementation-guide/` | Executing a reviewed impl-guide: code, tests, execution report |
 
 ---
 

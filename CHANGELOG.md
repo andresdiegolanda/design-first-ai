@@ -6,6 +6,20 @@ All notable changes to this project are documented here.
 
 ## [Unreleased]
 
+### Added
+
+- **`context/skills/create-implementation-guide/SKILL.md`** — New skill. Builds
+  `docs/[STORY-ID]-impl-guide.md` from the story and the codebase only. Every claim about
+  existing code cites `file:line`; anything neither input proves becomes an open question.
+  Adds a change map (one row per edit: file and anchor, what, why — no code), parts for
+  stories that ship as several pull requests, and a verification row per acceptance criterion.
+
+- **`context/skills/apply-implementation-guide/SKILL.md`** — New skill. Applies a reviewed
+  impl-guide to the codebase and writes `docs/[STORY-ID]-execution-report.md`. Reads the
+  project's own build and test commands; adapts to mechanical mismatches and stops on
+  behaviour, security, interface, or scope changes; one part per run; copies acceptance
+  criteria from the guide, never invents them; never stages, commits, or pushes.
+
 ### Removed
 
 - **`examples/01-spring-mvc/app/.github/copilot-layer-3-skills.md`** — Deleted. Skills are
@@ -15,6 +29,24 @@ All notable changes to this project are documented here.
   reason.
 
 ### Changed
+
+- **`docs/design-workflow.md`** — Steps 2 and 3 use the two new skills. Dimension 5 renamed
+  "Implementation": the change map in the guide, no unrequested additions at execution.
+  Two-document rule: the impl-guide gains change map and verification, and excludes method
+  bodies, whole files, and test code instead of all code; the execution report gains
+  acceptance criteria with evidence.
+
+- **`context/layer-5-impl-guide.md`**, **`context/layer-5-execution-report.md`** — Contents
+  and "how it is built" updated for the change map and the two skills.
+
+- **`context/README.md`** — Layer 3 table lists the new skills; stale `skill-*.md` paths
+  corrected to `{name}/SKILL.md`.
+
+- **`context/skills/README.md`**, **`context/layer-3-skills.md`**, **`README.md`**,
+  **`.github/copilot-instructions.md`**, **`.github/copilot-layer-3-skills.md`**,
+  **`context/layer-4-prompt-templates.md`**, **`docs/garg-mapping.md`**,
+  **`docs/copilot-setup.md`** — New skills indexed; change map added where the impl-guide's
+  contents are listed.
 
 - **`examples/01-spring-mvc/app/.github/copilot-instructions.md`** — Removed
   `copilot-layer-3-skills.md` from "Load per task" header. Added skills auto-discovery line.

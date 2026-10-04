@@ -22,7 +22,10 @@ not a per-session load — and it lives in `docs/` alongside the execution repor
 - **Components** — building blocks with single-line purposes
 - **Interactions** — data flow and error paths for every external call
 - **Contracts** — method signatures, types, DTOs — no implementation
+- **Change map** — every edit at `file:line`, what changes and why — no code
+- **Verification** — how each acceptance criterion will be proven
 - **Constraints** — decisions already made that this story must respect
+- **Open questions** — what neither the story nor the code proves
 
 ---
 
@@ -31,17 +34,17 @@ not a per-session load — and it lives in `docs/` alongside the execution repor
 ```
 Give the agent:
   - The story
-  - docs/app-description.md (project-level context)
+  - The workspace (docs/app-description.md included)
 
 Ask:
-  "Build an implementation guide for this story.
-   Save it as docs/[STORY-ID]-impl-guide.md.
-   The guide must be usable as a prompt input and
-   understandable by a human."
+  "Use /create-implementation-guide.
+   Story: [paste story]"
 
 Iterate until every section is correct and clear.
-Then execute.
+Then execute with /apply-implementation-guide.
 ```
+
+Skill: `skills/create-implementation-guide/SKILL.md`
 
 Full workflow: `../docs/design-workflow.md`
 

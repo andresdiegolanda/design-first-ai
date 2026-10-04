@@ -31,23 +31,19 @@ STEP 1 — Application description
            Write it once. Update it when the architecture changes significantly.
 
 STEP 2 — Implementation guide
-  Input:   The story + docs/app-description.md
-  Ask:     "Given the application description in docs/app-description.md and
-            this story [paste story], build an implementation guide. The guide
-            must be usable as a prompt input and understandable by a human."
-  Output:  docs/impl-guide.md
+  Input:   The story + the codebase (docs/app-description.md included)
+  Ask:     "Use /create-implementation-guide. Story: [paste story]"
+  Output:  docs/[STORY-ID]-impl-guide.md
   Purpose: The design document. Contains scope, components, interactions,
-           contracts, and constraints. Review it. Iterate until every section
-           is correct and clear. This is the authoritative input to Step 3.
+           contracts, constraints, the change map, verification, and open
+           questions. Review it. Iterate until every section is correct and
+           clear. This is the authoritative input to Step 3.
 
 STEP 3 — Execution
-  Input:   docs/impl-guide.md
-  Ask:     "Execute the implementation guide in docs/impl-guide.md. Run the
-            tests to verify everything works. Then create a new document
-            explaining what you did, any differences from the guide, how to
-            run the app, how to run the tests, how to test manually, and
-            include a compliant git commit message."
-  Output:  Code in the expected locations + docs/execution-report.md
+  Input:   docs/[STORY-ID]-impl-guide.md + the codebase
+  Ask:     "Use /apply-implementation-guide. Guide: docs/[STORY-ID]-impl-guide.md"
+  Output:  Code in the working tree (not committed)
+           + docs/[STORY-ID]-execution-report.md
   Purpose: The agent implements against the guide. The execution report is the
            permanent record of what was built, how it deviates from the plan
            (if it does), and everything needed to operate and verify the result.
@@ -214,13 +210,19 @@ types should exist. Correct before executing.
 
 ---
 
-### 5 — No unrequested additions at execution
+### 5 — Implementation
 
-This applies to Step 3, not the guide itself. When the agent executes, it may add
-features the guide didn't specify — retry logic, caching, metrics endpoints.
+Where each change lands — and nothing beyond it.
 
-Check the execution report against the impl-guide. Anything added that wasn't in scope
-goes in a separate story.
+**What to check in the guide — the change map:**
+- One row per edit: `file:line` and symbol, what changes, why
+- Every reference to a changed symbol is a row or is listed under "Not changed"
+- No method bodies — the map says where and what, never the code
+- Each part, if the story ships as several pull requests, builds and passes its tests alone
+
+**What to check at execution:** the agent may add features the guide didn't specify —
+retry logic, caching, metrics endpoints. Check the execution report against the impl-guide.
+Anything added that wasn't in scope goes in a separate story.
 
 ---
 
@@ -234,6 +236,7 @@ built. It must contain:
 - How to run the application
 - How to run the tests
 - How to test manually
+- Each acceptance criterion, met or not, with evidence
 - A compliant git commit message
 
 This document, together with `docs/impl-guide.md` and `docs/app-description.md`, gives
@@ -261,11 +264,15 @@ Only then does execution begin.
 - Components: building blocks and their single-line purpose
 - Interactions: data flow, error paths, external call behavior
 - Contracts: method signatures, types, DTOs
+- Change map: every edit at `file:line`, what changes and why — no code
+- Verification: how each acceptance criterion will be proven
 - Constraints: decisions already made that this story must respect
 - Open questions: resolved before execution, not during
 
-**What it does not contain:** Code snippets, test cases, implementation details.
-Those belong in the execution phase.
+**What it does not contain:** Method bodies, whole files, test code. The change map
+says where and what changes, never how in code. Code belongs to the execution phase.
+
+**Skill:** `/create-implementation-guide` — the story and the codebase, nothing else.
 
 ---
 
@@ -285,8 +292,13 @@ who needs to understand, operate, or continue the work reads this document first
 - How to run the application
 - How to run the tests
 - How to test manually
+- Each acceptance criterion, met or not, with evidence
 - A compliant git commit message
 - Review feedback received and how it was addressed
+
+**Skill:** `/apply-implementation-guide` — the guide and the codebase. It never commits.
+A story that ships as several pull requests is applied one part per run; each run adds
+its part to the same report.
 
 When a PR review comment arrives, the analysis is a prompt exercise — paste the comment,
 get the analysis and the fix. The fix goes into the code. The outcome goes into the

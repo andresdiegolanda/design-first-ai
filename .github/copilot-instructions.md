@@ -99,7 +99,9 @@ design-first-ai/
 │       ├── business-story-narration/SKILL.md
 │       ├── refactoring/SKILL.md
 │       ├── security-review/SKILL.md
-│       └── code-review/SKILL.md
+│       ├── code-review/SKILL.md
+│       ├── create-implementation-guide/SKILL.md
+│       └── apply-implementation-guide/SKILL.md
 ├── docs/                                ← workflow docs + setup + deck
 ├── examples/
 │   ├── 01-spring-mvc/app/               ← open as own workspace

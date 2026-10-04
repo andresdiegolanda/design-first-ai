@@ -125,8 +125,8 @@ Alternatively, use the paperclip icon in the Copilot Chat panel to attach files 
 With context loaded, follow the three-step workflow in `../docs/design-workflow.md`:
 
 1. Ask the agent to build an app description (`docs/app-description.md`)
-2. Give it the story and ask for an implementation guide (`docs/[STORY-ID]-impl-guide.md`)
-3. Iterate on the guide until every section is correct, then ask the agent to execute it
+2. Give it the story with `/create-implementation-guide` (`docs/[STORY-ID]-impl-guide.md`)
+3. Iterate on the guide until every section is correct, then execute it with `/apply-implementation-guide`
 
 **Copilot Chat session boundary:** Starting a new chat clears the conversation but NOT
 the auto-loaded `.github/copilot-instructions.md`. Layers 1 and 2 persist. Skills and

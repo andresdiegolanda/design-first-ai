@@ -35,6 +35,7 @@ Include:
 - Components with single-line purposes
 - Interactions with error paths for every external call
 - Contracts: method signatures, types, DTOs — no implementation
+- Change map: every edit to existing code at file:line — no code
 
 Iterate until every section is correct and clear.
 Wait for my approval before executing.

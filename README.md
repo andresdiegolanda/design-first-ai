@@ -49,7 +49,7 @@ This repo implements Knowledge Priming as a **six-layer context architecture**:
 | 2 — File-Pattern Instructions | Language and framework-specific rules | `.github/copilot-instructions.md` | Every session, automatically |
 | 3 — Skills | Reusable skills in `context/skills/{name}/SKILL.md` | Auto-discovered by Copilot | Per task, on demand |
 | 4 — Prompt Templates | Standardized workflows for recurring task types | `context/layer-4-prompt-templates.md` | Per task, on demand |
-| 5a — Impl Guide | Intention — scope, components, interactions, contracts | `docs/[STORY-ID]-impl-guide.md` | Per story — built before execution |
+| 5a — Impl Guide | Intention — scope, components, interactions, contracts, change map | `docs/[STORY-ID]-impl-guide.md` | Per story — built before execution |
 | 5b — Execution Report | Result — what was built, deviations, how to run, how to test | `docs/[STORY-ID]-execution-report.md` | Per story — built during execution |
 
 **Layers 1 and 2 share a single Copilot file: `.github/copilot-instructions.md`.** Copilot loads this automatically at session start — no action required. Layers 3–4 are referenced by path when needed: by natural language in agent mode, or `#file:` in chat mode.
@@ -199,7 +199,9 @@ design-first-ai/
 │       ├── business-story-narration/SKILL.md
 │       ├── refactoring/SKILL.md
 │       ├── security-review/SKILL.md
-│       └── code-review/SKILL.md
+│       ├── code-review/SKILL.md
+│       ├── create-implementation-guide/SKILL.md
+│       └── apply-implementation-guide/SKILL.md
 │
 ├── examples/                          # Worked examples — story documents + buildable app
 │   ├── 01-spring-mvc/                 # Spring Boot 3.4 | Java 21 | no DB | no Docker
