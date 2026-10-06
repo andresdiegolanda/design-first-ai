@@ -47,6 +47,7 @@ The difference between a skill and a layer:
 | Code Review | `context/skills/code-review/` | Applying the team's quality gate to a piece of work |
 | Create Implementation Guide | `context/skills/create-implementation-guide/` | Building a story's impl-guide from the story and the code |
 | Apply Implementation Guide | `context/skills/apply-implementation-guide/` | Executing a reviewed impl-guide: code, tests, execution report |
+| Review Pull Request | `context/skills/review-pull-request/` | Reviewing a colleague's pull request: evidence, ranked findings, the comment to post |
 
 ---
 

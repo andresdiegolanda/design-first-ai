@@ -58,6 +58,7 @@ them with your team's actual threat model and review criteria before use.
 | Code Review | `code-review/` | Applying the team's quality gate to a piece of work |
 | Create Implementation Guide | `create-implementation-guide/` | Building a story's impl-guide from the story and the code |
 | Apply Implementation Guide | `apply-implementation-guide/` | Executing a reviewed impl-guide: code, tests, execution report |
+| Review Pull Request | `review-pull-request/` | Reviewing a colleague's pull request: evidence, ranked findings, the comment to post |
 
 ---
 

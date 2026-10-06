@@ -72,6 +72,7 @@ How code is structured and named in this project. Directory layout, naming conve
 | Code Review | `skills/code-review/SKILL.md` | Applying the team's quality gate to a piece of work |
 | Create Implementation Guide | `skills/create-implementation-guide/SKILL.md` | Building a story's impl-guide from the story and the code |
 | Apply Implementation Guide | `skills/apply-implementation-guide/SKILL.md` | Executing a reviewed impl-guide: code, tests, execution report |
+| Review Pull Request | `skills/review-pull-request/SKILL.md` | Reviewing a colleague's pull request: evidence, ranked findings, the comment to post |
 
 ## Layer 4 — Prompt Templates
 

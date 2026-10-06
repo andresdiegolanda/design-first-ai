@@ -201,7 +201,8 @@ design-first-ai/
 │       ├── security-review/SKILL.md
 │       ├── code-review/SKILL.md
 │       ├── create-implementation-guide/SKILL.md
-│       └── apply-implementation-guide/SKILL.md
+│       ├── apply-implementation-guide/SKILL.md
+│       └── review-pull-request/SKILL.md
 │
 ├── examples/                          # Worked examples — story documents + buildable app
 │   ├── 01-spring-mvc/                 # Spring Boot 3.4 | Java 21 | no DB | no Docker

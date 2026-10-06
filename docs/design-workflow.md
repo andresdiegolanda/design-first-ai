@@ -306,6 +306,10 @@ execution report under "Review feedback addressed." Not into a separate analysis
 For structured triage across multiple comments in one round, use the Layer 4 template
 "Address PR Review Comments" with the `/code-review` skill.
 
+On the other side of the table, when you review a colleague's pull request, use the
+`/review-pull-request` skill. Its report is working material kept outside the reviewed
+branch; the comment you post on the pull request is the record.
+
 ---
 
 ### What Goes in Neither Document
@@ -317,6 +321,7 @@ Some content is generated during a story but doesn't belong in either deliverabl
 | Codebase research output | Use as prompt context, discard after |
 | Architecture spike analysis | Summarize the decision into the impl-guide, discard the spike |
 | PR review analysis | Paste as prompt input, commit the fix, record outcome in execution report |
+| Review of a colleague's pull request | `/review-pull-request` report kept outside the branch; the posted comment is the record |
 | Confluence summaries | Separate deliverable for stakeholders — not part of this system |
 
 **The test:** If a document isn't the impl-guide or the execution report, ask:

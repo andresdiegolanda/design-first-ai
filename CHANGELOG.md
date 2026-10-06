@@ -8,6 +8,15 @@ All notable changes to this project are documented here.
 
 ### Added
 
+- **`context/skills/review-pull-request/SKILL.md`** — New skill. Reviews a pull request
+  someone else opened: fetches the head, runs what needs no credentials, checks every
+  changed file against the code it calls or tests, and tracks an earlier review's findings.
+  Numbered findings with severity, file and lines, evidence, impact and a required fix;
+  every runtime claim proven by a run or labelled; every premise about the surrounding
+  system checked; fixes checked against each other so none keeps a known-wrong behaviour.
+  Ends with a decision and a summary comment ready to paste; posts nothing. Listed in the
+  three skill indexes and both trees; `docs/design-workflow.md` and `/code-review` point to it.
+
 - **`context/skills/create-implementation-guide/SKILL.md`** — New skill. Builds
   `docs/[STORY-ID]-impl-guide.md` from the story and the codebase only. Every claim about
   existing code cites `file:line`; anything neither input proves becomes an open question.

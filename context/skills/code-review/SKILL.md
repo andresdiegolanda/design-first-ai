@@ -155,5 +155,6 @@ or a required change.
 **What this skill does NOT cover:**
 - Do not use this skill instead of running the test suite — tests must pass before review
 - Do not use this skill for security review — use the /security-review skill separately
+- Do not use this skill to review a colleague's pull request — use the /review-pull-request skill
 - Do not apply this skill to generated code mid-execution — review happens after the
   feature is complete
