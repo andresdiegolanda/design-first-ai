@@ -8,6 +8,20 @@ All notable changes to this project are documented here.
 
 ### Added
 
+- **`docs/flow/`** — The framework, animated. Two self-contained HTML pages on one scene (around
+  the work, the people, the repository, the agent): `design-first-flow.html` walks DEMO-001 through
+  the framework in eight journeys (the five patterns in one lap; Layer 0 onboarding; a session
+  starting from files; the implementation guide reviewed against the five dimensions with the two
+  DEMO-001 corrections; execution, tests and the execution report; a review comment; the feedback
+  flywheel; design for deletion). `implementation-trap.html` shows the same story without the
+  framework, one journey per trap (one prompt, the senior as bottleneck, the session that forgets,
+  the author who leaves). Every component and artifact has a card with a source and its
+  counterpart on the other page; Learn windows give the journey as text, the five dimensions, the
+  six layers, a self-test, a glossary and how to make a page like this. `kit/` holds the generator:
+  `build.py`, a generic engine, stylesheet and template, and four data files that carry the subject.
+  `docs/flow/README.md` documents the pages and the method. Linked from `README.md` (Quick Start,
+  Repository Structure) and `.github/copilot-instructions.md`.
+
 - **`context/skills/review-pull-request/SKILL.md`** — New skill. Reviews a pull request
   someone else opened: fetches the head, runs what needs no credentials, checks every
   changed file against the code it calls or tests, and tracks an earlier review's findings.

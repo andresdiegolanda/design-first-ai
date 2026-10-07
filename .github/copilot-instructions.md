@@ -30,6 +30,7 @@ Contains layer templates, worked examples with buildable apps, and docs.
 | `context/` | Layer templates 0–5 (generic, with placeholders) | Templates only — never filled-in instances |
 | `context/skills/` | Reusable agent skills — one `SKILL.md` per subdirectory | Stack-agnostic; framework-specific skills go in `.github/skills/` |
 | `docs/` | Workflow docs, setup guide, presentation deck | Reference docs for practitioners |
+| `docs/flow/` | Two animated pages (the framework with and without) and the kit that builds them | Subject lives in the four `data_*.js` files; `engine.js`, `style.css`, `template.html` stay generic |
 | `examples/` | Worked examples — each has `app/` with `.github/` and `docs/` | Full example per folder — never partial |
 | `examples/NN/app/` | Buildable project with `.github/` context and `docs/` story documents | Separate project — open `app/` as its own VS Code workspace |
 
@@ -103,6 +104,7 @@ design-first-ai/
 │       ├── create-implementation-guide/SKILL.md
 │       └── apply-implementation-guide/SKILL.md
 ├── docs/                                ← workflow docs + setup + deck
+│   └── flow/                            ← the framework animated: two pages + kit/ (build.py, engine, data)
 ├── examples/
 │   ├── 01-spring-mvc/app/               ← open as own workspace
 │   │   ├── .github/                     ← Copilot context (layers 0–4)

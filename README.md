@@ -156,6 +156,9 @@ Read `docs/garg-mapping.md`.
 **I want to see it in action first:**
 Open `examples/01-spring-mvc/app/docs/DEMO-001-impl-guide.md` and `examples/01-spring-mvc/app/docs/DEMO-001-execution-report.md` for the Spring MVC story documents, or `examples/02-angular-component/app/docs/DEMO-002-impl-guide.md` for the Angular example.
 
+**I want to see it move:**
+Open `docs/flow/design-first-flow.html` in a browser: DEMO-001 through the framework, animated, one journey per pattern and per step, with the same story without the framework on the twin page. No server, nothing sent. `docs/flow/README.md` explains the pages and the kit that builds them, for a flow page of your own.
+
 **After every session:**
 Ask Copilot: *"What context were you missing that would have changed your approach?"* Save each answer into the relevant Design Constraints section. The context files improve with every task.
 
@@ -220,7 +223,12 @@ design-first-ai/
     ├── design-workflow.md            # Primary workflow: impl-guide + agent execution
     ├── copilot-context-model.md      # How Copilot + Claude manage context in agent mode
     ├── copilot-setup.md              # VS Code + GitHub Copilot configuration
-    └── design-first-ai.pptx          # 9-slide framework overview deck
+    ├── design-first-ai.pptx          # 9-slide framework overview deck
+    └── flow/                         # The framework, animated: two pages + the kit that builds them
+        ├── README.md                 # What is on the pages; how to make one for another project
+        ├── design-first-flow.html    # With the framework: DEMO-001, eight journeys
+        ├── implementation-trap.html  # Without the framework: the four traps
+        └── kit/                      # build.py, engine, style, template, four data files
 ```
 
 ---
