@@ -18,7 +18,9 @@ continue the work reads this document first.
 
 ## What it contains
 
-- **What was implemented** — file paths, function names, what changed
+- **What was implemented** — one table, every file changed, added, or deleted, sorted by
+  folder, with what changed in one line and the change-map row; then a summary (counts,
+  insertions and deletions, what the part did)
 - **Deviations from the impl-guide** — what changed during execution and why
 - **How to run** — the exact commands to start the application
 - **How to run tests** — the exact commands to run the test suite

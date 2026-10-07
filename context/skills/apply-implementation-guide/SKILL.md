@@ -72,6 +72,11 @@ between guide and code. Stops on large ones. Never commits.
 
 13. Create `docs/[STORY-ID]-execution-report.md`. For a later part, add a section for that
     part; leave earlier parts as written.
+13a. What Was Implemented: one row per file changed, added, or deleted, sorted by folder
+    (repository root first, then each folder path in alphabetical order, files within a
+    folder in alphabetical order). Each row: the file, what changed in one line, the
+    change-map row it came from. Below the table, a summary: files changed, added, and
+    deleted; lines inserted and deleted; what the part did, in two or three sentences.
 14. Copy each acceptance criterion from the guide verbatim and give its evidence. If the
     guide has none, write "None in the guide".
 15. Commit message: follow the project's convention (instructions, recent history).
@@ -101,7 +106,13 @@ Part: [A | all]
 > **Status:** [Complete | Stopped — see Deviations]
 
 ## What Was Implemented
-| File | Change | Change-map row |
+| Folder | File | Change | Change-map row |
+|--------|------|--------|----------------|
+| `.` | `[FILE]` | [ONE LINE] | [N] |
+| `src/[FOLDER]/` | `[FILE]` | [ONE LINE] | [N] |
+
+**Summary:** [N] files changed, [N] added, [N] deleted · [N] insertions, [N] deletions.
+[WHAT THE PART DID, TWO OR THREE SENTENCES]
 
 ## Deviations from Implementation Guide
 | Guide said | What was done | Why |
@@ -151,4 +162,5 @@ None yet.
 - Do not apply more than one part per run
 - Do not write acceptance criteria that are not in the guide
 - Do not report a part complete without running the build and the tests
+- Do not leave a changed file out of the What Was Implemented table, or list it out of folder order
 - Do not put secrets, tokens, credentials, or environment values in the report

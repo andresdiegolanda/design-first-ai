@@ -6,6 +6,15 @@ All notable changes to this project are documented here.
 
 ## [Unreleased]
 
+### Changed
+
+- **`context/skills/apply-implementation-guide/SKILL.md`** — The execution report's What Was
+  Implemented section is now one table of every file changed, added, or deleted, sorted by
+  folder (root first, then folders alphabetically, files alphabetically within each), with what
+  changed in one line and the change-map row, followed by a summary: counts, insertions and
+  deletions, what the part did. Rule 13a, the report skeleton, and a design constraint.
+  `context/layer-5-execution-report.md` describes the same section.
+
 ### Added
 
 - **`docs/flow/`** — The framework, animated. Two self-contained HTML pages on one scene (around
