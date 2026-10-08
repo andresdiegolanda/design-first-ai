@@ -31,7 +31,8 @@ STEP 1 — Application description
            Write it once. Update it when the architecture changes significantly.
 
 STEP 2 — Implementation guide
-  Input:   The story in story.txt + the codebase (docs/app-description.md included)
+  Input:   The story file (story.txt, or story.html: the tracker's export) + the codebase
+           (docs/app-description.md included)
   Ask:     "Create the implementation guide using the skill create-implementation-guide."
            (one line, always the same; the story file holds the rest)
   Output:  docs/[STORY-ID]-impl-guide.md

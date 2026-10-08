@@ -27,7 +27,7 @@ human can answer. Every statement about existing code is checked against the cod
 
 | Input | What it contributes | Source |
 |-------|---------------------|--------|
-| The story | ID, intent, acceptance criteria, exclusions, facts about systems the code cannot show | `story.txt` at the workspace root, or the story file the repository's instructions name; a file the prompt names, or text pasted into the prompt, only when it says so |
+| The story | ID, intent, acceptance criteria, exclusions, facts about systems the code cannot show | The story file: `story.txt` or `story.html` at the workspace root or in the repository's guide folder, or the file the repository's instructions name. `story.html` is an issue tracker's export of the story (Jira's printable issue view, saved as is); a file the prompt names, or text pasted into the prompt, only when it says so |
 | The code | What exists — structure, conventions, build and test commands, every place a change touches | The workspace: source, tests, build files, `.github/` instructions, `docs/app-description.md` if present |
 
 A fact neither input proves is an open question, not an assumption.
@@ -38,9 +38,18 @@ A fact neither input proves is an open question, not an assumption.
 
 ### Read before writing
 
-1. Open the story: `story.txt` at the workspace root, or the file the repository's
-   instructions name, unless the prompt names a file or pastes the text. If there is no
-   story, stop and ask. Take the story ID from it; if it has none, ask before writing.
+1. Open the story file: `story.txt` or `story.html` at the workspace root or in the
+   repository's guide folder, or the file the repository's instructions name, unless the
+   prompt names a file or pastes the text. If there is no story, stop and ask. Take the
+   story ID from it; if it has none, ask before writing.
+1a. A tracker export (`story.html`) is read like this: the ID and title from its heading;
+    the intent from its description; the acceptance criteria from the field of that name,
+    verbatim, without the checkbox marks; the steps from its sub-tasks (key, summary,
+    status). People, dates, links, comments and the tracker's own banners are ignored.
+    The part to write is the sub-task in progress, or the first one not done; its scope and
+    its facts are the section of the description headed with that sub-task's key. If the
+    description has no section for it, stop: that is a blocking open question. Sub-tasks
+    already done are executed parts and stay as written in the guide.
 2. Copy the acceptance criteria verbatim. If the story has none, write "None in the story"
    and raise a blocking open question.
 3. Read the project instructions, then the build and test configuration. Record the exact

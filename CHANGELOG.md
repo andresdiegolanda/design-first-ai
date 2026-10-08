@@ -20,6 +20,14 @@ All notable changes to this project are documented here.
   whose instructions name another folder for guides and reports keeps it. The Patterns in
   both skills, `context/layer-5-impl-guide.md`, `context/layer-5-execution-report.md`,
   `docs/design-workflow.md`.
+- **The story file can be the tracker's export.** `story.html`, Jira's printable issue view
+  saved as is at the workspace root or in the guide folder, counts as the story: the create
+  skill reads the ID and title from its heading, the intent from the description, the
+  acceptance criteria from that field (verbatim, without the checkbox marks), the steps from
+  the sub-tasks; the part to write is the sub-task in progress, or the first not done, and its
+  scope and facts are the description's section headed with that sub-task's key (rule 1a; the
+  apply skill's rule 1; layer 5; the workflow doc). Nothing is retyped: the story lives in the
+  tracker, the export is the file.
 - **Parts are units of application, not only of shipping.** A story applied in more than one
   run — several pull requests, or steps applied and reviewed one at a time — gets one part per
   run, named as the story names its steps; a story file that describes one step of a story

@@ -36,8 +36,9 @@ between guide and code. Stops on large ones. Never commits.
 ### Before changing anything
 
 1. Find the guide: the one the prompt names; otherwise `docs/[STORY-ID]-impl-guide.md`, or
-   the repository's guide folder, for the ID in `story.txt` at the workspace root (or the
-   story file the repository's instructions name). If no guide is found, stop and ask.
+   the repository's guide folder, for the ID in the story file (`story.txt` or
+   `story.html`, a tracker export, at the workspace root or in the guide folder, or the
+   file the repository's instructions name). If no guide is found, stop and ask.
 2. Read the whole guide. If it has a blocking open question, stop and list it.
 3. If the guide has parts, apply only the part named in the prompt. If none is named,
    apply the first part not yet in the execution report and say which.
