@@ -39,8 +39,11 @@ continue the work reads this document first.
 ```
 Execute the impl-guide with the skill — it writes the report as it goes:
 
-  "Use /apply-implementation-guide.
-   Guide: docs/[STORY-ID]-impl-guide.md"
+  "Apply the implementation guide docs/[STORY-ID]-impl-guide.md
+   using the skill apply-implementation-guide."
+
+One line: the guide and the skill. Everything else the run needs is in
+the skill or in the guide, never in the prompt.
 
 A story shipped as several pull requests is applied one part per run.
 Each run adds its part to the same report.

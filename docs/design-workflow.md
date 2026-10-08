@@ -41,7 +41,8 @@ STEP 2 — Implementation guide
 
 STEP 3 — Execution
   Input:   docs/[STORY-ID]-impl-guide.md + the codebase
-  Ask:     "Use /apply-implementation-guide. Guide: docs/[STORY-ID]-impl-guide.md"
+  Ask:     "Apply the implementation guide docs/[STORY-ID]-impl-guide.md
+            using the skill apply-implementation-guide."  (one line, nothing else)
   Output:  Code in the working tree (not committed)
            + docs/[STORY-ID]-execution-report.md
   Purpose: The agent implements against the guide. The execution report is the

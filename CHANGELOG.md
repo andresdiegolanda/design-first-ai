@@ -8,6 +8,13 @@ All notable changes to this project are documented here.
 
 ### Changed
 
+- **The prompt that applies a guide is one line** — `Apply the implementation guide
+  docs/[STORY-ID]-impl-guide.md using the skill apply-implementation-guide.` The guide and the
+  skill, nothing else: the commands, the deviation gate, the report and what not to touch are
+  the skill's or the guide's business, never the prompt's, and a rule that only works when the
+  prompt repeats it is in the wrong place. `context/skills/apply-implementation-guide/SKILL.md`
+  (the Pattern and a design constraint), `context/layer-5-execution-report.md`,
+  `docs/design-workflow.md`.
 - **`context/skills/apply-implementation-guide/SKILL.md`** — The execution report's What Was
   Implemented section is now one table of every file changed, added, or deleted, sorted by
   folder (root first, then folders alphabetically, files alphabetically within each), with what

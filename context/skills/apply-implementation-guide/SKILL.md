@@ -88,13 +88,16 @@ between guide and code. Stops on large ones. Never commits.
 
 ## Pattern
 
-**Opening prompt:**
+**Opening prompt — one line, the guide and the skill, nothing else:**
 
 ```
-Use /apply-implementation-guide.
-Guide: docs/[STORY-ID]-impl-guide.md
-Part: [A | all]
+Apply the implementation guide docs/[STORY-ID]-impl-guide.md using the skill apply-implementation-guide.
 ```
+
+Everything else the run needs is in this skill or in the guide: the commands, the deviation
+gate, the report, what not to touch. The prompt names no branch, no report, no reminder. When
+the guide has parts, rule 2 picks the first part not yet in the report; to choose one, add it
+after the line: `Part B`.
 
 **Report skeleton:**
 
@@ -164,3 +167,4 @@ None yet.
 - Do not report a part complete without running the build and the tests
 - Do not leave a changed file out of the What Was Implemented table, or list it out of folder order
 - Do not put secrets, tokens, credentials, or environment values in the report
+- Do not expect anything from the prompt beyond the guide's path and a part: a rule that only works when the prompt repeats it belongs in this skill or in the guide
