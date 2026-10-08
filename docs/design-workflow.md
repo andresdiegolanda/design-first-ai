@@ -31,8 +31,9 @@ STEP 1 — Application description
            Write it once. Update it when the architecture changes significantly.
 
 STEP 2 — Implementation guide
-  Input:   The story + the codebase (docs/app-description.md included)
-  Ask:     "Use /create-implementation-guide. Story: [paste story]"
+  Input:   The story in story.txt + the codebase (docs/app-description.md included)
+  Ask:     "Create the implementation guide using the skill create-implementation-guide."
+           (one line, always the same; the story file holds the rest)
   Output:  docs/[STORY-ID]-impl-guide.md
   Purpose: The design document. Contains scope, components, interactions,
            contracts, constraints, the change map, verification, and open
@@ -41,8 +42,8 @@ STEP 2 — Implementation guide
 
 STEP 3 — Execution
   Input:   docs/[STORY-ID]-impl-guide.md + the codebase
-  Ask:     "Apply the implementation guide docs/[STORY-ID]-impl-guide.md
-            using the skill apply-implementation-guide."  (one line, nothing else)
+  Ask:     "Apply the implementation guide using the skill apply-implementation-guide."
+           (one line, always the same; the skill finds the story's guide)
   Output:  Code in the working tree (not committed)
            + docs/[STORY-ID]-execution-report.md
   Purpose: The agent implements against the guide. The execution report is the

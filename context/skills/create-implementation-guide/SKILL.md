@@ -6,7 +6,9 @@ description: Build the implementation guide for one story from the story text an
 # Skill: Create Implementation Guide
 
 > **When to load it:** When a story is ready and no code has been written for it.
-> Inputs: the story and the workspace. Output: `docs/[STORY-ID]-impl-guide.md`.
+> Inputs: the story file and the workspace. Output: `docs/[STORY-ID]-impl-guide.md`.
+> The prompt is one line; the story, the ID, the guide's name and place and every
+> convention come from the story file, the workspace and this skill.
 
 ---
 
@@ -25,7 +27,7 @@ human can answer. Every statement about existing code is checked against the cod
 
 | Input | What it contributes | Source |
 |-------|---------------------|--------|
-| The story | ID, intent, acceptance criteria, exclusions, facts about systems the code cannot show | Pasted into the prompt |
+| The story | ID, intent, acceptance criteria, exclusions, facts about systems the code cannot show | `story.txt` at the workspace root, or the story file the repository's instructions name; a file the prompt names, or text pasted into the prompt, only when it says so |
 | The code | What exists — structure, conventions, build and test commands, every place a change touches | The workspace: source, tests, build files, `.github/` instructions, `docs/app-description.md` if present |
 
 A fact neither input proves is an open question, not an assumption.
@@ -36,7 +38,9 @@ A fact neither input proves is an open question, not an assumption.
 
 ### Read before writing
 
-1. Take the story ID from the story. If there is none, ask for it before writing.
+1. Open the story: `story.txt` at the workspace root, or the file the repository's
+   instructions name, unless the prompt names a file or pastes the text. If there is no
+   story, stop and ask. Take the story ID from it; if it has none, ask before writing.
 2. Copy the acceptance criteria verbatim. If the story has none, write "None in the story"
    and raise a blocking open question.
 3. Read the project instructions, then the build and test configuration. Record the exact
@@ -66,7 +70,8 @@ A fact neither input proves is an open question, not an assumption.
     - Every external call has an error path.
     - Every change-map row traces to Scope or Contracts.
     - Every acceptance criterion has a Verification row.
-14. Set Status to `Draft — for review` and stop.
+14. Write the guide as `docs/[STORY-ID]-impl-guide.md`, or in the folder the repository's
+    instructions name for guides. Set Status to `Draft — for review` and stop.
 15. On review comments, change the guide in place. Where a decision changes, keep one line
     stating what it replaced and why.
 
@@ -74,13 +79,16 @@ A fact neither input proves is an open question, not an assumption.
 
 ## Pattern
 
-**Opening prompt:**
+**Opening prompt — one line, always the same:**
 
 ```
-Use /create-implementation-guide.
-Story:
-[PASTE TITLE, DESCRIPTION, ACCEPTANCE CRITERIA]
+Create the implementation guide using the skill create-implementation-guide.
 ```
+
+The story is in `story.txt`; the ID, the guide's name and place, and every convention come
+from the story file, the workspace and this skill, so the prompt repeats none of them. Only
+when the story is elsewhere does the prompt say so, after the line: `Story: docs/stories/X.md`,
+or the pasted text.
 
 **Guide skeleton:**
 
@@ -140,3 +148,4 @@ Omit Parts when the story ships as one pull request.
 - Do not define a part that cannot build and pass its tests alone
 - Do not modify any file except the guide
 - Do not split the guide into more than one document
+- Do not expect anything from the prompt that the story file, the workspace or this skill already holds: a rule that only works when the prompt repeats it belongs here or in the story

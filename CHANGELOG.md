@@ -8,12 +8,17 @@ All notable changes to this project are documented here.
 
 ### Changed
 
-- **The prompt that applies a guide is one line** — `Apply the implementation guide
-  docs/[STORY-ID]-impl-guide.md using the skill apply-implementation-guide.` The guide and the
-  skill, nothing else: the commands, the deviation gate, the report and what not to touch are
-  the skill's or the guide's business, never the prompt's, and a rule that only works when the
-  prompt repeats it is in the wrong place. `context/skills/apply-implementation-guide/SKILL.md`
-  (the Pattern and a design constraint), `context/layer-5-execution-report.md`,
+- **Three places, and two fixed prompts.** Everything a story needs lives in the story file,
+  in the skills, or in a prompt that never changes: `Create the implementation guide using the
+  skill create-implementation-guide.` and `Apply the implementation guide using the skill
+  apply-implementation-guide.` The story is `story.txt` at the workspace root (or the file the
+  repository's instructions name); the create skill takes the ID, the guide's name and place
+  from it, and the apply skill finds the story's guide the same way (its new rule 1; the
+  others renumbered). The commands, the deviation gate, the report and what not to touch are
+  the skills' or the guide's business, never the prompt's; a rule that only works when the
+  prompt repeats it is in the wrong place (a design constraint in both skills). A repository
+  whose instructions name another folder for guides and reports keeps it. The Patterns in
+  both skills, `context/layer-5-impl-guide.md`, `context/layer-5-execution-report.md`,
   `docs/design-workflow.md`.
 - **`context/skills/apply-implementation-guide/SKILL.md`** — The execution report's What Was
   Implemented section is now one table of every file changed, added, or deleted, sorted by

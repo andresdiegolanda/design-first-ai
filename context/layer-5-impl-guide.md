@@ -33,15 +33,17 @@ not a per-session load — and it lives in `docs/` alongside the execution repor
 
 ```
 Give the agent:
-  - The story
+  - The story, in story.txt at the workspace root
   - The workspace (docs/app-description.md included)
 
-Ask:
-  "Use /create-implementation-guide.
-   Story: [paste story]"
+Ask, always the same line:
+  "Create the implementation guide using the skill create-implementation-guide."
+
+The ID, the guide's name and place and every convention come from the
+story file, the workspace and the skill; the prompt repeats none of them.
 
 Iterate until every section is correct and clear.
-Then execute with /apply-implementation-guide.
+Then execute with the apply skill's one line.
 ```
 
 Skill: `skills/create-implementation-guide/SKILL.md`
