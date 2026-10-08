@@ -44,8 +44,9 @@ Execute the impl-guide with the skill — it writes the report as it goes:
 One line, always the same. The guide is the story's (story.txt); everything
 else the run needs is in the skill or in the guide, never in the prompt.
 
-A story shipped as several pull requests is applied one part per run.
-Each run adds its part to the same report.
+A story with parts (several pull requests, or steps applied one at a
+time) is applied one part per run. Each run adds its part to the same
+report.
 
 Update it when PR review feedback arrives:
   Paste the review comment as a prompt.

@@ -220,7 +220,7 @@ Where each change lands — and nothing beyond it.
 - One row per edit: `file:line` and symbol, what changes, why
 - Every reference to a changed symbol is a row or is listed under "Not changed"
 - No method bodies — the map says where and what, never the code
-- Each part, if the story ships as several pull requests, builds and passes its tests alone
+- Each part, if the story is applied in more than one run, builds and passes its tests alone
 
 **What to check at execution:** the agent may add features the guide didn't specify —
 retry logic, caching, metrics endpoints. Check the execution report against the impl-guide.
@@ -299,8 +299,8 @@ who needs to understand, operate, or continue the work reads this document first
 - Review feedback received and how it was addressed
 
 **Skill:** `/apply-implementation-guide` — the guide and the codebase. It never commits.
-A story that ships as several pull requests is applied one part per run; each run adds
-its part to the same report.
+A story with parts (several pull requests, or steps applied one at a time) is applied one
+part per run; each run adds its part to the same report.
 
 When a PR review comment arrives, the analysis is a prompt exercise — paste the comment,
 get the analysis and the fix. The fix goes into the code. The outcome goes into the

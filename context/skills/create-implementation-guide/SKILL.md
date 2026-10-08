@@ -55,8 +55,10 @@ A fact neither input proves is an open question, not an assumption.
 7. Contracts: signatures, types, and payloads only. No method bodies.
 8. Change map: one row per edit, in execution order — file and anchor, what changes, why.
    Every search hit from rule 4 is either a row or listed under "Not changed" with the reason.
-9. Split into parts only when the story ships as more than one pull request. Each part must
-   build and pass its tests alone. State what each part depends on.
+9. Split into parts when the story is applied in more than one run: because it ships as more
+   than one pull request, or because its steps are applied and reviewed one at a time. Name
+   the parts as the story names its steps; otherwise A, B, C. Each part must build and pass
+   its tests alone. State what each part depends on.
 10. Verification: for each acceptance criterion, the check that proves it — a test to write
     (the behaviour, not the code), a command, or a manual step.
 11. Open questions: everything neither input proves. Mark each blocking or non-blocking.
@@ -71,7 +73,10 @@ A fact neither input proves is an open question, not an assumption.
     - Every change-map row traces to Scope or Contracts.
     - Every acceptance criterion has a Verification row.
 14. Write the guide as `docs/[STORY-ID]-impl-guide.md`, or in the folder the repository's
-    instructions name for guides. Set Status to `Draft — for review` and stop.
+    instructions name for guides. If that guide exists and its Status says a part is executed,
+    keep the executed parts as written and add or rewrite only the part the story file
+    describes: one story, one guide, parts added as the story goes. Set Status to
+    `Draft — for review` and stop.
 15. On review comments, change the guide in place. Where a decision changes, keep one line
     stating what it replaced and why.
 

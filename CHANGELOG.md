@@ -20,6 +20,11 @@ All notable changes to this project are documented here.
   whose instructions name another folder for guides and reports keeps it. The Patterns in
   both skills, `context/layer-5-impl-guide.md`, `context/layer-5-execution-report.md`,
   `docs/design-workflow.md`.
+- **Parts are units of application, not only of shipping.** A story applied in more than one
+  run — several pull requests, or steps applied and reviewed one at a time — gets one part per
+  run, named as the story names its steps; a story file that describes one step of a story
+  already partly applied adds that part to the existing guide, whose executed parts stay as
+  written (create skill, rules 9 and 14; layer 5 and the workflow doc).
 - **`context/skills/apply-implementation-guide/SKILL.md`** — The execution report's What Was
   Implemented section is now one table of every file changed, added, or deleted, sorted by
   folder (root first, then folders alphabetically, files alphabetically within each), with what
