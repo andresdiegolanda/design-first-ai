@@ -27,7 +27,7 @@ human can answer. Every statement about existing code is checked against the cod
 
 | Input | What it contributes | Source |
 |-------|---------------------|--------|
-| The story | ID, intent, acceptance criteria, exclusions, facts about systems the code cannot show | The story file: `story.txt` or `story.html` at the workspace root or in the repository's guide folder, or the file the repository's instructions name. `story.html` is an issue tracker's export of the story (Jira's printable issue view, saved as is); a file the prompt names, or text pasted into the prompt, only when it says so |
+| The story | ID, intent, acceptance criteria, exclusions, facts about systems the code cannot show | The story file: `story.txt` or `story.html` at the workspace root or in the repository's guide folder, or the file the repository's instructions name. `story.html` is an issue tracker's export of the story (Jira's printable issue view, saved as is); `part.html` beside it, the export of one sub-task, names the part and holds its scope. A file the prompt names, or text pasted into the prompt, only when it says so |
 | The code | What exists — structure, conventions, build and test commands, every place a change touches | The workspace: source, tests, build files, `.github/` instructions, `docs/app-description.md` if present |
 
 A fact neither input proves is an open question, not an assumption.
@@ -50,6 +50,11 @@ A fact neither input proves is an open question, not an assumption.
     its facts are the section of the description headed with that sub-task's key. If the
     description has no section for it, stop: that is a blocking open question. Sub-tasks
     already done are executed parts and stay as written in the guide.
+1b. When `part.html`, the export of one sub-task, sits beside `story.html`, it names the
+    part: the part is that sub-task, its description is the part's scope and facts, and the
+    story's ID, intent and acceptance criteria still come from `story.html`. With `part.html`
+    alone, the story's key is the parent named in its heading, and the guide has no
+    acceptance criteria: raise the blocking open question of rule 2.
 2. Copy the acceptance criteria verbatim. If the story has none, write "None in the story"
    and raise a blocking open question.
 3. Read the project instructions, then the build and test configuration. Record the exact

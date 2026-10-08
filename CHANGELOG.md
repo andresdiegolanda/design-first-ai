@@ -26,8 +26,9 @@ All notable changes to this project are documented here.
   acceptance criteria from that field (verbatim, without the checkbox marks), the steps from
   the sub-tasks; the part to write is the sub-task in progress, or the first not done, and its
   scope and facts are the description's section headed with that sub-task's key (rule 1a; the
-  apply skill's rule 1; layer 5; the workflow doc). Nothing is retyped: the story lives in the
-  tracker, the export is the file.
+  apply skill's rule 1; layer 5; the workflow doc). Or the sub-task's own export, `part.html`
+  beside `story.html`, names the part and holds its scope in its description (rule 1b).
+  Nothing is retyped: the story lives in the tracker, the exports are the files.
 - **Parts are units of application, not only of shipping.** A story applied in more than one
   run — several pull requests, or steps applied and reviewed one at a time — gets one part per
   run, named as the story names its steps; a story file that describes one step of a story

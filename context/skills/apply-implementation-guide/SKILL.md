@@ -38,7 +38,9 @@ between guide and code. Stops on large ones. Never commits.
 1. Find the guide: the one the prompt names; otherwise `docs/[STORY-ID]-impl-guide.md`, or
    the repository's guide folder, for the ID in the story file (`story.txt` or
    `story.html`, a tracker export, at the workspace root or in the guide folder, or the
-   file the repository's instructions name). If no guide is found, stop and ask.
+   file the repository's instructions name; with `part.html` alone, the parent key in its
+   heading). If no guide is found, stop and ask. When `part.html` is present, the part to
+   apply is that sub-task's, unless the prompt names another.
 2. Read the whole guide. If it has a blocking open question, stop and list it.
 3. If the guide has parts, apply only the part named in the prompt. If none is named,
    apply the first part not yet in the execution report and say which.

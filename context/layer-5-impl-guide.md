@@ -35,7 +35,9 @@ not a per-session load — and it lives in `docs/` alongside the execution repor
 Give the agent:
   - The story file at the workspace root: story.txt, or story.html,
     the tracker's export of the story saved as is (Jira's printable
-    issue view: title, description, acceptance criteria, sub-tasks)
+    issue view: title, description, acceptance criteria, sub-tasks);
+    for one step of it, part.html beside it: the sub-task's export,
+    whose description is the step's scope
   - The workspace (docs/app-description.md included)
 
 Ask, always the same line:
